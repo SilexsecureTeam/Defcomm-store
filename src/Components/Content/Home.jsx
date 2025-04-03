@@ -10,8 +10,8 @@ import { GoDotFill } from "react-icons/go";
 function Home() {
     return (
         
-        <div className='relative bg-deffcom-lime text-white px-10 pt-[40px] mx-10'> 
-            <div className='absolute right-10 top-[120px]'>
+        <div className='relative bg-deffcom-lime text-white px-4 pt-[20px] md:px-10 md:pt-[40px] md:mx-10'> 
+            <div className='hidden md:block absolute right-10 top-[120px]'>
                 <ul className='flex gap-3 text-xs'>
                     <li className='active cursor-pointer flex gap-1 items-center'>
                         <p className='text-xl'><CiMobile1 /></p>
@@ -35,10 +35,10 @@ function Home() {
                 </ul>
             </div>
 
-            <div className='pt-20 px-10'>
+            <div className='pt-20 md:pt-20 md:px-10'>
                 <div>
                     <p className='flex items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> 50% OFF FOR NEXT 24 HOURS</p>
-                    <h1 className='text-[105px] leading-xs tracking-tighter'>Transforming ideas into beautifully crafted products.</h1>
+                    <h1 className='text-[35px] md:text-[105px] leading-xs md:tracking-tighter'>Transforming ideas into beautifully crafted products.</h1>
                     <div className='flex gap-4 text-black '>
                         <button className='py-2 px-5 bg-white rounded-md'>GET STARTED</button>
                         <button className='bg-lime-600 py-2 px-3 rounded-[50px]'>

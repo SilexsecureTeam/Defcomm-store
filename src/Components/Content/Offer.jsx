@@ -4,7 +4,7 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 
 function Offer() {
     return (
-        <div className='mx-10 bg-black text-white p-16 rounded-[40px]'>
+        <div className='mx-10 bg-black text-white mb-20 p-16 rounded-[40px]'>
             <div className='flex justify-between items-center'>
                 <p className='text-[50px]'>Best choice for you</p>
                 <div className='flex gap-6 text-lg'>

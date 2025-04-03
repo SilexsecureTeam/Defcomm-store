@@ -1,17 +1,19 @@
 import React from 'react'
 import Home from './Home'
-import Project from './Project'
-import Offer from './Offer'
-import WhyUs from './WhyUs'
+import Partners from './Partners'
+import OurService from './OurService'
+
+
+
 
 function Index() {
     return (
         <>
                   
-                  <Home />
-                  <Project />
-                  <Offer />
-                  <WhyUs />
+                <Home />
+                <Partners />
+                <OurService />
+                
                   
         </>
     )

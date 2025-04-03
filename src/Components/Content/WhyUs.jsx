@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 
 function WhyUs() {
     return (
-     <div className='bg-black w-full px-10 py-24 mt-20 '>
+     <div className='bg-black w-full px-10 py-24  '>
         <div className='flex gap-10 bg-neutral-900 px-30 py-30 '>
             <div className=' text-white'>
                  <p className='flex items-center text-[13px]'> <span className='text-lime-400 text-xl'><GoDotFill /></span> WHY CHOOSE US</p>

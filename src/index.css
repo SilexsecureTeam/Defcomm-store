@@ -8,12 +8,17 @@
   }
 
 
-
  
 
   @layer utilities{
     .bg-deffcom-lime{
         background-color: rgb(42, 65, 1);
+    } 
+  }
+
+  @layer utilities{
+    .bg-deffcomarmy-lime{
+      background-image: linear-gradient(to bottom, rgb(57, 88, 1), rgb(43, 66, 1), black, black);
     } 
   }
 
@@ -25,7 +30,7 @@
   
   @layer utilities{
 
-    .active:active{
+    .a:active{
       color: rgb(153, 236, 8);
     }
     
