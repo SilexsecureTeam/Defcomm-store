@@ -37,9 +37,9 @@ function Home() {
 
             <div className='pt-20 md:pt-20 md:px-10'>
                 <div>
-                    <p className='flex items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> 50% OFF FOR NEXT 24 HOURS</p>
-                    <h1 className='text-[35px] md:text-[105px] leading-xs md:tracking-tighter'>Transforming ideas into beautifully crafted products.</h1>
-                    <div className='flex gap-4 text-black '>
+                    <p className='flex md:py-8 items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> 50% OFF FOR NEXT 24 HOURS</p>
+                    <h1 className='text-[35px] md:text-[100px] md:leading-24 md:tracking-tight'>Transforming ideas into beautifully crafted products.</h1>
+                    <div className='flex py-4 md:py-8 gap-4 text-black '>
                         <button className='py-2 px-5 bg-white rounded-md'>GET STARTED</button>
                         <button className='bg-lime-600 py-2 px-3 rounded-[50px]'>
                             <CgArrowTopRight />

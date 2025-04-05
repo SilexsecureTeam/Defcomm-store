@@ -2,24 +2,28 @@ import React from 'react'
 import { GoDotFill } from "react-icons/go";
 import { CgArrowTopRight } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
-
+import military from "../../assets/military 1 (1).png"
 
 function Project() {
 
     const navigate = useNavigate()
 
     return (
-        <div className='grid grid-cols-2 py-20 my-10 px-20 gap-8 mx-10'> 
+        <div className='flex flex-col justify-center md:grid md:justify-none md:grid-cols-2 mx-4 py-10 md:py-20 md:my-10 md:px-20 md:gap-8 md:mx-10'> 
             
-            <div>
+            <div className='w-full'>
 
                 <div>
                     <p className='flex items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> LASTEST PROJECT</p>
                     <h1 className='text-[30px] py-2'>App Categories</h1>
                     
-                    <div className='h-[350px] bg-stone-400 '>
-
+                    <div className='flex flex-col px-6 md:px-14 text-justify md:flex-row md:gap-4 py-10 items-center h-[350px] bg-stone-400 '>
+                        <div>
+                            <img src={military} alt="" className='w-[100px] md:w-[400px]'/>
+                        </div>
+                            <p>A secure, AI-powered medical application designed for military personnel, medics, and healthcare providers to manage battlefield and peacetime medical operations efficiently.</p>
                     </div>
+                    
                     <div className='flex items-center justify-between'>
                         
                         <div className='w-[500px] py-2'>

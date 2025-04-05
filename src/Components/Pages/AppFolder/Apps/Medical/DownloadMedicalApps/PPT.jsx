@@ -31,9 +31,9 @@ function PPT() {
     return (
 
         <>
-            <div className='bg-black px-10 py-30 text-white w-full'>
+            <div className='bg-black px-4 md:px-10 py-20 md:py-30 text-white w-full'>
                 
-                <div className='flex justify-between py-14  px-10'>
+                <div className='flex flex-col gap-4 md:gap-0 md:flex-row justify-between py-14 px-4 md:px-10'>
                     <div className=' leading-9'>
                         <h1 className='text-[36px] font-bold '>About this</h1>
                         <p className='text-[24px] text-gray-400'>DefcommV 13</p>
@@ -48,9 +48,9 @@ function PPT() {
                     </div>            
                 </div>
 
-                <div className='flex bg-neutral-900  p-20 text-white'>
+                <div className='flex flex-col gap-4 py-4 md:py-10 px-4 md:gap-0  md:flex-row bg-neutral-900 md:p-20 text-white'>
                     <div>
-                        <div className='flex gap-14 items-center'>
+                        <div className='flex flex-col md:flex-row gap-4 md:gap-14 items-center'>
                             <div className='bg-black p-14 rounded-4xl text-lime-400 text-[110px] '> <FaWalkieTalkie /></div>
                             
                             <div className='text-[24px]'>
@@ -72,16 +72,17 @@ function PPT() {
                 </div>
             </div>
 
-            <div className='bg-white px-10 py-14 '>
-                <div className='flex justify-between '>
-                   <div className='relative h-[860px] w-[400px]'>
+            <div className='bg-white py-7 px-1.5 md:px-20 md:py-14 '>
+                <div className='flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between '>
+                
+                    <div className='relative w-[380px] h-[860px] md:w-[400px]'>
                         <img src={USArmy} alt="" className='h-full w-full' />
                         <div className='absolute  h-full w-full top-0 bg-deffcomarmy-lime opacity-50'></div>
                         <img src={NigeriaFlag} alt="NigeriaLogo" className='absolute top-10 left-4 w-[32px] h-[32px]' />
                         <div className=' absolute bottom-32 left-40 flex items-center justify-center rounded-2xl bg-red-600 w-[95px] h-[140px]'><img src={walkietalkie } alt="" className='w-[60px]' /></div>
                    </div>
                     
-                   <div className='relative h-[860px] w-[400px] overflow-x-hidden'>
+                   <div className='relative w-[380px] h-[860px] md:w-[400px] overflow-x-hidden'>
                         <div className='absolute h-full w-full  bg-deffcomarmy-lime'></div>
                         
                         <div className='flex items-center justify-between absolute top-0 w-full p-2'>
@@ -111,7 +112,7 @@ function PPT() {
                                 <p className='text-[20px] text-white'>Channels</p>
                         </div>
 
-                        <div className='flex items-center px-4 gap-1 absolute top-50'>
+                        <div className='flex items-center md:px-4 gap-1 absolute top-50'>
 
                                 <div className='text-white w-[80px] h-[80px] bg-lime-900/70 flex flex-col justify-center items-center'>
                                    <div><img src={Iconbusiness} alt="" /></div>
@@ -145,7 +146,7 @@ function PPT() {
                                
                         </div>
 
-                        <div className='absolute flex items-center justify-center px-4 h-[90px] top-75'>
+                        <div className='absolute flex items-center justify-center px-1.5 md:px-4 h-[90px] top-75'>
 
                                 <div className='flex flex-col px-4 items-center bg-red-700 gap-12   w-[30px]  h-full py-2'>
                                     <div className='w-[14px] h-[14px]'><img src={carboncheckbox} alt="" className='w-full h-full'/></div>
@@ -193,7 +194,7 @@ function PPT() {
                                 
                         </div>
                         
-                        <div className='absolute flex items-center justify-center px-4 h-[90px] top-[400px]'>
+                        <div className='absolute flex items-center justify-center px-1.5 md:px-4 h-[90px] top-[400px]'>
 
                             <div className='flex flex-col px-4 items-center bg-red-700 gap-12   w-[30px]  h-full py-2'>
                                 <div className='w-[14px] h-[14px]'><img src={carboncheckbox} alt="" className='w-full h-full'/></div>
@@ -241,7 +242,7 @@ function PPT() {
 
                         </div>
 
-                        <div className='absolute flex items-center justify-center px-4 h-[90px] top-[500px]'>
+                        <div className='absolute flex items-center justify-center px-1.5 md:px-4 h-[90px] top-[500px]'>
 
                             <div className='flex flex-col px-4 items-center bg-red-700 gap-12   w-[30px]  h-full py-2'>
                                 <div className='w-[14px] h-[14px]'><img src={carboncheckbox} alt="" className='w-full h-full'/></div>
@@ -289,7 +290,7 @@ function PPT() {
 
                         </div>
 
-                        <div className='absolute flex items-center justify-center px-4 h-[90px] top-[600px]'>
+                        <div className='absolute flex items-center justify-center px-1.5 md:px-4 h-[90px] top-[600px]'>
 
                             <div className='flex flex-col px-4 items-center bg-red-700 gap-12   w-[30px]  h-full py-2'>
                                 <div className='w-[14px] h-[14px]'><img src={carboncheckbox} alt="" className='w-full h-full'/></div>
@@ -345,58 +346,58 @@ function PPT() {
                         </div>
                    </div>
                    
-                   <div className='relative h-[860px] w-[400px]'>
+                   <div className='relative w-[380px] h-[860px] md:w-[400px]'>
                     <img src={imgs} alt="" className='w-full h-full'/>
                    </div>
 
                 </div>
 
 
-                <div className='px-10 py-20'>
-                    <div className='flex justify-between items-center'>
+                <div className='px-4 md:px-10 py-10'>
+                    <div className='flex flex-row justify-between items-center'>
                         <div className='flex items-center gap-4'>
                             <p className='text-[40px] font-bold'>05</p>
-                            <p className='text-white px-8 py-4 grid items-center justify-center bg-lime-600 rounded-4xl text-[30px] font-bold'>App Description</p>
+                            <p className='text-white px-8 py-4 grid items-center justify-center bg-lime-600 rounded-4xl text-[15px] md:text-[30px] font-bold'>App Description</p>
                         </div>
-                        <div className='px-10 py-6 rounded-[50px] text-4xl border border-black flex items-center justify-center'>
+                        <div className='px-6 py-2 md:px-10 md:py-6 rounded-[50px] text-xl md:text-4xl border border-black flex items-center justify-center'>
                             <FaArrowRight  />
                         </div>
                     </div>
 
-                    <div className='px-16'>
+                    <div className='md:px-16'>
                         <h1 className='font-bold py-6'>Now with Arma 3 support!</h1>
-                        <p className='text-[20px]'>iZurvive provides you with DayZ and Arma 3 maps, lets you place tactical markers (player positions, tents, meeting points,..) on it and automatically shares those markers with the friends in your group - without the need for accounts, a registration or other services! Furthermore it provides a loot-map for DayZ.</p>
-                        <p className='py-4 text-[20px]'> Finding and coordinating your team in the huge open world of DayZ and Arma 3 has never been easier!</p>
+                        <p className='text-[14px] md:text-[20px]'>iZurvive provides you with DayZ and Arma 3 maps, lets you place tactical markers (player positions, tents, meeting points,..) on it and automatically shares those markers with the friends in your group - without the need for accounts, a registration or other services! Furthermore it provides a loot-map for DayZ.</p>
+                        <p className='py-4 text-[14px] md:text-[20px]'> Finding and coordinating your team in the huge open world of DayZ and Arma 3 has never been easier!</p>
                     </div>
                     
 
-                    <div className='flex items-center gap-10 py-20'>
-                        <div className='flex justify-center items-center w-[100px] h-[100px] bg-lime-800 rounded-[50px]'> <img src={defcommlogo} alt="" className='w-[70px]'/></div>
-                        <div>
+                    <div className='flex flex-col md:flex-row items-center md:gap-10 md:py-10'>
+                        <div className='flex justify-center items-center w-[100px] h-[100px] bg-lime-800 rounded-[50px]'> <img src={defcommlogo} alt="" className='w-[50px] md:w-[70px]'/></div>
+                        <div className='text-center py-4 w-full md:py-0 md:text-left'>
                             <h1 className='text-[30px] font-bold'>- Cap John D.</h1>
                             <p className='text-[20px]'>Founded of Tech Innovators</p>
                         </div>
                     </div>
 
-                    <div className='py'>
-                        <div className='flex justify-between'>
+                    <div className=''>
+                        <div className='grid grid-cols-2 gap-4 px-4 md:px-20 md:flex md:justify-between'>
                             
-                            <div className='flex flex-col justify-center items-center border border-lime-700 w-[260px] h-[180px]'>
+                            <div className='flex flex-col  justify-center items-center border border-lime-700 w-[150px] h-[150px] md:w-[260px] md:h-[180px]'>
                                 <h1 className='text-[48px] text-indigo-900 font-bold'>50k</h1>
                                  <p className='text-[18px]'>Downloads</p>
                             </div>
 
-                            <div className='flex flex-col justify-center items-center border border-lime-700 w-[260px] h-[180px]'>
+                            <div className='flex flex-col justify-center items-center border border-lime-700 w-[150px] h-[150px] md:w-[260px] md:h-[180px]'>
                                 <h1 className='text-[48px] text-indigo-900 font-bold'>500+</h1>
                                  <p className='text-[18px]'>Review</p>
                             </div>
 
-                            <div className='flex flex-col justify-center items-center border border-lime-700 w-[260px] h-[180px]'>
+                            <div className='flex flex-col justify-center items-center border border-lime-700 w-[150px] h-[150px] md:w-[260px] md:h-[180px]'>
                                 <h1 className='text-[48px] text-indigo-900 font-bold'>25k</h1>
                                  <p className='text-[18px]'>Ratings</p>
                             </div>
 
-                            <div className='flex flex-col justify-center items-center border border-lime-700 w-[260px] h-[180px]'>
+                            <div className='flex flex-col justify-center items-center border border-lime-700 w-[150px] h-[150px] md:w-[260px] md:h-[180px]'>
                                 <h1 className='text-[48px] text-indigo-900 font-bold'>149.9</h1>
                                  <p className='text-[18px]'>MB</p>
                             </div>

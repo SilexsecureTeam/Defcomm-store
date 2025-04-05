@@ -4,16 +4,17 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 
 function Offer() {
     return (
-        <div className='mx-10 bg-black text-white mb-20 p-16 rounded-[40px]'>
-            <div className='flex justify-between items-center'>
-                <p className='text-[50px]'>Best choice for you</p>
-                <div className='flex gap-6 text-lg'>
-                    <p className='py-3 px-12 rounded-[50px] bg-white text-black'>All</p>
-                    <p className='py-3 px-12 rounded-[50px] border border-white '>Coorse</p>
-                    <p className='py-3 px-12 rounded-[50px] border border-white '>Partner</p>
+        <div className='mx-4 px-4 py-8 md:mx-10 bg-black text-white rounded-[20px] mb-20 md:p-16 md:rounded-[40px]'>
+            <div className='flex flex-col md:flex-row justify-between items-center'>
+                <p className='font-bold text-[30px] md:text-[50px]'>Best choice for you</p>
+                <div className='flex gap-2 md:gap-6 text-lg'>
+                    <p className='py-1 px-6 md:py-3 md:px-12 rounded-[50px] bg-white text-black'>All</p>
+                    <p className='py-1 px-6 md:py-3 md:px-12 rounded-[50px] border border-white '>Coorse</p>
+                    <p className='py-1 px-6 md:py-3 md:px-12 rounded-[50px] border border-white '>Partner</p>
                 </div>
             </div>
-            <div className='flex gap-20 py-10'>
+            
+            <div className='flex flex-col gap-8 md:flex-row  md:gap-20 py-10'>
                 
                 <div className='bg-white text-black p-8 rounded-2xl'>
                     <h1 className='font-bold text-3xl'>INNOVATIVE DESIGN</h1>
