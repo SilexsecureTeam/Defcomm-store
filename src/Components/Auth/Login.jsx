@@ -37,8 +37,8 @@ export default function LoginPage() {
                         />
                         <button className="w-full bg-black text-white py-2 rounded">Login</button>
                         <div className="text-xs text-green-300 mt-2 text-center flex justify-between items-center">
-                            <p className="text-[#C6FC2B]">  Already have an account?</p>
-                            <span className="text-white  cursor-pointer ">Sign up</span>
+                            <p className="text-[#C6FC2B]">  Dont have an account?</p>
+                            <span className="text-white  cursor-pointer "> <a href="/register"> Sign up</a></span>
                         </div>
                     </div>
                 </div>

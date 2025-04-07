@@ -1,7 +1,7 @@
 import React from 'react'
 import { HiBars2 } from "react-icons/hi2";
 import Logo from "../../assets/Defcomm-03 4.png"
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { CgClose } from "react-icons/cg";
 import { useState } from "react"
 import { CiMobile1 } from "react-icons/ci";
@@ -38,7 +38,7 @@ function Nav() {
                         <NavLink to="app"><li>APP</li></NavLink>
                         <NavLink to="app"><li>BOOKS</li></NavLink>
                         <NavLink to="app"><li>TV</li></NavLink>
-                        <NavLink><li className='font-bold hidden md:block'>LOGIN/REGISTER</li></NavLink>
+                        <NavLink to="login"><li className='font-bold hidden md:block'>LOGIN/REGISTER</li></NavLink>
                     </ul>
                     <div className='hidden md:flex text-3xl bg-lime-600 text-white p-1 rounded-[50px]'>
                     <HiBars2 />
@@ -69,7 +69,8 @@ function Nav() {
                     <li className="active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center">
                         <p className="text-2xl"><MdOutlineWatch /></p> WATCH
                     </li>
-                    <NavLink><li className='font-bold active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center '>LOGIN/REGISTER</li></NavLink>
+                    {/* <NavLink><li className='font-bold active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center '>LOGIN/REGISTER</li></NavLink> */}
+                    <Link to="/login"><li className='font-bold active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center '>LOGIN/REGISTER</li></Link>
                 </ul>
             </div>
 
