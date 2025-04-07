@@ -40,7 +40,7 @@ export default function LoginPage() {
                         <div className="text-xs text-green-300 mt-2 text-center flex justify-between items-center">
                             <p className="text-[#C6FC2B]">  Dont have an account?</p>
                            
-                            <NavLink to="/register"> <span className="text-white  cursor-pointer "></span></NavLink>
+                            <NavLink to="/register"> <span className="text-white  cursor-pointer ">sign up</span></NavLink>
                         </div>
                     </div>
                 </div>
