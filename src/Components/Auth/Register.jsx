@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
-import Logo from '../../assets/defcommlogo.png';
+import Nav from "../Layout/Header/Nav";
 
 export default function BecomeMember() {
   const [activeTab, setActiveTab] = useState('individual');
   const [showForm, setShowForm] = useState(false);
 
 return (
-    <div className="min-h-screen bg-[#36460A] text-white px-4 py-12 flex flex-col items-center">
+  <>
+    <Nav/>
+    <div className="min-h-screen bg-[#36460A] text-white px-4 py-12 flex flex-col items-center py-20">
         {/* Header */}
         <h1 className="text-4xl font-bold mb-4">
             {activeTab === 'individual' ? 'Become a member' : 'Enrolling your organisation'}
@@ -299,5 +301,6 @@ return (
             </div>
         )}
     </div>
+  </>
 );
 }

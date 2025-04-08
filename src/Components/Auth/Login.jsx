@@ -3,12 +3,14 @@ import { BsArrowDown } from "react-icons/bs";
 import Logo from "../../assets/defcommlogo.png"
 import FullLogo from "../../assets/DefcommLogofull.png"
 import { NavLink } from "react-router-dom";
+import Nav from "../Layout/Header/Nav";
 export default function LoginPage() {
     return (
         <>
-            <div className="relative min-h-screen bg-[#2e360c] text-white font-sans overflow-hidden px-8">
+        <Nav/>
+            <div className="relative min-h-screen bg-[#2e360c] text-white font-sans overflow-hidden px-8 py-20">
                 {/* Top Right Login Button */}
-                <button className="absolute top-6 right-6 bg-white text-black px-5 py-1 rounded-full text-sm z-50">
+                <button className="absolute top-6 right-6 bg-white text-black px-5 py-1 rounded-full text-sm z-10">
                     Login
                 </button>
                 <div>
@@ -87,7 +89,8 @@ export default function LoginPage() {
                 </div>
             </div>
             <div className="bg-[#36460A] py-32">
-                <div className="text-center text-white pb-10">
+               <div className="px-8">
+               <div className="text-center text-white pb-10">
                     <h1 className="font-bold text-2xl">360 Degree Protection</h1>
                     <p>Dronerly.Inc is a company producing the highest quality VR Drones</p>
                     <p> with the latest technology.</p>
@@ -107,6 +110,7 @@ export default function LoginPage() {
                         <p className="text-white">©Copyright Defcomm, All Rights Reserved. </p>
                     </div>
                 </div>
+               </div>
             </div>
         </>
     );

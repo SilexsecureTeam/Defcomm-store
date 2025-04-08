@@ -161,33 +161,38 @@ function WhyUs() {
             </div>
             
             <div className="grid md:pl-30">
-                {faqData.map((item, index) => (
-                    <div
-                    key={index}
-                    className={`bg-neutral-800 md:bg-neutral-950 p-6 border-b-2 border-neutral-700 transition-all duration-300 ease-in-out`}
-                    >
-                    <div className="flex justify-between items-center text-lime-400 font-bold text-lg md:text-xl cursor-pointer" onClick={() => toggleFAQ(index)}>
-                        <h1>{item.question}</h1>
-                        <span>{openIndex === index ? <FaMinus /> : <FaPlus />}</span>
-                    </div>
+    {faqData.map((item, index) => (
+        <div
+        key={index}
+        className={`bg-neutral-800 md:bg-neutral-950 p-6 border-b-2 border-neutral-700 transition-all duration-300 ease-in-out`}
+        >
+        <div 
+            className={`flex justify-between items-center font-bold text-lg md:text-xl cursor-pointer ${
+                openIndex === index ? 'text-lime-400' : 'text-white'
+            }`} 
+            onClick={() => toggleFAQ(index)}
+        >
+            <h1>{item.question}</h1>
+            <span>{openIndex === index ? <FaMinus /> : <FaPlus />}</span>
+        </div>
 
-                    <div
-                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                        openIndex === index ? 'max-h-80 opacity-100 mt-2' : 'max-h-0 opacity-0'
-                        }`}
-                    >
-                        <p className="text-sm md:text-md text-white py-2">{item.answer}</p>
-                        <p className="text-sm md:text-md text-white py-2">{item.answerone}</p>
-                        <p className="text-sm md:text-md text-white py-2">{item.answertwo}</p>
-                        <p className="text-xs md:text-sm text-white px-6 py-2">{item.subanswer}</p>
-                        <p className="text-sm md:text-md text-white py-2">{item.answerthree}</p>
-                        <p className="text-sm md:text-md text-white py-2">{item.answerfour}</p>
-                        <p className="text-sm md:text-md text-white py-2">{item.answerfive}</p>
-                        <p><i>For more details, visit the <b>Defcomm Developer Portal</b> or contact support.</i></p>
-                    </div>
-                    </div>
-                ))}
-                </div>
+        <div
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            openIndex === index ? 'max-h-80 opacity-100 mt-2' : 'max-h-0 opacity-0'
+            }`}
+        >
+            <p className="text-sm md:text-md text-white py-2">{item.answer}</p>
+            <p className="text-sm md:text-md text-white py-2">{item.answerone}</p>
+            <p className="text-sm md:text-md text-white py-2">{item.answertwo}</p>
+            <p className="text-xs md:text-sm text-white px-6 py-2">{item.subanswer}</p>
+            <p className="text-sm md:text-md text-white py-2">{item.answerthree}</p>
+            <p className="text-sm md:text-md text-white py-2">{item.answerfour}</p>
+            <p className="text-sm md:text-md text-white py-2">{item.answerfive}</p>
+            <p><i>For more details, visit the <b>Defcomm Developer Portal</b> or contact support.</i></p>
+        </div>
+        </div>
+    ))}
+</div>
                             
             </div> 
         </div>

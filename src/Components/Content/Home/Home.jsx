@@ -6,11 +6,16 @@ import { MdOutlineWatch } from "react-icons/md";
 import { CgArrowTopRight } from "react-icons/cg";
 import { BsDot } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
+import Partners from './Tools/Partners';
+import OurService from './Tools/OurService';
+import Layout from '../../Layout/Layout';
+import WhyUs from '../WhyUs';
 
-function Home() {
-    return (
-        
-        <div className='relative bg-deffcom-lime text-white px-4 pt-[20px] md:px-10 md:pt-[40px] md:mx-10'> 
+export default function Home() {
+    return ( 
+      <>
+      <Layout>
+      <div className='relative bg-deffcom-lime text-white px-4 pt-[20px] md:px-10 md:pt-[40px] md:mx-10'> 
             <div className='hidden md:block absolute right-10 top-[120px]'>
                 <ul className='flex gap-3 text-xs'>
                     <li className='active cursor-pointer flex gap-1 items-center'>
@@ -38,7 +43,7 @@ function Home() {
             <div className='pt-20 md:pt-20 md:px-10'>
                 <div>
                     <p className='flex md:py-8 items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> 50% OFF FOR NEXT 24 HOURS</p>
-                    <h1 className='text-[35px] md:text-[100px] md:leading-24 md:tracking-tight'>Transforming ideas into beautifully crafted products.</h1>
+                    <h1 className='text-xl md:text-7xl'>Transforming ideas into beautifully crafted products.</h1>
                     <div className='flex py-4 md:py-8 gap-4 text-black '>
                         <button className='py-2 px-5 bg-white rounded-md'>GET STARTED</button>
                         <button className='bg-lime-600 py-2 px-3 rounded-[50px]'>
@@ -65,11 +70,15 @@ function Home() {
                         </div>
                 </div>
             </div>
-            
         </div>
+            <Partners/>
+            <OurService/>
+            <WhyUs />
         
+      </Layout>
+      </>
+         
     
     )
 }
 
-export default Home

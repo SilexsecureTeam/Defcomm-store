@@ -1,22 +1,21 @@
-import React from 'react'
-import Home from './Home'
-import Partners from './Partners'
-import OurService from './OurService'
+// import React from 'react'
+// import Home from './Home/Home'
+// import Partners from './Home/Tools/Partners'
+// import OurService from './Home/Tools/OurService'
 
 
 
 
-function Index() {
-    return (
-        <>
+// function Index() {
+//     return (
+//         <>
                   
-                <Home />
-                <Partners />
-                <OurService />
+//                 <Home />
+//                 <Partners />
+//                 <OurService />
                 
                   
-        </>
-    )
-}
-
-export default Index
+//         </>
+//     )
+// }
+// export default Index

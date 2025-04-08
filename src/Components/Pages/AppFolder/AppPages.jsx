@@ -1,7 +1,7 @@
 import React from 'react'
 import Project from "../../Content/Project"
-import Offer from "../../Content/Offer"
-import Home from '../../Content/Home'
+import Offer from "../../Content/Home/Tools/Offer"
+import Home from '../../Content/Home/Home'
 
 
 

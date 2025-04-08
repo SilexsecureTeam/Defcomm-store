@@ -1,15 +1,15 @@
 import React from 'react'
-import { Outlet } from "react-router-dom";
-import Footer from "../Footer/FooterCom.jsx"
-import Nav from "../Header/Nav"
+import Footer from "./Footer/FooterCom.jsx"
+import Nav from "./Header/Nav.jsx"
 
 
-function Layout() {
+
+function Layout({children}) {
     return (
         <div className="flex flex-col min-h-screen">
         <Nav />
             <main className="flex-grow ">
-            <Outlet />  
+                {children}
             </main>
         <Footer />
       </div>
