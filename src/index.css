@@ -17,16 +17,23 @@
   }
 
   @layer utilities{
+    .bg-deffcom-limetwo{
+        background-color: rgb(47, 74, 1);
+    } 
+  }
+
+  @layer utilities{
     .bg-deffcomarmy-lime{
       background-image: linear-gradient(to bottom, rgb(57, 88, 1), rgb(43, 66, 1), black, black);
     } 
   }
 
-  /* @layer utilities{
-    .deffcom-lime{
-       color: rgb(42, 65, 1);
-    } 
-  } */
+  @layer utilities{
+    .bg-nav-background{
+    background-color: rgba(42, 65, 1, 0.144);
+    
+  }
+  }
   
   @layer utilities{
 
@@ -35,3 +42,83 @@
     }
     
   }
+
+  @Layer base {
+    @font-face{
+        font-family: 'poppins';
+        src: local('Poppins'), url(./fonts/Poppins-Light.ttf) format('truetype');
+      }
+}
+
+/* @layer utilities{
+ 
+ .animate-scroll{
+    animation: scroll 10s linear infinite;
+    
+    scroll-behavior: smooth;
+   
+  }
+
+
+  } */
+
+  @layer utilities {
+    .animate-infinite-scroll {
+      animation: scroll-x 60s linear infinite;
+      scroll-behavior: smooth;
+    }
+  }
+  
+  @layer base {
+    @keyframes scroll-x {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  }
+  
+/* @layer utilities {
+  .animate-infinite-scroll-right{
+    animation: scroll 180s linear infinite;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer base {
+  @keyframes scroll {
+    0%{
+      transform: translateX(-100%);
+    }
+    100%{
+      transform: translateX(-50%);
+    }
+    
+  }
+} */
+
+
+@layer utilities {
+  @keyframes scroll-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-scroll-reverse {
+    animation: scroll-reverse 50s linear infinite;
+  }
+}
+  
+  
+  
+
+   
+  
+     
+   

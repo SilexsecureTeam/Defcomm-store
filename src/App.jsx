@@ -5,7 +5,11 @@ import Layout from "./Components/Pages/Layout.jsx";
 import AppPages from './Components/Pages/AppFolder/AppPages.jsx'
 import MedicalApp from './Components/Pages/AppFolder/Apps/Medical/MedicalApp.jsx';
 import PPT from './Components/Pages/AppFolder/Apps/Medical/DownloadMedicalApps/PPT.jsx';
-
+import Login from './Components/Pages/LoginFolder/Login.jsx';
+import Membership from './Components/Pages/LoginFolder/Membership.jsx';
+import Privacy from './Components/Footer/Privacy.jsx';
+import TermofUse from './Components/Footer/TermofUse.jsx';
+import DevAgreement from './Components/Footer/DevAgreement.jsx';
 
 
 function App() {
@@ -13,12 +17,26 @@ function App() {
   // new version of react router
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout />}>
-          <Route index element={<HomePages />} />
-          <Route path="app" element={<AppPages />} />
-          <Route path="medical" element={<MedicalApp />} />
-          <Route path="PPT" element={<PPT/>}/>
-      </Route>
+      <>
+        <Route path="/" element={<Layout />}>
+            <Route index element={<HomePages />} />
+            <Route path='/app'  element={<AppPages />}/> 
+        </Route>
+
+        <Route path="PPT" element={<PPT/>}/>
+        <Route  path="medical" element={<MedicalApp />}  />
+        
+        <Route path='/login' element={<Login/>} />
+         <Route path="/register" element={<Membership />}/>
+         <Route path="/privacy" element={<Privacy />}/>
+         <Route path="/termofuse" element={<TermofUse />}/>
+        <Route path='/devagreement' element={<DevAgreement />} />
+        
+          
+      
+        
+        
+      </>
     )
   )
   return (

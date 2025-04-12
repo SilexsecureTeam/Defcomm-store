@@ -25,12 +25,13 @@ import ionvolumemediumblack from "../../../../../../assets/ion_volume-mediumblac
 import Icon from "../../../../../../assets/Icon.png"
 import imgs from "../../../../../../assets/2137.png"
 import { FaArrowRight } from "react-icons/fa";
-// import defcommlogo from "../../../../../../assets/defcommlogo.png"
-
+import Nav from '../../../../../Header/Nav';
+import FAQ from '../../../../../Content/FAQ';
 function PPT() {
     return (
 
         <>
+        <Nav />
             <div className='bg-black px-4 md:px-10 py-20 md:py-30 text-white w-full'>
                 
                 <div className='flex flex-col gap-4 md:gap-0 md:flex-row justify-between py-14 px-4 md:px-10'>
@@ -406,6 +407,7 @@ function PPT() {
                 </div>
                 
             </div>
+            <FAQ />
         </>
         
     )

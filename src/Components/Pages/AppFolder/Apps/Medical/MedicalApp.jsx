@@ -8,12 +8,15 @@ import { LuLaptopMinimal } from "react-icons/lu";
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import headphone from "../../../../../assets/Image.png"
 import { useNavigate } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
+import Nav from '../../../../Header/Nav';
 function MedicalApp() {
 
     const navigate = useNavigate()
     return (
-        <div className='bg-black px-4 py-20 md:px-10 md:py-30 text-white w-full'>
+        <>
+            <Nav />
+        <div className='bg-black px-4 py-20 md:px-10 md:py-20 text-white w-full md:py-30'>
             <div className='flex flex-row md:justify-between py-7  md:py-14  md:px-10'>
                 <div className=' md:leading-9'>
                     <h1 className='md:text-[36px] font-bold '>Search</h1>
@@ -21,10 +24,10 @@ function MedicalApp() {
                 </div>
                
                 <div className='flex gap-4 md:gap-14'>
-                    <div className='flex gap-1 md:gap-4 text-[10px] md:text-[20px] text-center '>
+                    <NavLink to="/"><div className='flex gap-1 md:gap-4 text-[10px] md:text-[20px] text-center '>
                         <p className='flex items-center text-[15px] md:text-[30px] justify-center w-[32px] h-[32px] md:w-[64px] md:h-[64px] bg-lime-400 rounded-xl'><GoHome /></p>
                         <p>Home</p>
-                    </div>
+                    </div></NavLink>
                     <div className='flex gap-2 md:gap-4  md:leading-6 ' >
                         <p className='flex items-center justify-center text-[15px] md:text-[30px] w-[32px] h-[32px] md:w-[64px] md:h-[64px] bg-lime-400 rounded-xl'><IoSettingsOutline /></p>
                         <p className='text-[10px] md:text-[20px] font-bold'>Settings <br/><span className='text-[7px] md:text-[14px] font-light'>Configure store</span></p>
@@ -317,6 +320,7 @@ function MedicalApp() {
 
             </div>
         </div>
+        </>
     )
 }
 

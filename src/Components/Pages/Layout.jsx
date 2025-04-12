@@ -2,6 +2,8 @@ import React from 'react'
 import { Outlet } from "react-router-dom";
 import Footer from "../Footer/FooterCom.jsx"
 import Nav from "../Header/Nav"
+import FAQ from '../Content/FAQ.jsx';
+import WhyUs from '../Content/WhyUs.jsx';
 
 
 function Layout() {
@@ -11,6 +13,8 @@ function Layout() {
             <main className="flex-grow ">
             <Outlet />  
             </main>
+        <WhyUs />
+        <FAQ />
         <Footer />
       </div>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import Project from "../../Content/Project"
 import Offer from "../../Content/Offer"
 import Home from '../../Content/Home'
-
+import FAQ from '../../Content/FAQ'
 
 
 function AppPages() {
@@ -11,6 +11,7 @@ function AppPages() {
             <Home />
             <Project />
             <Offer />
+            {/* <FAQ /> */}
         </div>
     )
 }
