@@ -23,18 +23,38 @@ function Membership() {
   const navigate = useNavigate();
 
   const listofregistration = {
-    individual: [
-      "Legal Name: Your full legal name is required to enter into agreements with Apple. This name will also appear as the seller name for your apps on the App Store.",
-      "Contact Information: You must provide a valid email, phone number, and physical address. P.O. boxes are not accepted",
-    ],
+   individual: [
+        {
+          bold: "Legal Name: ",
+          text: " Your full legal name is required to enter into agreements with Apple. This name will also appear as the seller name for your apps on the App Store."
+        },
+        {
+          bold: "Contact Information: ",
+          text: " You must provide a valid email, phone number, and physical address. P.O. boxes are not accepted"
+        }
+      ],
     organization: [
-      "Legal Binding Authority: As the Account Holder, you must have the legal authority to bind your organization to agreements with Defcomm. This means you must be the owner/founder, an executive team member, a senior project lead, or an employee with legal authority granted by a senior leader.",
-      "Legal Entity Name and Status: Your organization must be a registered legal entity that can enter into contracts with Defcomm. DBAs, fictitious business names, trade names, or branches are not accepted. The legal entity name will appear as the seller name on the App Store.",
-      "License DPCOs No: Except for government entities, your organization must have a License DPCOs, assigned by NDPC, to verify its identity, legal entity status, and address. You can check whether your organization already has a License DPCOs No and request one if needed.",
-      "Phone and Email: Your work email must be associated with your organization’s domain name.",
-      "Website: Your organization must have a publicly accessible website, with a domain name linked to your organisation.",
-    ],
-  };
+      {
+        bold: "Legal Binding Authority: ",
+        text: "As the Account Holder, you must have the legal authority to bind your organization to agreements with Defcomm. This means you must be the owner/founder, an executive team member, a senior project lead, or an employee with legal authority granted by a senior leader.",
+      },
+      {
+        bold: "Legal Entity Name and Status: ",
+        text: "Your organization must be a registered legal entity that can enter into contracts with Defcomm. DBAs, fictitious business names, trade names, or branches are not accepted. The legal entity name will appear as the seller name on the App Store.",
+      },
+      { 
+        bold: "License DPCOs No: ",
+        text: "Except for government entities, your organization must have a License DPCOs, assigned by NDPC, to verify its identity, legal entity status, and address. You can check whether your organization already has a License DPCOs No and request one if needed.",
+      },
+      { 
+        bold: "Phone and Email: ",
+        text: "Your work email must be associated with your organization’s domain name.",
+      },
+      {
+        bold: "Website: ",
+        text: "Your organization must have a publicly accessible website, with a domain name linked to your organisation.",
+      }
+]};
 
   const handleChange = () => {
     setLoginPassword(!loginPassword);
@@ -93,18 +113,20 @@ function Membership() {
           </p>
         </div>
 
-        <div>
+        <div 
+        // className="flex flex-col items-center justify-center w-full"
+        >
           {/* Individual Form */}
           {changeText === "individual" &&
             (showForm ? (
               <>
-                <div className="bg-white flex justify-center text-black p-8 rounded-2xl shadow-lg w-full max-w-xl">
+                <div className="bg-white flex justify-center text-black p-8 rounded-2xl shadow-lg w-full max-w-4xl">
                   <form
                   // onSubmit={(e) => {
                   //   e.preventDefault();
                   // }}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between py-4 min-w-[300px]">
                       <div className="flex items-center  justify-between">
                         <div className="flex gap-4">
                           <div
@@ -329,7 +351,7 @@ function Membership() {
                 <p className="w-[700px]  pb-4">
                   During enrollment, Apple will confirm the following;
                 </p>
-                <p className="w-[700px]  ">
+                <p className="w-[700px]  pb-4 ">
                   If you are an individual or a sole proprietor/single-person
                   business, you must have an Defcomm Account with two-factor
                   authentication enabled and be of legal age. Ensure that you
@@ -338,8 +360,12 @@ function Membership() {
                   delay your enrolment approval.
                 </p>
                 {listofregistration[changeText].map((item, index) => (
-                  <ul key={index} className="w-[700px] text-[12px] px-6">
-                    <li style={{ listStyleType: "circle" }}>{item}</li>
+                  <ul key={index} className="w-[700px]  text-[12px] px-6">
+                    <li className="py-2"
+                    style={{ listStyleType: "circle" }}><strong>{item.bold}</strong>{item.text}
+                    
+                    </li>
+                    {/* <br /> */}
                   </ul>
                 ))}
               </>
@@ -350,7 +376,7 @@ function Membership() {
         {changeText === "organization" &&
           (showForm ? (
             <>
-              <div className="bg-white flex justify-center text-black p-8 rounded-md shadow-lg w-full max-w-md">
+              <div className="bg-white flex justify-center text-black p-10 rounded-md shadow-lg  min-w-[300px]">
                 <form>
                   <div className={`${createAcct ? "hidden" : "block"}`}>
                     <div className="flex space-x-6">
@@ -554,7 +580,7 @@ function Membership() {
               <p className="w-[700px]  pb-4">
                 During enrollment, Apple will confirm the following;
               </p>
-              <p className="w-[700px]  ">
+              <p className="w-[700px]  pb-4 ">
                 To enroll your organization in the Defcomm Developer Program,
                 you must have an Defcomm Account with two-factor authentication
                 enabled. We recommend using your organization’s email address
@@ -562,11 +588,14 @@ function Membership() {
                 and last names match your legal name—using an alias, nickname,
                 or company name may delay your enrollment approval.
               </p>
-              {listofregistration[changeText].map((item, index) => (
-                <ul key={index} className="w-[700px] text-[12px] px-6">
-                  <li style={{ listStyleType: "circle" }}>{item}</li>
+              {listofregistration[changeText].map((item, index) =>  (
+                <ul key={index} className="w-[700px] text-[12px] py-2  px-6">
+                  <li style={{ listStyleType: "circle" }}>
+                  <strong>{item.bold}</strong>{item.text}
+                 </li>
                 </ul>
-              ))}
+              )
+              )}
             </>
           ))}
 

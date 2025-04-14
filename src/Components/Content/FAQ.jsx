@@ -82,7 +82,7 @@ function FAQ() {
         };
 
     return (
-        <div className='bg-black md:flex gap-10 px-4 pt-10 md:px-30 md:pt-30 '>
+        <div className='bg-black md:flex gap-10 px-4 pt-10 md:px-30 md:py-15 '>
             <div className='relative text-white'>
                  <p className='flex items-center text-[9px] md:text-[13px]'> <span className='text-lime-400 text-xl'><GoDotFill /></span> FAQ</p>
                  <p className=' text-[25px] md:text-[45px] pt-4 text-white tracking-tighter leading-10'>Frequently <span className='text-[20px] md:text-[40px] text-gray-500'>asked Questions</span></p>              
@@ -128,7 +128,7 @@ function FAQ() {
                         <p className="text-sm md:text-md text-white py-2">{item.answerthree}</p>
                         <p className="text-sm md:text-md text-white py-2">{item.answerfour}</p>
                         <p className="text-sm md:text-md text-white py-2">{item.answerfive}</p>
-                        <p><i>For more details, visit the <b>Defcomm Developer Portal</b> or contact support.</i></p>
+                        {/* <p><i>For more details, visit the <b>Defcomm Developer Portal</b> or contact support.</i></p> */}
                     </div>
                     </div>
                 ))}
