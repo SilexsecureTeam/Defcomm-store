@@ -14,7 +14,7 @@ import SvgFive from "../LoginFolder/SVGs/SvgFive";
 import defcommlogo from "../../../assets/defcommlogo.png";
 import { LiaLongArrowAltDownSolid } from "react-icons/lia";
 import { LiaLongArrowAltUpSolid } from "react-icons/lia";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function Login() {
   // For up rotation div
@@ -72,9 +72,11 @@ function Login() {
   return (
     <div className="relative bg-deffcom-lime h-[900px]">
       <div className="fixed left-0 top-0 w-full bg-nav-background flex justify-between bg-red-500 px-8 items-center">
-        <div>
-          <img src={defcommlogo} alt="" className="w-[100px] h-[100px] " />
-        </div>
+        <NavLink to="/">
+          <div>
+            <img src={defcommlogo} alt="" className="w-[100px] h-[100px] " />
+          </div>
+        </NavLink>
         <div className="  text-xl text-center bg-white w-[130px] py-1 rounded-4xl">
           Login
         </div>
@@ -215,9 +217,7 @@ function Login() {
           </div>
 
           <div className="">
-            <p className="">
-              &copy;Copyright Defcomm, All Rights Reserved.
-            </p>
+            <p className="">&copy;Copyright Defcomm, All Rights Reserved.</p>
           </div>
         </div>
       </div>

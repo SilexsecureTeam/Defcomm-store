@@ -112,7 +112,7 @@ function FAQ() {
                     key={index}
                     className={`bg-neutral-800 md:bg-neutral-950 p-6 border-b-2 border-neutral-700 transition-all duration-300 ease-in-out`}
                     >
-                    <div className="flex justify-between items-center text-lime-400 font-bold text-lg md:text-xl cursor-pointer" onClick={() => toggleFAQ(index)}>
+                    <div className={`flex justify-between items-center  font-bold text-lg md:text-xl cursor-pointer ${openIndex === index ? "text-lime-400":"text-white"}`} onClick={() => toggleFAQ(index)}>
                         <h1>{item.question}</h1>
                         <span>{openIndex === index ? <FaMinus /> : <FaPlus />}</span>
                     </div>
