@@ -1,24 +1,25 @@
 import React from 'react'
 import Nav from '../Header/Nav'
+import FooterTwo from './FooterTwo'
 
 function DevAgreement() {
     return (
         <>
         <Nav />
-            <div className='bg-deffcom-lime w-full flex flex-col justify-center items-center text-white py-20 font-[poppins] mx-10'> 
-                    <div className='flex pb-5 text-[15px] w-[700px] flex-col pt-10 justify-center items-center text-white    '>
-                        <h1 className="text-[30px]  text-center font-bold pt-10 ">Defcomm Developer Agreement & Guidelines</h1>
-                        <h3 className=" w-[700px]  pt-5  ">Effective Date: 5th April 2025</h3>
-                        <h3 className=" w-[700px]   ">Version 1.0</h3>
+            <div className='bg-deffcom-lime min-w-[300px] md:flex flex-col justify-center items-center text-white py-20 font-[poppins] px-4 mx-4 md:mx-10'> 
+                    <div className='flex pb-5 text-[10px] md:text-[15px] md:w-[700px] flex-col pt-10 justify-center items-center text-white    '>
+                        <h1 className="text-[13px] md:text-[30px]  text-center font-bold pt-10 ">Defcomm Developer Agreement & Guidelines</h1>
+                        <h3 className=" md:w-[700px]  pt-5  ">Effective Date: 5th April 2025</h3>
+                        <h3 className=" md:w-[700px]   ">Version 1.0</h3>
                         <p className=''>This document outlines the terms, responsibilities, and behavioral expectations for developers working with Defcomm systems, codebases, APIs, or infrastructure.
                         By contributing to, developing for, or integrating with Defcomm, you agree to follow these guidelines and terms</p>
                     </div>
-                    <hr  className='w-full  text-white/20 mx-10'/>
+                    <hr  className='w-full  text-white/20 md:mx-10'/>
                     
-                    <ol className='  w-[700px] text-[15px] pt-10 '>
+                    <ol className='px-4  md:w-[700px] text-[10px] md:text-[15px] pt-10 '>
                        <li style={{listStyleType: "number"}} className='text-lime-400'>Scope</li>
                        <p className='py-4'>This agreement applied to developers who:</p>
-                            <ul className='px-10'>
+                            <ul className='md:px-10'>
                                 <li style={{listStyleType: "circle"}} >Work on internal Defcomm products or infrastructure</li>
                                 <li style={{listStyleType: "circle"}} className=''>Use Defcomm APIs to build apps or integrations</li>
                                 <li style={{listStyleType: "circle"}} className=''>Contribute to Defcomm’s open-source projects.</li>
@@ -67,6 +68,7 @@ function DevAgreement() {
 
                     
             </div>
+        <FooterTwo />
         </>
     )
 }

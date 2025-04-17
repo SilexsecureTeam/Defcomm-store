@@ -64,14 +64,14 @@ function Membership() {
   return (
     <>
       <Nav />
-      <div className="flex mx-10 pt-30 flex-col text-[15px] font-[poppins] text-white items-center justify-center bg-deffcom-lime  ">
-        <div className="w-[700px] ">
-          <h1 className="font-bold w-full text-center text-[52px]">
+      <div className="flex mx-4 md:mx-10 pt-30 flex-col text-[15px] font-[poppins] text-white items-center justify-center bg-deffcom-lime  ">
+        <div className="md:w-[700px] ">
+          <h1 className="font-bold w-full text-center text-[25px] md:text-[52px]">
             {changeText == "individual"
               ? "Become a Member"
               : "Enrolling your Organization"}
           </h1>
-          <p className="py-2 w-full text-center ">
+          <p className="py-2 px-4 md:px-10 text-[12px] md:text-md w-full text-justify md:text-center ">
             Becoming a developer for Defcomm Encrypted Solutions involves a
             structured process to ensure developer understand the platform,
             access necessary tools, and can build secure and innovative
@@ -80,18 +80,18 @@ function Membership() {
         </div>
       </div>
 
-      <div className="flex mx-10  flex-col text-[15px] font-[poppins] pb-40 text-white items-center  bg-deffcom-lime   ">
-        <hr className="mt-6 w-full text-neutral-100/10" />
+      <div className="flex mx-4 md:mx-10  flex-col text-[12px] md:text-[15px] font-[poppins] pb-20 md:pb-40 text-white items-center  bg-deffcom-lime   ">
+        <hr className="hidden md:block mt-6 w-full text-neutral-100/10" />
 
-        <div className="w-[700px] px-16 py-10 flex justify-between">
+        <div className="w-full px-4 md:w-[700px]  md:px-16 py-10 flex justify-between">
           <p
             onClick={() => {
               setChangeText("individual");
               setShowForm(false);
             }}
-            className={`flex-1 text-center py-3 font-medium cursor-pointer ${
+            className={`flex-1 text-[9px] md:text-[15px] text-center md:py-3 font-medium cursor-pointer ${
               changeText === "individual"
-                ? "text-[#D1FF00] border-b-2 border-[#D1FF00]"
+                ? "text-[#D1FF00] border-b-1 md:border-b-2 border-lime-400"
                 : "text-white"
             }`}
           >
@@ -103,9 +103,9 @@ function Membership() {
               setChangeText("organization");
               setShowForm(false);
             }}
-            className={`flex-1 text-center py-3 font-medium cursor-pointer ${
+            className={`flex-1 text-[9px] md:text-[15px] text-center md:py-3 font-medium cursor-pointer ${
               changeText === "organization"
-                ? "text-[#D1FF00] border-b-2 border-[#D1FF00]"
+                ? "text-[#D1FF00] border-b-1 md:border-b-2 border-lime-400"
                 : "text-white"
             }`}
           >
@@ -126,7 +126,7 @@ function Membership() {
                   //   e.preventDefault();
                   // }}
                   >
-                    <div className="flex items-center justify-between py-4 min-w-[300px]">
+                    <div className="flex items-center justify-between py-4 min-w-[270px] md:min-w-[300px]">
                       <div className="flex items-center  justify-between">
                         <div className="flex gap-4">
                           <div
@@ -184,7 +184,7 @@ function Membership() {
                             className="text-sm font-medium w-full px-4 outline-none py-2 "
                             placeholder="example@mail.com"
                           />
-                          <div className="text-lg text-lime-700 mx-2">
+                          <div className="text-sm md:text-lg text-lime-700 mx-2">
                             <LuCheck />
                           </div>
                         </div>
@@ -344,14 +344,14 @@ function Membership() {
                 </div>
               </>
             ) : (
-              <>
-                <p className="w-[700px] text-lime-400 py-3">
+              <div className="px-4 w-full md:w-[700px] ">
+                <p className=" text-lime-400 py-3">
                   Verification Process
                 </p>
-                <p className="w-[700px]  pb-4">
+                <p className="px-4 w-full md:w-[700px]  pb-4">
                   During enrollment, Apple will confirm the following;
                 </p>
-                <p className="w-[700px]  pb-4 ">
+                <p className="px-4 w-full md:w-[700px]  pb-4 ">
                   If you are an individual or a sole proprietor/single-person
                   business, you must have an Defcomm Account with two-factor
                   authentication enabled and be of legal age. Ensure that you
@@ -360,15 +360,15 @@ function Membership() {
                   delay your enrolment approval.
                 </p>
                 {listofregistration[changeText].map((item, index) => (
-                  <ul key={index} className="w-[700px]  text-[12px] px-6">
+                  <ul key={index} className="md:w-[700px]  text-[12px] px-6">
                     <li className="py-2"
                     style={{ listStyleType: "circle" }}><strong>{item.bold}</strong>{item.text}
                     
                     </li>
-                    {/* <br /> */}
+                    
                   </ul>
                 ))}
-              </>
+              </div>
             ))}
         </div>
 
@@ -376,11 +376,12 @@ function Membership() {
         {changeText === "organization" &&
           (showForm ? (
             <>
-              <div className="bg-white flex justify-center text-black p-10 rounded-md shadow-lg  min-w-[300px]">
+              <div className="bg-white flex mx-4 justify-center text-black px-4 py-6 md:p-10 rounded-md shadow-lg  md:min-w-[300px]">
                 <form>
                   <div className={`${createAcct ? "hidden" : "block"}`}>
-                    <div className="flex space-x-6">
+                    <div className="flex flex-col justify-between md:flex-row ">
                       <div className="mb-4">
+
                         <label
                           htmlFor="firstName"
                           className="block text-sm font-medium mb-1"
@@ -390,10 +391,11 @@ function Membership() {
                         <input
                           type="text"
                           id="firstName"
-                          className="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl"
+                          className="w-full  py-2 px-4 text-sm border border-gray-300 rounded-xl"
                           placeholder="First Name"
                         />
                       </div>
+
                       <div className="mb-4">
                         <label
                           htmlFor="lastName"
@@ -404,10 +406,11 @@ function Membership() {
                         <input
                           type="text"
                           id="lastName"
-                          className="w-full px-4 text-sm py-3 border border-gray-300 rounded-xl"
+                          className="w-full px-4 py-2 text-sm  border border-gray-300 rounded-xl"
                           placeholder="Last Name"
                         />
                       </div>
+
                     </div>
                     <div className="mb-4">
                       <label
@@ -419,7 +422,7 @@ function Membership() {
                       <input
                         type="text"
                         id="country"
-                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl"
+                        className="w-full px-4 py-2  text-sm border border-gray-300 rounded-xl"
                         placeholder="Enter your country"
                       />
                     </div>
@@ -460,7 +463,7 @@ function Membership() {
                       <input
                         type="date"
                         id="birthday"
-                        className="w-full px-4 py-3 text-xs text-neutral-700 border border-gray-300 rounded-xl"
+                        className="w-full px-4 py-2  text-sm text-neutral-700 border border-gray-300 rounded-xl"
                       />
                       <small>
                         Let us know about your birthday so as not to miss a gift
@@ -470,7 +473,7 @@ function Membership() {
                       <input
                         type="email"
                         id="email"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl"
+                        className="w-full px-4 py-2  text-sm border border-gray-300 rounded-xl"
                         placeholder="example@mail.com"
                       />
                     </div>
@@ -487,7 +490,7 @@ function Membership() {
                       <input
                         type="password"
                         id="password"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl"
+                        className="w-full px-4 py-2 text-sm border border-gray-300 rounded-xl"
                         placeholder="********"
                       />
                     </div>
@@ -501,7 +504,7 @@ function Membership() {
                       <input
                         type="password"
                         id="confirmPassword"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-xl"
+                        className="w-full px-4 py-2  text-sm border border-gray-300 rounded-xl"
                         placeholder="********"
                       />
                     </div>
@@ -557,13 +560,13 @@ function Membership() {
                     </button>
                   </div>
                   <div className={`${createAcct ? "block" : "hidden"}  text-center text-white`}>
-                          <div className="max-w-md bg-white rounded-md shadow-md">
-                              <h1 className="font-bold text-black text-xl py-4 w-full">OTP Verifications</h1>
-                              <div className="flex justify-between items-center px-8">
-                                <div className=" rounded-xl bg-deffcom-lime p-4">2</div>
-                                <div className=" rounded-xl bg-deffcom-lime p-4">1</div>
-                                <div className=" rounded-xl bg-deffcom-lime p-4">3</div>
-                                <div className=" rounded-xl bg-deffcom-lime p-4">4</div>
+                          <div className="min-w-[300px] bg-white rounded-md shadow-md">
+                              <h1 className="font-bold text-black text-lg md:text-xl py-2 w-full">OTP Verifications</h1>
+                              <div className="flex justify-between text-center items-center py-6 px-8">
+                                <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px] ">2</div>
+                                <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px]">1</div>
+                                <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px]">3</div>
+                                <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px]">4</div>
                               </div>
                               <div className="py-3 px-6 my-3 rounded-xl bg-deffcom-lime">Resend Code to devices</div>
                               <div className="py-3 px-6 rounded-xl bg-black ">Can't get to your device?</div>
@@ -573,14 +576,14 @@ function Membership() {
               </div>
             </>
           ) : (
-            <>
-              <p className="w-[700px] text-lime-400 py-3">
+            <div className=" px-4 w-full md:w-[700px]">
+              <p className=" text-lime-400 py-3">
                 Verification Process
               </p>
-              <p className="w-[700px]  pb-4">
+              <p className="md:w-[700px]  pb-4">
                 During enrollment, Apple will confirm the following;
               </p>
-              <p className="w-[700px]  pb-4 ">
+              <p className="md:w-[700px]  pb-4 ">
                 To enroll your organization in the Defcomm Developer Program,
                 you must have an Defcomm Account with two-factor authentication
                 enabled. We recommend using your organization’s email address
@@ -589,17 +592,17 @@ function Membership() {
                 or company name may delay your enrollment approval.
               </p>
               {listofregistration[changeText].map((item, index) =>  (
-                <ul key={index} className="w-[700px] text-[12px] py-2  px-6">
+                <ul key={index} className="md:w-[700px] text-[12px] py-2  px-6">
                   <li style={{ listStyleType: "circle" }}>
                   <strong>{item.bold}</strong>{item.text}
                  </li>
                 </ul>
               )
               )}
-            </>
+            </div>
           ))}
 
-        <div className="w-[700px] flex py-4  gap-2 text-black ">
+        <div className="md:w-[700px] flex py-4  gap-2 text-black ">
           <button
             onClick={() => setShowForm(true)}
             className={`py-2 px-5 text-xs bg-white rounded-md ${

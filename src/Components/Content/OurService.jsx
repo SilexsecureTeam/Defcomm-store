@@ -10,7 +10,7 @@ import { HiMiniArrowSmallRight } from "react-icons/hi2";
 
 function OurService() {
     return (
-        <div className='px-4 w-full md:px-10 py-10'>
+        <div className='px-4 w-full md:px-10 py-10 min-w-[300px]'>
             <div className='grid justify-center md:flex   md:justify-between md:px-10'>
                 <div className='flex gap-4 md:gap-6 items-center'>
                     <p className='text-[40px] font-bold'>02</p>

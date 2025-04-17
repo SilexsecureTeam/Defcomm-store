@@ -47,7 +47,7 @@ function FAQTwo() {
             };
     
         return (
-            <div className=' font-[poppins] py-10 md:flex gap-10 px-4 pt-10 md:px-30  md:py-15 '>
+            <div className=' font-[poppins] min-w-[300px] py-10 md:flex gap-10 px-4 pt-10 md:px-30  md:py-15 '>
                 <div className='relative text-white'>
                      <p className='flex items-center text-[9px] md:text-[13px]'> <span className='text-lime-400 text-xl'><GoDotFill /></span> FAQ</p>
                      <p className=' text-[25px] md:text-[45px] pt-4 text-white tracking-tighter leading-10'>Frequently asked Questions</p>              

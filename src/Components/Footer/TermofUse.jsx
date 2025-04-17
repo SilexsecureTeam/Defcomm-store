@@ -1,18 +1,19 @@
 import React from 'react'
 import Nav from '../Header/Nav'
+import FooterTwo from './FooterTwo'
 
 function TermofUse() {
     return (
         <>
         <Nav />
-            <div className='bg-deffcom-lime w-full flex flex-col justify-center items-center text-white pt-20 font-[poppins] mx-10'> 
+            <div className='bg-deffcom-lime min-w-[300px] mx-4 px-4 flex flex-col justify-center items-center text-white pt-20 font-[poppins] md:mx-10'> 
                     <div className='flex flex-col pt-10 justify-center items-center text-white    '>
-                        <h1 className="text-[40px] w-[700px] text-center font-bold pt-10 ">Defcomm Store – Terms of Use</h1>
-                        <h3 className="text-[15px] w-[700px]  py-5  ">Legal Information & Notices</h3>
+                        <h1 className="md:text-[40px] text-[13px] md:w-[700px] text-center font-bold pt-10 ">Defcomm Store – Terms of Use</h1>
+                        <h3 className="md:text-[15px] text-[12px] md:w-[700px]  py-5  ">Legal Information & Notices</h3>
                     </div>
                     <hr  className='w-full text-white/20 mx-10'/>
                     
-                    <ol className='  w-[700px] text-[15px] pt-10 '>
+                    <ol className=' px-4  md:w-[700px] text-[10px] text-[15px] pt-10 '>
                        <li style={{listStyleType: "number"}} className='text-lime-400'>Ownership of Site; Agreement to Terms of Use</li>
                        <p className='pt-4'>This website ("Site") is operated by Defcomm, a privacy-focused e-commerce store. These Terms of Use (“Terms”) apply to your access and use of the Site, including any content, functionality, and services offered.</p>
                        <p className='py-4'>By accessing or using the Site, you agree to these Terms and our Privacy Policy. If you do not agree, do not use the Site.</p>
@@ -79,14 +80,15 @@ function TermofUse() {
                     
                     </ol>
 
-                    <div className='flex flex-col pb-20 justify-center items-center text-white    '>
-                        <h1 className="text-[18px] w-[700px] text-lime-400 font-bold  ">Contact Us</h1>
-                        <h3 className="text-[15px] w-[700px]  ">If you have any questions or concerns about this Privacy Policy, please contact:
+                    <div className='flex flex-col text-[10px] md:mx-0 pb-20 justify-center items-center text-white    '>
+                        <h1 className="md:text-[18px] md:w-[700px] text-lime-400 font-bold  ">Contact Us</h1>
+                        <h3 className="md:text-[15px] md:w-[700px]  ">If you have any questions or concerns about this Privacy Policy, please contact:
                         Defcomm Store Privacy Office</h3>
-                        <p className="text-[15px] w-[700px]  pt-4 ">Email: privacy@defcomm.ng</p>
-                        <p className="text-[15px] w-[700px]   ">Website: www.defcomm.ng</p>
+                        <p className="md:text-[15px] md:w-[700px]  pt-4 ">Email: privacy@defcomm.ng</p>
+                        <p className="md:text-[15px] md:w-[700px]   ">Website: www.defcomm.ng</p>
                     </div>
             </div>
+            <FooterTwo />
         </>
     )
 }

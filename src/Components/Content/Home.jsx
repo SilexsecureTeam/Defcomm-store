@@ -25,7 +25,7 @@ function Home() {
 
     return (
         
-        <div className='relative bg-deffcom-lime text-white px-4 pt-[20px] md:px-10 md:pt-[40px] md:mx-10'> 
+        <div className='relative min-w-[300px] bg-deffcom-lime text-white px-4 pt-[20px] md:px-10 md:pt-[40px] md:mx-10'> 
             <div className='hidden md:block absolute right-10 top-[120px]'>
                 <ul className='flex gap-3 text-xs'>
                     <li className='active cursor-pointer flex gap-1 items-center'>

@@ -43,6 +43,7 @@ function Login() {
 
   //for navigation to membership page
   const navigate = useNavigate();
+  
 
   const [inputValue, setInputValue] = useState({
     username: "",
@@ -70,21 +71,23 @@ function Login() {
   };
 
   return (
-    <div className="relative bg-deffcom-lime h-[900px]">
-      <div className="fixed left-0 top-0 w-full bg-nav-background flex justify-between bg-red-500 px-8 items-center">
+    <div className="relative bg-deffcom-lime h-[650px] md:h-[900px]">
+      <div className="fixed px-2 z-30 left-0 top-0 w-full bg-nav-background flex justify-between bg-red-500 md:px-8 items-center">
+       
         <NavLink to="/">
           <div>
-            <img src={defcommlogo} alt="" className="w-[100px] h-[100px] " />
+            <img src={defcommlogo} alt="" className="w-[70px] h-[50px] md:w-[100px] md:h-[100px] " />
           </div>
         </NavLink>
-        <div className="  text-xl text-center bg-white w-[130px] py-1 rounded-4xl">
+        
+        <div className=" w-[70px] md:text-xl text-center bg-white md:w-[130px] py-1 rounded-4xl">
           Login
         </div>
       </div>
 
       <div className="flex justify-center text-white h-[100%] pt-30">
         <motion.div
-          className="absolute left-[380px] bottom-80"
+          className="hidden md:block absolute left-[380px] bottom-80"
           style={{ y: moveUp }}
         >
           <SvgOne />
@@ -94,7 +97,7 @@ function Login() {
         </motion.div>
 
         <motion.div
-          className="absolute right-20 bottom-80"
+          className="hidden md:block absolute right-20 bottom-80"
           style={{ y: moveUp }}
         >
           <SvgTwo />
@@ -104,7 +107,7 @@ function Login() {
         </motion.div>
 
         <motion.div
-          className="absolute left-[380px] top-58"
+          className="hidden md:block absolute left-[380px] top-58"
           style={{ y: moveDown }}
         >
           <p>
@@ -113,12 +116,12 @@ function Login() {
           <SvgThree />
         </motion.div>
 
-        <div className="absolute  left-0 bottom-40">
+        <div className=" bottom-100 absolute  left-0 md:bottom-40">
           <SvgFive />
         </div>
 
         <motion.div
-          className="fixed -top-[15px] right-4 md:top-20 md:right-40 text-white"
+          className="fixed z-30 top-[80px] right-4 md:top-20 md:right-40 text-white"
           style={{ rotate: rotationYscroll }}
           ref={targetRef}
         >
@@ -147,27 +150,29 @@ function Login() {
           </div>
         </motion.div>
 
-        <div className=" my-20 px-10 justify-center border-1 border-neutral-400/10 shadow-xl absolute ml-70 bg-deffcom-limetwo text-white w-[390px] h-[400px]">
-          <form onSubmit={submitForm} className="flex gap-6 flex-col py-8">
-            <p className="font-bold w-full text-center py-4">Developer Login</p>
+        <div className=" my-10 md:my-20 px-4 md:px-10 justify-center border-1 border-neutral-400/10 shadow-xl absolute md:ml-70 bg-deffcom-limetwo text-white w-[300px] h-[350px] md:w-[390px] md:h-[400px]">
+         <form onSubmit={submitForm} className="flex gap-4 md:gap-6 flex-col py-8">
+            <p className="font-bold w-full text-center my-4">Developer Login</p>
             <input
               type="username"
               name="username"
               onChange={handleChange}
               value={inputValue.username}
               placeholder="username"
-              className="  border border-neutral-400/20  outline-none rounded-xl px-10 py-2 w-[300px]"
+              className="  border border-neutral-400/20  outline-none rounded-xl px-4  md:px-10 py-2 w-[270px] md:w-[300px]"
             />
+
             <input
               type="password"
               name="password"
               onChange={handleChange}
               value={inputValue.password}
               placeholder="password"
-              className="  border border-neutral-400/20 outline-none rounded-xl px-10 py-2 w-[300px]"
+              className="  border border-neutral-400/20 outline-none rounded-xl px-4 md:px-10 py-2 w-[270px] md:w-[300px]"
             />
-            <button className="py-3 rounded-xl bg-black">Login</button>
+            <button className="py-2 md:py-3 rounded-xl bg-black">Login</button>
           </form>
+          
           <div className="flex text-xs justify-between">
             <button className="text-lime-400 cursor-pointer">
               Already have account?
@@ -185,22 +190,32 @@ function Login() {
       </div>
 
       <div className="bg-deffcom-limetwo">
-        <div className="w-full text-center py-10 pb-20 text-white">
-          <h1 className="text-[52px]">360 Degree Protection</h1>
-          <p className="text-[18px] text-neutral-400">
+        <div className="w-full  text-center py-10 pb-20 text-white">
+          <h1 className="text-[30px] md:text-[52px]">360 Degree Protection</h1>
+          <p className="text-[12px] px-10  md:text-[18px] text-neutral-400">
             Dronerly.Inc is a company producing the highest quality VR Drones
             with the latest technology.
           </p>
         </div>
-        <hr className="mx-14 text-neutral-400 " />
+        <hr className=" md:mx-14 text-neutral-400  " />
 
-        <div className="flex items-center text-xs justify-between py-10 text-white pb-14 px-14">
+        <div className="md:hidden block items-center text-xs justify-between py-8 text-white pb-14 px-14">
+          <ul className="flex flex-col gap-4 md:flex-row justify-center items-center ">
+              <li className="underline underline-offset-4">PRODUCT</li>
+              <li className="underline underline-offset-4">SUPPORT</li>
+              <li className="underline underline-offset-4">COOPERATION</li>
+              <li className="underline underline-offset-4">COMMUNITY</li>
+            </ul>
+        </div>
+
+
+        <div className="flex items-center px-4 text-xs justify-between  md:py-10 text-white md:pb-14 md:px-14">
           <div>
-            <img src={Defcomm} alt="" className="w-[200px]" />
+            <img src={Defcomm} alt="" className="w-[100px] md:w-[200px]" />
           </div>
 
           <div className="flex relative flex-col md:flex-row justify-center  items-center ">
-            <ul className=" flex flex-col gap-4 md:flex-row justify-center items-center ">
+            <ul className="hidden md:flex flex-col gap-4 md:flex-row justify-center items-center ">
               <li className="underline underline-offset-4">PRODUCT</li>
               <li className="underline underline-offset-4">SUPPORT</li>
               <li className="underline underline-offset-4">COOPERATION</li>
@@ -208,7 +223,7 @@ function Login() {
             </ul>
 
             <motion.div
-              className="fixed right-4 z-30 bottom-40 md:right-20 text-lime-400 p-4 border border-lime-400 rounded-[50%]"
+              className="fixed right-4 z-30 bottom-20 md:bottom-40 md:right-20 text-lime-400 p-4 border border-lime-400 rounded-[50%]"
               style={{ rotate: rotationYscrollDown }}
               ref={targetRef}
             >
@@ -217,7 +232,7 @@ function Login() {
           </div>
 
           <div className="">
-            <p className="">&copy;Copyright Defcomm, All Rights Reserved.</p>
+            <p className="text-[10px]">&copy;Copyright Defcomm, All Rights Reserved.</p>
           </div>
         </div>
       </div>
