@@ -21,6 +21,8 @@ function Membership() {
   const [passwordeye, setPasswordEye] = useState(false);
   const [loginPassword, setLoginPassword] = useState(false);
   const [passwordLogin, setPasswordLogin] = useState(false);
+  const [otp, setOtp] = useState(false);
+
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -222,6 +224,7 @@ function Membership() {
                             onClick={() => {
                               setActiveTab("register");
                               setLoginPassword(false);
+                              
                               // navigate("/register");
                             }}
                             className={`cursor-pointer underline-offset-8 ${
@@ -243,6 +246,7 @@ function Membership() {
                               setActiveTab("login");
                               setLoginPassword(true);
                               LoginClick;
+                              setOtp(false)
                             }}
                           >
                             Login
@@ -251,16 +255,21 @@ function Membership() {
                       </div>
                     </div>
 
-                    <div className="flex justify-center items-center my-4 w-[40px] h-[40px] bg-lime-800 rounded-[50px]">
+                    <div className={`flex justify-center items-center my-4 w-[40px] h-[40px] bg-lime-800 rounded-[50px] ${
+                          otp ? "hidden" : "" 
+                        }`}>
                       <img
                         src={defcommlogo}
                         alt=""
-                        className="w-[30px] md:w-[30px]"
+                        className={` w-[30px] md:w-[30px]`}
                       />
                     </div>
                     <p
                       className={`text-xs text-gray-500 ${
                         loginPassword ? "hidden" : "none"
+                      }
+                      ${
+                        otp ? "hidden" : "block" 
                       } `}
                     >
                       or register with email
@@ -275,7 +284,7 @@ function Membership() {
                     </p>
 
                     {/* Register email */}
-                    <div
+                    {/* <div
                       className={`${registerPassword ? "hidden" : "block"} ${
                         createAcct ? "hidden" : "none"
                       } ${loginPassword ? "hidden" : "none"}`}
@@ -309,10 +318,231 @@ function Membership() {
                         <input type="checkbox" />
                         Send me news and promotions
                       </label>
+                    </div> */}
+
+
+                    <div className={`${createAcct ? "hidden" : "block"}  ${
+                        loginPassword ? "hidden" : "block"
+                      }`}>
+                    <div className="flex flex-col justify-between md:flex-row ">
+                      <div className="mb-4">
+                        <label
+                          htmlFor="firstName"
+                          className="block text-mdfont-medium mb-1"
+                        >
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          className="w-full  py-2 px-4 text-md border border-gray-300 rounded-xl"
+                          placeholder="First Name"
+                        />
+                      </div>
+
+                      <div className="mb-4">
+                        <label
+                          htmlFor="lastName"
+                          className="block text-md font-medium mb-1"
+                        >
+                          Last Name
+                        </label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          className="w-full px-4 py-2 text-md  border border-gray-300 rounded-xl"
+                          placeholder="Last Name"
+                        />
+                      </div>
+                    </div>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="country"
+                        className="block text-md font-medium mb-1"
+                      >
+                        Country
+                      </label>
+                      <input
+                        type="text"
+                        id="country"
+                        className="w-full px-4 py-2  text-md border border-gray-300 rounded-xl"
+                        placeholder="Enter your country"
+                      />
                     </div>
 
+                    <div className="flex  items-center gap-2 mb-4">
+                      <label className="block text-md font-medium mb-1">
+                        Gender:
+                      </label>
+                      <div className="flex items-center space-x-4">
+                        <label className="flex items-center">
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="male"
+                            className="mr-2 rounded-xl"
+                          />
+                          Male
+                        </label>
+                        <label className="flex items-center">
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="female"
+                            className="mr-2 rounded-xl"
+                          />
+                          Female
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="mb-4">
+                      <label
+                        htmlFor="birthday"
+                        className="block text-md font-medium mb-1"
+                      >
+                        Birthday
+                      </label>
+                      <input
+                        type="date"
+                        id="birthday"
+                        className="w-full px-4 py-2 text-md text-neutral-700 border border-gray-300 rounded-xl"
+                      />
+                      <small>
+                        Let us know about your birthday so as not to miss a gift
+                      </small>
+                    </div>
+                    <div className="mb-4">
+                      <input
+                        type="email"
+                        id="email"
+                        className="w-full px-4 py-2  text-md border border-gray-300 rounded-xl"
+                        placeholder="example@mail.com"
+                      />
+                    </div>
+                    <p className="text-xs">
+                      This will be your new Defcomm Account
+                    </p>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="password"
+                        className="block text-md font-medium mb-1"
+                      >
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        className="w-full px-4 py-2 text-md border border-gray-300 rounded-xl"
+                        placeholder="********"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="ConfirmPassword"
+                        className="block text-md font-medium mb-1"
+                      >
+                        Confirm Password
+                      </label>
+                      <input
+                        type="password"
+                        id="confirmPassword"
+                        className="w-full px-4 py-2  text-md border border-gray-300 rounded-xl"
+                        placeholder="********"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label
+                        htmlFor="phone"
+                        className="block text-md font-medium mb-1"
+                      >
+                        Country Tel
+                      </label>
+                      <PhoneInput
+                        country={"ng"}
+                        inputStyle={{
+                          width: "100%",
+                          padding: "14px",
+                          paddingLeft: "44px",
+                          borderRadius: "0.375rem",
+                          border: "1px solid #D1D5DB",
+                        }}
+                        placeholder="+234"
+                        enableSearch
+
+                        // onChange={(phone) => console.log(phone)}
+                      />
+                    </div>
+
+                    <div className="mb-4">
+                      <label className="block text-md font-medium mb-1">
+                        Verify With
+                      </label>
+                      <div className="flex items-center gap-4">
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="radio"
+                            name="verify"
+                            value="text"
+                            className=""
+                          />
+                          Text Message
+                        </label>
+                        <label className="flex items-center gap-2">
+                          <input type="radio" name="verify" value="email" />
+                          Email
+                        </label>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="w-full bg-[#36460A] text-white py-2 rounded hover:bg-[#2e360c]"
+                      onClick={() => {setCreateAcct(!createAcct)
+                        setOtp(!otp)
+                      }}
+                    >
+                      Continue
+                    </button>
+                  </div>
+
+
+                  <div
+                    className={`${
+                      createAcct ? "block" : "hidden"
+                    }  ${
+                      loginPassword ? "hidden" : "block"
+                    }
+                    text-center text-white  `}
+                  >
+                    <div className={` min-w-[300px] bg-white rounded-md shadow-md`}>
+                      <h1 className="font-bold text-black text-lg md:text-xl py-2 w-full">
+                        OTP Verifications
+                      </h1>
+                      <div className="flex justify-between text-center items-center py-6 px-8">
+                        <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px] ">
+                          2
+                        </div>
+                        <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px]">
+                          1
+                        </div>
+                        <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px]">
+                          3
+                        </div>
+                        <div className=" rounded-md bg-deffcom-lime flex justify-center items-center w-[30px] h-[30px]">
+                          4
+                        </div>
+                      </div>
+                      <div className="py-3 px-6 my-3 rounded-xl bg-deffcom-lime">
+                        Resend Code to devices
+                      </div>
+                      <div className="py-3 px-6 rounded-xl bg-black ">
+                        Can't get to your device?
+                      </div>
+                    </div>
+                  </div>
+
                     {/* Register password */}
-                    <div
+                    {/* <div
                       className={`${registerPassword ? "block" : "hidden"} ${
                         loginPassword ? "hidden" : "block"
                       }`}
@@ -377,10 +607,10 @@ function Membership() {
                           </span>
                         </p>
                       </div>
-                    </div>
+                    </div> */}
 
                     {/* Register email and password */}
-                    <div
+                    {/* <div
                       className={`${createAcct ? "block" : "hidden"} ${
                         loginPassword ? "hidden" : "block"
                       }`}
@@ -457,7 +687,7 @@ function Membership() {
                           </span>
                         </p>
                       </div>
-                    </div>
+                    </div> */}
 
                     {/* Login email */}
                     <div
