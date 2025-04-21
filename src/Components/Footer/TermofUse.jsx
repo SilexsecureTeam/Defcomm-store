@@ -8,7 +8,7 @@ function TermofUse() {
         <Nav />
             <div className='bg-deffcom-lime min-w-[300px] mx-4 px-4 flex flex-col justify-center items-center text-white pt-20 font-[poppins] md:mx-10'> 
                     <div className='flex flex-col pt-10 justify-center items-center text-white    '>
-                        <h1 className="md:text-[40px] text-[13px] md:w-[700px] text-center font-bold pt-10 ">Defcomm Store – Terms of Use</h1>
+                        <h1 className="md:text-[40px] text-[13px] md:w-[700px]  font-bold pt-10 ">Defcomm Store – Terms of Use</h1>
                         <h3 className="md:text-[15px] text-[12px] md:w-[700px]  py-5  ">Legal Information & Notices</h3>
                     </div>
                     <hr  className='w-full text-white/20 mx-10'/>

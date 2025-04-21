@@ -52,7 +52,7 @@ function Home() {
 
             <div className='pt-20 md:pt-20 md:px-10'>
                 <div>
-                    <p className='flex md:py-8 items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> 50% OFF FOR NEXT 24 HOURS</p>
+                    {/* <p className='flex md:py-8 items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> 50% OFF FOR NEXT 24 HOURS</p> */}
                     <h1 className='text-[30px] tracking-tight md:text-[100px] md:leading-24 '>Transforming ideas into beautifully crafted products.</h1>
                     <div className='flex py-4 md:py-8 gap-4 text-black '>
                         <button className='py-2 px-5 bg-white rounded-md'>GET STARTED</button>
@@ -75,10 +75,10 @@ function Home() {
                         
                   
                         <div className='px-4 absolute w-full items-center justify-between bottom-[20px] flex text-stone-600 md:px-10'>
-                            <div className='w-[500px]'>
+                            {/* <div className='w-[500px]'>
                                 <h1 className=' text-xs md:text-xl'>MyCard - Moneymanager</h1> 
                                 <p className='flex items-center'>2024 <BsDot /> Mobile App</p>
-                            </div>
+                            </div> */}
                             <div className='flex text-lime-900 mdtext-4xl'>
                                 <GoDotFill />
                                 <GoDotFill />

@@ -25,7 +25,7 @@ function Partners() {
     return (
         <div className='px-4 md:px-10'>
              <div className=' md:px-20 py-10'>
-                    <p className='flex items-center text-[13px] py-2'> <span className='text-stone-800 text-lg'><GoDotFill /></span> 50% OUR PARTNER</p>
+                    <p className='flex items-center text-[13px] py-2'> <span className='text-stone-800 text-lg'><GoDotFill /></span>OUR PARTNER</p>
                        
                        <div className='relative py-4 whitespace-nowrap overflow-x-hidden'>
                             <div className='flex items-center gap-16 animate-scroll-reverse w-max'>

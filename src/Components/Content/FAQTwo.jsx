@@ -29,7 +29,7 @@ function FAQTwo() {
           },
             {
                 question: '5. Data Rentation',
-                answer: 'The Defcomm Developer Program maay have ifferent tiers:',
+                answer: 'The Defcomm Developer Program may have different tiers:',
                 answerone: '-Basic Enrollment - Free access to essential tools and documentation',
                 answertwo: '- Premium/Enterprise Plans - May require aa fee for aavnce features, API usage, an priority support.',
             },

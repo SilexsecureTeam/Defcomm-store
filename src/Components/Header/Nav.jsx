@@ -65,7 +65,7 @@ function Nav() {
             </li>
             <li
               onClick={() => {
-                navigate("/login");
+                navigate("/register");
               }}
               className="cursor-pointer font-bold hidden md:block"
             >
@@ -138,7 +138,7 @@ function Nav() {
           </li>
           <li
             onClick={() => {
-              navigate("/login");
+              navigate("/register");
             }}
             className="font-bold active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center "
           >

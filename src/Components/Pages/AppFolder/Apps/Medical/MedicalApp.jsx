@@ -23,7 +23,7 @@ function MedicalApp() {
                     <p className='md:text-[24px] text-gray-400'>Search your favourite apps</p>
                 </div>
                
-                <div className='flex gap-4 md:gap-14'>
+                {/* <div className='flex gap-4 md:gap-14'>
                     <NavLink to="/"><div className='flex gap-1 md:gap-4 text-[10px] md:text-[20px] text-center '>
                         <p className='flex items-center text-[15px] md:text-[30px] justify-center w-[32px] h-[32px] md:w-[64px] md:h-[64px] bg-lime-400 rounded-xl'><GoHome /></p>
                         <p>Home</p>
@@ -32,7 +32,7 @@ function MedicalApp() {
                         <p className='flex items-center justify-center text-[15px] md:text-[30px] w-[32px] h-[32px] md:w-[64px] md:h-[64px] bg-lime-400 rounded-xl'><IoSettingsOutline /></p>
                         <p className='text-[10px] md:text-[20px] font-bold'>Settings <br/><span className='text-[7px] md:text-[14px] font-light'>Configure store</span></p>
                     </div>
-                </div>
+                </div> */}
                 
             </div>
 
