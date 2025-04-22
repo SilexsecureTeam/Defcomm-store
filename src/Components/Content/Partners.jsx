@@ -1,11 +1,11 @@
 import React from 'react'
 import { GoDotFill } from "react-icons/go";
-import Mark from "../../assets/Mark.png"
-import Mark1 from "../../assets/Mark One.png"
-import Mark2 from "../../assets/Mark Two.png"
-import Mark3 from "../../assets/Mark Three.png"
-import Mark4 from "../../assets/Mark Four.png"
-import Mark5 from "../../assets/Mark Five.png"
+import Mark from "../../assets/NDPC.png"
+import Mark1 from "../../assets/SILEX SECURE.png"
+import Mark2 from "../../assets/PRETECH.png"
+import Mark3 from "../../assets/NITDA.png"
+import Mark4 from "../../assets/drdb.png"
+// import Mark5 from "../../assets/Mark Five.png"
 import { CgArrowTopRight } from "react-icons/cg";
 
 
@@ -14,12 +14,12 @@ import { CgArrowTopRight } from "react-icons/cg";
 function Partners() {
 
     const client = [
-        { logo: Mark, name: "NEXTFLOWS" },
-        { logo: Mark1, name: "Fancywear" },
-        { logo: Mark2, name: "Globalchart" },
-        { logo: Mark3, name: "home2stay" },
-        { logo: Mark4, name: "PAYSCALE" },
-        { logo: Mark5, name: "Roommate" }
+        { logo: Mark },
+        { logo: Mark1},
+        { logo: Mark2,  },
+        { logo: Mark3, },
+        { logo: Mark4, },
+        // { logo: Mark5, name: "Roommate" }
       ];
 
     return (
@@ -31,7 +31,7 @@ function Partners() {
                             <div className='flex items-center gap-16 animate-scroll-reverse w-max'>
                             {[...client, ...client].map((client, index) => (
                                 <div key={index} className='flex items-center gap-4 flex-shrink-0'>
-                                <img src={client.logo} alt={`partner-${index}`} className='h-10 md:h-16' />
+                                <img src={client.logo} alt={`partner-${index}`} className='max-h-10 md:max-h-16' />
                                 <span className='text-xs md:text-base font-semibold text-stone-700 whitespace-nowrap'>
                                     {client.name}
                                 </span>
