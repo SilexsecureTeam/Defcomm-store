@@ -8,11 +8,13 @@ import { BsDot } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
 import ArmyLady from "../../assets/Army Lady.png"
 import ArmyMen from "../../assets/Army Men.png"
+import { NavLink, useNavigate} from "react-router-dom";
+
 
 function Home() {
 
     const imgslide = [ArmyLady, ArmyMen, ArmyLady, ArmyMen, ArmyLady, ArmyMen]
-   
+    const navigate = useNavigate()
     const [imgIndex, setImgIndex] = useState(0)
 
     useEffect(() => {
@@ -55,7 +57,14 @@ function Home() {
                     <p className='flex md:py-8 items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> WE PROVIDE ABSOLUTE PRIVACY </p>
                     <h1 className='text-[30px] tracking-tight md:text-[100px] md:leading-24 '>Transforming ideas into beautifully crafted products.</h1>
                     <div className='flex py-4 md:py-8 gap-4 text-black '>
-                        <button className='py-2 px-5 bg-white rounded-md'>GET STARTED</button>
+                        
+                        <button 
+                        className='py-2 px-5 bg-white cursor-pointer rounded-md'
+                        onClick={() => {
+                            navigate("/start");
+                          }}>GET STARTED
+                          </button>
+                          
                         <button className='bg-lime-600 py-2 px-3 rounded-[50px]'>
                             <CgArrowTopRight />
                         </button>

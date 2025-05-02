@@ -10,6 +10,7 @@ import Membership from './Components/Pages/LoginFolder/Membership.jsx';
 import Privacy from './Components/Footer/Privacy.jsx';
 import TermofUse from './Components/Footer/TermofUse.jsx';
 import DevAgreement from './Components/Footer/DevAgreement.jsx';
+import Discover from './Components/Content/Discover.jsx';
 
 
 function App() {
@@ -27,10 +28,11 @@ function App() {
         <Route  path="medical" element={<MedicalApp />}  />
         
         <Route path='/login' element={<Login/>} />
-         <Route path="/register" element={<Membership />}/>
-         <Route path="/privacy" element={<Privacy />}/>
-         <Route path="/termofuse" element={<TermofUse />}/>
+        <Route path="/register" element={<Membership />}/>
+        <Route path="/privacy" element={<Privacy />}/>
+        <Route path="/termofuse" element={<TermofUse />}/>
         <Route path='/devagreement' element={<DevAgreement />} />
+        <Route path='/start' element={<Discover/>} />
         
           
       
