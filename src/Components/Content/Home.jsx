@@ -61,8 +61,9 @@ function Home() {
                         <button 
                         className='py-2 px-5 bg-white cursor-pointer rounded-md'
                         onClick={() => {
-                            navigate("/start");
-                          }}>GET STARTED
+                            navigate("/register");
+                          }}
+                          >GET STARTED
                           </button>
                           
                         <button className='bg-lime-600 py-2 px-3 rounded-[50px]'>

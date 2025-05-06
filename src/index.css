@@ -92,23 +92,16 @@
   }
   
 /* @layer utilities {
-  .animate-infinite-scroll-right{
-    animation: scroll 180s linear infinite;
-    scroll-behavior: smooth;
-  }
-}
+  type: checkbox;
+  } */
 
-@layer base {
-  @keyframes scroll {
-    0%{
-      transform: translateX(-100%);
+
+  /* @layer utilities{
+    input[type="checkbox"]{
+      border-radius: 50%;
     }
-    100%{
-      transform: translateX(-50%);
-    }
-    
-  }
-} */
+  
+  } */
 
 
 @layer utilities {

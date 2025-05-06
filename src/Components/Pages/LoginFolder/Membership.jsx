@@ -51,35 +51,15 @@ function Membership() {
     if (inputValue.password.length < 8) {
       alert("Password should be at least 8 characters");
       return;
+    }else{
+      navigate("/start")
     }
   };
 
   const navigate = useNavigate();
 
-  // const [inputValue, setInputValue] = useState({
-  //     email: "",
-  //     password: "",
-  //   });
+  
 
-  //   const handleCl= (e) => {
-  //     e.preventDefault();
-  //     const { name, value } = e.target;
-
-  //     setInputValue((prev) => ({
-  //       ...prev,
-  //       [name]: value,
-  //     }));
-  //   };
-
-  //   const submitForm = (e) => {
-  //     e.preventDefault();
-
-  //     const { username, password } = inputValue;
-
-  //     if (username.trim() === "" || password.trim() === "") {
-  //       alert("Please fill in your details");
-  //     }
-  //   };
 
   const listofregistration = {
     individual: [
@@ -284,43 +264,6 @@ function Membership() {
                     </p>
 
                     {/* Register email */}
-                    {/* <div
-                      className={`${registerPassword ? "hidden" : "block"} ${
-                        createAcct ? "hidden" : "none"
-                      } ${loginPassword ? "hidden" : "none"}`}
-                    >
-                      <div className="my-2">
-                        <label htmlFor="email" className="block ">
-                          Email:
-                        </label>
-
-                        <div className=" flex mb-1 justify-between items-center border rounded-xl py-1  border-gray-300">
-                          <input
-                            type="email"
-                            id="email"
-                            className="text-sm font-medium w-full px-4 outline-none py-2 "
-                            placeholder="example@mail.com"
-                          />
-                          <div className="text-sm md:text-lg text-lime-700 mx-2">
-                            <LuCheck />
-                          </div>
-                        </div>
-                      </div>
-
-                      <button
-                        type="button"
-                        className="w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
-                        onClick={() => setRegisterPassword(!registerPassword)}
-                      >
-                        Create Account
-                      </button>
-                      <label className="flex items-center gap-2 text-xs my-4">
-                        <input type="checkbox" />
-                        Send me news and promotions
-                      </label>
-                    </div> */}
-
-
                     <div className={`${createAcct ? "hidden" : "block"}  ${
                         loginPassword ? "hidden" : "block"
                       }`}>
@@ -541,154 +484,7 @@ function Membership() {
                     </div>
                   </div>
 
-                    {/* Register password */}
-                    {/* <div
-                      className={`${registerPassword ? "block" : "hidden"} ${
-                        loginPassword ? "hidden" : "block"
-                      }`}
-                    >
-                      <div className="my-2">
-                        <label htmlFor="password" className="block ">
-                          Password:
-                        </label>
-
-                        <div className=" flex justify-between items-center border rounded-xl py-1  border-gray-300">
-                          <input
-                            type={`${passwordeye ? "text" : "password"}`}
-                            id="email"
-                            className="text-sm font-medium w-full px-4 outline-none py-2 "
-                            placeholder="********"
-                          />
-                          <div className="flex px-2">
-                            <div className="text-lg text-lime-700 mx-2">
-                              <LuCheck />
-                            </div>
-                            <div
-                              onClick={() => setPasswordEye(!passwordeye)}
-                              className="text-lg "
-                            >
-                              {passwordeye ? <GoEye /> : <GoEyeClosed />}
-                            </div>
-                          </div>
-                          <div></div>
-                        </div>
-                      </div>
-                      <p className="text-xs  mb-4">8+ character</p>
-
-                      <button
-                        type="button"
-                        className="w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
-                        onClick={handleChange}
-                      >
-                        Login
-                      </button>
-                      <label className="flex items-center gap-2 text-xs my-4">
-                        <input type="checkbox" />
-                        Remember Me
-                      </label>
-                      <div className="flex justify-center items center text-[9px]">
-                        <p className="text-neutral-400">
-                          By continuing I agree with the{" "}
-                          <span
-                            onClick={() => {
-                              navigate("/termofuse");
-                            }}
-                            className="text-black cursor-pointer"
-                          >
-                            Terms & Conditions
-                          </span>{" "}
-                          <span
-                            onClick={() => {
-                              navigate("/privacy");
-                            }}
-                            className="text-black cursor-pointer"
-                          >
-                            Privacy Policy
-                          </span>
-                        </p>
-                      </div>
-                    </div> */}
-
-                    {/* Register email and password */}
-                    {/* <div
-                      className={`${createAcct ? "block" : "hidden"} ${
-                        loginPassword ? "hidden" : "block"
-                      }`}
-                    >
-                      <div className="my-2">
-                        <label htmlFor="email" className="block ">
-                          Email:
-                        </label>
-                        <div className=" flex mb-1 justify-between items-center border rounded-xl py-1  border-gray-300">
-                          <input
-                            type="email"
-                            id="email"
-                            className="text-sm font-medium w-full px-4 outline-none py-2 "
-                            placeholder="example@mail.com"
-                          />
-                          <div className="text-lg text-lime-700 mx-2">
-                            <LuCheck />
-                          </div>
-                        </div>
-
-                        <label htmlFor="password" className="block ">
-                          Password:
-                        </label>
-                        <div className=" flex justify-between items-center border rounded-xl py-1  border-gray-300">
-                          <input
-                            type={`${passwordeye ? "text" : "password"}`}
-                            id="email"
-                            className="text-sm font-medium w-full px-4 outline-none py-2 "
-                            placeholder="********"
-                          />
-                          <div className="flex px-2">
-                            <div className="text-lg text-lime-700 mx-2">
-                              <LuCheck />
-                            </div>
-                            <div
-                              onClick={() => setPasswordEye(!passwordeye)}
-                              className="text-lg "
-                            >
-                              {passwordeye ? <GoEye /> : <GoEyeClosed />}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-xs  mb-4">8+ character</p>
-
-                      <button
-                        type="submit"
-                        className="w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
-                      >
-                        Create Account
-                      </button>
-                      <label className="flex items-center text-xs my-4 gap-2 ">
-                        <input type="checkbox" />
-                        Send me news and promotions
-                      </label>
-                      <div className="flex justify-center items center text-[9px]">
-                        <p className="text-neutral-400">
-                          By continuing I agree with the{" "}
-                          <span
-                            onClick={() => {
-                              navigate("/termofuse");
-                            }}
-                            className="text-black cursor-pointer"
-                          >
-                            Terms & Conditions
-                          </span>{" "}
-                          <span
-                            onClick={() => {
-                              navigate("/privacy");
-                            }}
-                            className="text-black cursor-pointer"
-                          >
-                            Privacy Policy
-                          </span>
-                        </p>
-                      </div>
-                    </div> */}
-
+                    
                     {/* Login email */}
                     <div
                       className={`${loginPassword ? "block" : "hidden"} ${

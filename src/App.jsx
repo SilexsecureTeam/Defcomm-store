@@ -10,7 +10,10 @@ import Membership from './Components/Pages/LoginFolder/Membership.jsx';
 import Privacy from './Components/Footer/Privacy.jsx';
 import TermofUse from './Components/Footer/TermofUse.jsx';
 import DevAgreement from './Components/Footer/DevAgreement.jsx';
-import Discover from './Components/Content/Discover.jsx';
+import ProgramResources from './Components/Pages/AppFolder/Apps/DefcommStoreApp/ProgramResources.jsx';
+import AppSubmission from './Components/Pages/AppFolder/Apps/DefcommStoreApp/AppSubmission.jsx';
+import DataCollection from './Components/Pages/AppFolder/Apps/DefcommStoreApp/DataCol.jsx';
+import AppCertification from './Components/Pages/AppFolder/Apps/DefcommStoreApp/AppCertification.jsx';
 
 
 function App() {
@@ -32,8 +35,10 @@ function App() {
         <Route path="/privacy" element={<Privacy />}/>
         <Route path="/termofuse" element={<TermofUse />}/>
         <Route path='/devagreement' element={<DevAgreement />} />
-        <Route path='/start' element={<Discover/>} />
-        
+        <Route path='/start' element={<ProgramResources />} />
+        <Route path="/appSub" element={<AppSubmission />}/>
+        <Route path="/dataCol" element={<DataCollection />}/>
+        <Route path="/appCert" element={<AppCertification />}/>
           
       
         

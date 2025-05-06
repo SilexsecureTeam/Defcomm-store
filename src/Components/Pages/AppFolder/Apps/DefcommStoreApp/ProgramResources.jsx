@@ -1,30 +1,42 @@
 import React from "react";
-import NavTwo from "../Header/NavTwo";
-import divOne from "../../assets/arcticons_govee-home.png";
-import divTwo from "../../assets/grommet-icons_resources.png";
-import divThree from "../../assets/gg_profile.png";
-import divFour from "../../assets/Group 5338.png";
-import divFive from "../../assets/Vector.png";
-import divSix from "../../assets/Vector (1).png";
-import divSeven from "../../assets/secure 2.png";
-import divEight from "../../assets/icons8-contacts 1.png";
-import VectorA from "../../assets/VectorA.png";
+import NavTwo from "../../../../Header/NavTwo";
+import divOne from "../../../../../assets/arcticons_govee-home.png";
+import divTwo from "../../../../../assets/grommet-icons_resources.png";
+import divThree from "../../../../../assets/gg_profile.png";
+import divFour from "../../../../../assets/Group 5338.png";
+import divFive from "../../../../../assets/Vector.png";
+import divSix from "../../../../../assets/Vector (1).png";
+import divSeven from "../../../../../assets/secure 2.png";
+import divEight from "../../../../../assets/icons8-contacts 1.png";
+import VectorA from "../../../../../assets/VectorA.png";
 import { TfiArrowRight } from "react-icons/tfi";
-import apps from "../../assets/clarity_vmw-app-outline-badged.png";
-import appanalystic from "../../assets/clarity_analytics-line.png";
-import mynaui from "../../assets/mynaui_user-circle-solid.png";
+import apps from "../../../../../assets/clarity_vmw-app-outline-badged.png";
+import appanalystic from "../../../../../assets/clarity_analytics-line.png";
+import mynaui from "../../../../../assets/mynaui_user-circle-solid.png";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
-import Groupone from "../../assets/Group 5335.png";
-import start from "../../assets/material-icon-theme_verified.png";
-import fileDev from "../../assets/Secure File Sharing.png";
-import militarymail from "../../assets/Secure Email.png";
-import Bullet from "../../assets/Armour (1) 1.png";
-import iSurvive from "../../assets/militar 1.png";
+import Groupone from "../../../../../assets/Group 5335.png";
+import start from "../../../../../assets/material-icon-theme_verified.png";
+import fileDev from "../../../../../assets/Secure File Sharing.png";
+import militarymail from "../../../../../assets/Secure Email.png";
+import Bullet from "../../../../../assets/Armour (1) 1.png";
+import iSurvive from "../../../../../assets/militar 1.png";
+import { TbCircleCheck } from "react-icons/tb";
+import { FiArrowRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 export default function Discover() {
   const [playDisplay, setPlayDisplay] = useState(true);
   const [showpage, setShowPage] = useState(false);
+  
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+
+    navigate("/appSub")
+
+  }
+
 
   return (
     <>
@@ -47,7 +59,7 @@ export default function Discover() {
           </div>
           
           <div className={`flex gap-4 ${showpage ? "hidden" : "block"}`}>
-            <div onClick={() => setPlayDisplay(!playDisplay)} className={``}>
+            <div  className={``}>
               <img
                 src={divTwo}
                 alt=""
@@ -56,46 +68,57 @@ export default function Discover() {
                 }`}
               />
             </div>
-            <div>
+            <div 
+            >
               <img
                 src={divThree}
                 alt=""
-                className="p-6 rounded-3xl bg-deffcom-lima"
+              className="p-6  rounded-3xl bg-lime-900/20"
+
+              
               />
             </div>
-            <div>
+            
+            <div
+          >
               <img
                 src={divFour}
                 alt=""
-                className="p-6 rounded-3xl bg-deffcom-lima"
+            className="p-6  rounded-3xl bg-lime-900/20"
+
+                
               />
             </div>
             <div>
               <img
                 src={divFive}
                 alt=""
-                className="p-6 rounded-3xl bg-deffcom-lima"
+            className="p-6  rounded-3xl bg-lime-900/20"
+             
               />
             </div>
             <div>
               <img
                 src={divSix}
                 alt=""
-                className="p-6 rounded-3xl bg-deffcom-lima"
+                className="p-6  rounded-3xl bg-lime-900/20"
+
               />
             </div>
             <div>
               <img
                 src={divSeven}
                 alt=""
-                className="p-6 rounded-3xl bg-deffcom-lima"
+                className="p-6  rounded-3xl bg-lime-900/20"
+
               />
             </div>
             <div>
               <img
                 src={divEight}
                 alt=""
-                className="p-6 rounded-3xl bg-deffcom-lima"
+                className="p-6  rounded-3xl bg-lime-900/20"
+
               />
             </div>
           </div>
@@ -103,7 +126,7 @@ export default function Discover() {
             <h1 className="text-[40px] text-white">Defcomm New App Submition</h1>
             <div
                     className="bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white"
-                    onClick=""
+                    onClick={handleClick}
                   >
                     <FaPlus />
                   </div>
@@ -135,16 +158,17 @@ export default function Discover() {
                       </h1>
                       <div className="flex gap-4 py-2 items-center">
                         <img src={apps} alt="" className="w-8" />
-                        <p className="underline">Apps</p>
+                        <p className="hover:underline cursor-pointer"
+                        onClick={() => setPlayDisplay(!playDisplay)}>Apps</p>
                       </div>
                       <div className="flex gap-4 items-center">
                         <img src={appanalystic} alt="" className="w-8" />
-                        <p>App Analytics</p>
+                        <p className="hover:underline">App Analytics</p>
                       </div>
 
                       <div className="flex gap-4 py-2 items-center">
                         <img src={mynaui} alt="" className="w-8" />
-                        <p>Users and Access</p>
+                        <p className="hover:underline">Users and Access</p>
                       </div>
                     </div>
 
@@ -413,39 +437,52 @@ export default function Discover() {
                     <img src={VectorA} alt="" className="" />
                   </div>
 
-                  <div className="grid py-10 rounded-r-[20px] bg-white w-full  px-20">
+                  <div className="relative grid pt-20 pb-30 rounded-r-[20px] bg-white w-full  px-40">
                     <label htmlFor="" className="">App Name</label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
+                    <input type="text" placeholder="Max 100 Character" className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
 
                     <label htmlFor="">APP Description</label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
+                    <input type="text" placeholder="Max 200 Charactter" className=" rounded-xl px-4 py-10 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
 
 
                     <label htmlFor="">App Categories</label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
+                    <input type="text" placeholder="Choose Categories"  className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
 
-                    <label htmlFor=""></label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
+                    <div className="flex justify-between">
+                      <h1 className="font-bold py-3">App New User</h1>
+                      <p className="flex items-center gap-4"><TbCircleCheck /> use my default support information</p>
 
+                    </div>
 
-                    <label htmlFor=""></label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
-
-                    <label htmlFor=""></label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
-
-
-                    <label htmlFor=""></label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
+                    
+                    <label htmlFor="">
+                    Customer support email address
+                    </label>
+                    <input type="text" placeholder="server@defcomm.ng" className="rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
 
 
-                    <label htmlFor=""></label>
-                    <input type="text" className=" min-w-[300px] mb-8 border border-gray-400"/>
+                    <label htmlFor="">Customers support phone</label>
+                    <input type="text" placeholder="+234 ********43" className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
 
+                    <label htmlFor="">Customers Support Email(Optional)</label>
+                    <input type="text" placeholder="www.defcomm.ng" className="rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
+
+                    <div
+                    className="bg-black w-14 h-14 absolute right-10 bottom-10 flex justify-center items-center rounded-4xl text-white"
+                  >
+
+
+
+
+                    <FiArrowRight />
+                  </div>
+                    
 
                   </div>
                 </div>
               </div>
+
+
             </>
           )}
 ``        </div>

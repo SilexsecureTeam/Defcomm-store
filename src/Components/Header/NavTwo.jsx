@@ -3,11 +3,14 @@ import { CiSearch } from "react-icons/ci"
 import defflogo from "../../assets/defcommlogo.png"
 import { FaRegBell } from "react-icons/fa"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { NavLink } from 'react-router-dom';
+
 
 function NavTwo() {
+  
   return (
     <div className=' px-6 text-white flex justify-between items-center bg-deffcom-lima'>
-      <img src={defflogo} alt="" className='w-20 '/>
+      <NavLink to="/"><img src={defflogo} alt="" className='w-20 ' /></NavLink>
       <p className=''>Discover</p>
       <div className='flex gap-1 bg-lime-900/40 items-center px-2'>
         <CiSearch />
