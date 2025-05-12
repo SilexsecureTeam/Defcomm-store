@@ -28,138 +28,132 @@ import { useNavigate } from "react-router-dom";
 export default function Discover() {
   const [playDisplay, setPlayDisplay] = useState(true);
   const [showpage, setShowPage] = useState(false);
-  
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
 
   const handleClick = () => {
-
-    navigate("/appSub")
-
-  }
-
+    navigate("/appSub");
+  };
 
   return (
     <>
       <NavTwo />
-      <div className="bg-deffcom-limagradiant py-20">
-        <div className="flex pt-4 pb-20 justify-between px-20 ">
-          <div className="p-4 bg-stone-600 border-l-8 border-lime-400">
+      <div className="bg-deffcom-limagradiant py-10 md:py-20 ">
+        <div className="flex flex-col-reverse gap-8 md:flex-row px-4 pt-18 md:pt-4 md:pb-20 md:justify-between md:px-20 ">
+          <div className="w-[100px] md:w-fit p-2 md:p-4 bg-stone-600 border-l-8 border-lime-400">
             <img
               src={divOne}
               alt=""
-              className="p-6 rounded-3xl bg-deffcom-lima"
+              className="p-4 md:p-6  rounded-3xl bg-deffcom-lima"
             />
           </div>
 
-          <div className={`flex gap-4 ${showpage ? "block" : "hidden" }`}>
-           
-           
-            
-            
-          </div>
-          
-          <div className={`flex gap-4 ${showpage ? "hidden" : "block"}`}>
-            <div  className={``}>
+          <div className={`flex gap-4 ${showpage ? "block" : "hidden"}`}></div>
+
+          <div
+            className={`flex gap-1 md:gap-4 ${showpage ? "hidden" : "block"}`}
+          >
+            <div className={``}>
               <img
                 src={divTwo}
                 alt=""
-                className={`p-6 rounded-3xl ${
+                className={`w-[50px] md:w-fit p-4  md:p-6 rounded-3xl ${
                   playDisplay ? "bg-white" : "bg-lime-400"
                 }`}
               />
             </div>
-            <div 
-            >
+            <div>
               <img
                 src={divThree}
                 alt=""
-              className="p-6  rounded-3xl bg-lime-900/20"
-
-              
+                className="w-[50px] md:w-fit p-4  md:p-6  rounded-3xl bg-lime-900/20"
               />
             </div>
-            
-            <div
-          >
+
+            <div>
               <img
                 src={divFour}
                 alt=""
-            className="p-6  rounded-3xl bg-lime-900/20"
-
-                
+                className="w-[50px] md:w-fit p-4  md:p-6 rounded-3xl bg-lime-900/20"
               />
             </div>
             <div>
               <img
                 src={divFive}
                 alt=""
-            className="p-6  rounded-3xl bg-lime-900/20"
-             
+                className="w-[50px] md:w-fit p-4  md:p-6 rounded-3xl bg-lime-900/20"
               />
             </div>
             <div>
               <img
                 src={divSix}
                 alt=""
-                className="p-6  rounded-3xl bg-lime-900/20"
-
+                className="w-[50px] md:w-fit p-4  md:p-6  rounded-3xl bg-lime-900/20"
               />
             </div>
             <div>
               <img
                 src={divSeven}
                 alt=""
-                className="p-6  rounded-3xl bg-lime-900/20"
-
+                className="w-[50px] md:w-fit p-4 md:p-6  rounded-3xl bg-lime-900/20"
               />
             </div>
             <div>
               <img
                 src={divEight}
                 alt=""
-                className="p-6  rounded-3xl bg-lime-900/20"
-
+                className="p-4 w-[50px] md:w-fit md:p-6 rounded-3xl bg-lime-900/20"
               />
             </div>
           </div>
-          <div className={`flex items-center gap-4 ${showpage ? "block" : "hidden" }`}>
-            <h1 className="text-[40px] text-white">Defcomm New App Submition</h1>
-            <div
-                    className="bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white"
-                    onClick={handleClick}
-                  >
-                    <FaPlus />
-                  </div>
-          </div>
-          
 
+          <div
+            className={`flex items-center gap-4 ${
+              showpage ? "block" : "hidden"
+            }`}
+          >
+            <h1 className="text-[30px] md:text-[40px] text-white">
+              Defcomm New App Submission
+            </h1>
+            <div
+              className="bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white"
+              onClick={handleClick}
+            >
+              <FaPlus />
+            </div>
+          </div>
         </div>
 
         <div>
           {playDisplay ? (
             <div className={`   `}>
-              <h1 className="px-20 py-8 text-white text-[40px]">
+              <h1 className="px-4 md:px-20  py-4 md:py-8 text-white text-[30px] md:text-[40px]">
                 Programs Resources
               </h1>
 
-              <div className="flex gap-10 py-10 px-20">
-                <div className="flex   ">
-                  <div className="flex gap-70 rounded-l-[20px] flex-col justify-center items-center bg-amber-100 px-10 ">
+              <div className="grid md:flex gap-10 py-10 px-4 md:px-20 w-full">
+                <div className="flex flex-col md:flex-row min-w-[300px] ">
+                  <div className="flex justify-between rounded-t-[20px] px-4 py-6  md:rounded-t-[0px] flex-row md:gap-70 md:rounded-l-[20px] md:flex-col md:justify-center items-center bg-amber-100 md:px-10 ">
                     <img src={VectorA} alt="" className="" />
+
                     <div className="bg-black w-14 h-14 flex justify-center items-center rounded-4xl text-white">
                       <TfiArrowRight />
                     </div>
                   </div>
 
-                  <div className="flex flex-col py-10 gap-50 rounded-r-[20px] bg-gray-400 px-6">
+                  <div className="flex min-w-[300px] flex-col py-10 gap-50 md:rounded-l-[0px] rounded-b-[20px] md:rounded-r-[20px] bg-gray-400 px-6">
                     <div>
                       <h1 className="font-bold text-[40px]">
                         Defcomm Store Connect
                       </h1>
                       <div className="flex gap-4 py-2 items-center">
                         <img src={apps} alt="" className="w-8" />
-                        <p className="hover:underline cursor-pointer"
-                        onClick={() => setPlayDisplay(!playDisplay)}>Apps</p>
+                        <p
+                          className="hover:underline cursor-pointer"
+                          onClick={() => setPlayDisplay(!playDisplay)}
+                        >
+                          Apps
+                        </p>
                       </div>
                       <div className="flex gap-4 items-center">
                         <img src={appanalystic} alt="" className="w-8" />
@@ -178,7 +172,7 @@ export default function Discover() {
                   </div>
                 </div>
 
-                <div className="bg-deffcom-lima text-white rounded-[20px]  py-10 px-6">
+                <div className="bg-deffcom-lima min-w-[300px]  md:w-[400px] text-white rounded-[20px]  py-10 px-6">
                   <div>
                     <h1 className="text-[40px] ">
                       Certificates, IDs & Profiles{" "}
@@ -244,9 +238,9 @@ export default function Discover() {
             </div>
           ) : (
             <>
-              <div className={`px-20 ${showpage ? "hidden" : "none"}`}>
+              <div className={`px-4 md:px-20 ${showpage ? "hidden" : "none"}`}>
                 <div className="flex w-full justify-between items-center ">
-                  <h1 className="py-8 text-white text-[40px]">
+                  <h1 className="py-8 text-white text-[30px] md:text-[40px]">
                     App Submission
                   </h1>
                   <div
@@ -257,27 +251,27 @@ export default function Discover() {
                   </div>
                 </div>
 
-                <div className={`flex `}>
-                  <div className="rounded-l-[20px] py-10 bg-lime-400 px-10 ">
+                <div className={`md:flex `}>
+                  <div className="px-4 rounded-t-[20px] md:rounded-r-[0px] md:rounded-l-[20px] py-4 md:py-10 bg-lime-400 md:px-10 ">
                     <img src={VectorA} alt="" className="" />
                   </div>
 
-                  <div className="py-10 rounded-r-[20px] bg-white  px-10">
-                    <div>
+                  <div className="py-10 px-4 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px] bg-white  md:px-10">
+                    <div className="">
                       <h1 className="font-bold text-[40px]">
                         Defcomm Store <br /> Connect
                       </h1>
 
-                      <div className=" relative grid grid-cols-5 items-center gap-20 min-w-[300px]">
+                      <div className=" relative grid grid-cols-2 md:grid-cols-5 items-center md:gap-20 min-w-[300px]">
                         <div className="py-2 items-center">
                           <div className="flex items-center justify-center border border-lime-900 h-30  w-30 flex rounded-[60px] items-center">
-                            <img src={Groupone} alt="" />
+                            <img src={Groupone} alt="" className="" />
                           </div>
                           <div className="py-4">
                             <p className="text-[20px] ">
                               <strong>Secure Call</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -286,7 +280,7 @@ export default function Discover() {
                           </div>
                         </div>
 
-                        <div className="py-2 items-center">
+                        <div className="py-2  items-center">
                           <div className="flex items-center justify-center border border-lime-900 h-30  w-30 flex rounded-[60px] items-center">
                             <img src={fileDev} alt="" className="w-20" />
                           </div>
@@ -294,7 +288,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>FileDev Sharing</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -311,7 +305,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>MilitaryMail</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -328,7 +322,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>Bullet Precision</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -345,7 +339,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>iSurvive</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -362,7 +356,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>Secure Call</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -379,7 +373,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>Secure Call</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -396,7 +390,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>Secure Call</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -413,7 +407,7 @@ export default function Discover() {
                             <p className="text-[20px] ">
                               <strong>Secure Call</strong>
                             </p>
-                            <div className="flex  items-center leading-2">
+                            <div className="flex  items-center leading-4 md:leading-2">
                               <img src={start} alt="" className="w-6" />
                               <p className="text-[10px]">
                                 DefOS 12.0.0 Ready for Distribution
@@ -430,63 +424,79 @@ export default function Discover() {
                   </div>
                 </div>
               </div>
-              
-              <div className={`px-20 ${showpage ? "block" : "hidden"}`}>
-                <div className={`flex `}>
-                  <div className="rounded-l-[20px] py-10 bg-lime-400 px-10 ">
+
+              <div
+                className={`px-4 py-6 md:px-20 ${
+                  showpage ? "block" : "hidden"
+                }`}
+              >
+                <div className={`flex flex-col md:flex-row`}>
+                  <div className="rounded-t-[20px] md:rounded-r-[0px] md:rounded-l-[20px] px-4 py-4 md:py-10 bg-lime-400 md:px-10 ">
                     <img src={VectorA} alt="" className="" />
                   </div>
 
-                  <div className="relative grid pt-20 pb-30 rounded-r-[20px] bg-white w-full  px-40">
-                    <label htmlFor="" className="">App Name</label>
-                    <input type="text" placeholder="Max 100 Character" className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
+                  <div className="relative grid  pt-8 px-4 md:pt-20 pb-30 md:rounded-l-[0px] rounded-b-[20px] md:rounded-r-[20px] bg-white w-full  md:px-40">
+                    <label htmlFor="" className="">
+                      App Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Max 100 Character"
+                      className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"
+                    />
 
                     <label htmlFor="">APP Description</label>
-                    <input type="text" placeholder="Max 200 Charactter" className=" rounded-xl px-4 py-10 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
-
+                    <input
+                      type="text"
+                      placeholder="Max 200 Charactter"
+                      className=" rounded-xl px-4 py-10 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"
+                    />
 
                     <label htmlFor="">App Categories</label>
-                    <input type="text" placeholder="Choose Categories"  className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
+                    <input
+                      type="text"
+                      placeholder="Choose Categories"
+                      className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"
+                    />
 
                     <div className="flex justify-between">
                       <h1 className="font-bold py-3">App New User</h1>
-                      <p className="flex items-center gap-4"><TbCircleCheck /> use my default support information</p>
-
+                      <p className="flex items-center gap-4">
+                        <TbCircleCheck /> use my default support information
+                      </p>
                     </div>
 
-                    
-                    <label htmlFor="">
-                    Customer support email address
-                    </label>
-                    <input type="text" placeholder="server@defcomm.ng" className="rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
-
+                    <label htmlFor="">Customer support email address</label>
+                    <input
+                      type="text"
+                      placeholder="server@defcomm.ng"
+                      className="rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"
+                    />
 
                     <label htmlFor="">Customers support phone</label>
-                    <input type="text" placeholder="+234 ********43" className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
+                    <input
+                      type="text"
+                      placeholder="+234 ********43"
+                      className=" rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"
+                    />
 
                     <label htmlFor="">Customers Support Email(Optional)</label>
-                    <input type="text" placeholder="www.defcomm.ng" className="rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"/>
+                    <input
+                      type="text"
+                      placeholder="www.defcomm.ng"
+                      className="rounded-xl px-4 py-3 text-sm outline-none obg-gray-200 min-w-[300px] mb-8 bg-gray-200"
+                    />
 
-                    <div
-                    className="bg-black w-14 h-14 absolute right-10 bottom-10 flex justify-center items-center rounded-4xl text-white"
-                  >
-
-
-
-
-                    <FiArrowRight />
-                  </div>
-                    
-
+                    <div className="bg-black w-14 h-14 absolute right-10 bottom-10 flex justify-center items-center rounded-4xl text-white">
+                      <FiArrowRight />
+                    </div>
                   </div>
                 </div>
               </div>
-
-
             </>
           )}
-``        </div>
-``      </div>
+        </div>
+      </div>
     </>
   );
 }

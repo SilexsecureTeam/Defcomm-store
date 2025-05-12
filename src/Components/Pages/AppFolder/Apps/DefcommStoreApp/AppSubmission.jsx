@@ -25,16 +25,17 @@ export default function AppSubmission() {
   };
 
   return (
-    <div className="font-[poppins]">
+    <div className="font-[poppins] ">
       <NavTwo />
 
-      <div className="bg-deffcom-limagradiant py-20">
-        <div className="flex pt-4 pb-20 justify-between px-20 ">
-          <div className=" p-4 bg-stone-600 border-l-8 border-lime-400">
+      <div className="bg-deffcom-limagradiant py-20 z-[-10px]">
+        <div className="flex flex-col gap-8 md:flex-row px-4 pt-4 pb-20 md:justify-between md:px-20 ">
+          
+          <div className="w-[100px] p-2 md:w-fit md:p-4 bg-stone-600 border-l-8 border-lime-400">
             <img
               src={divOne}
               alt=""
-              className="p-6 rounded-3xl bg-deffcom-lima"
+              className="p-4 md:p-6 rounded-3xl bg-deffcom-lima"
             />
           </div>
 
@@ -43,7 +44,7 @@ export default function AppSubmission() {
               <div key={step} className="flex flex-col items-center">
                 <div className="flex items-center">
                   <div
-                    className={`w-5 h-5 rounded-full flex text-white text-[14px] items-center justify-center
+                    className={`w-4 h-4 md:w-5 md:h-5 rounded-full flex text-white text-[14px] items-center justify-center
                     ${index <= currentStep ? "bg-lime-400" : "bg-white"}`}
                   >
                     {index < currentStep ? <BsCheck /> : null}
@@ -51,7 +52,7 @@ export default function AppSubmission() {
 
                   {index < steps.length - 1 && (
                     <div
-                      className={`h-1 w-20 mx-1 rounded-md ${
+                      className={`h-1 w-14 md:w-20 mx-1 rounded-md ${
                         index < currentStep ? "bg-lime-400" : "bg-white"
                       }`}
                     />
@@ -64,7 +65,7 @@ export default function AppSubmission() {
         </div>
 
         <div
-          className={`${currentStep === 4 ? "block" : "hidden"} absolute right-28 top-64 bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white`}
+          className={`${currentStep === 4 ? "block" : "hidden"} absolute right-4 top-30 md:right-28 md:top-64 bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white`}
           onClick={() => navigate("/dataCol")}
         >
           <FaPlus />
@@ -72,20 +73,20 @@ export default function AppSubmission() {
 
         {/* Page rendering */}
 
-        <div className="px-20">
-          <div className="flex">
-            <div className="rounded-l-[20px] py-25 bg-lime-400 px-10 ">
+        <div className="px-4 md:px-20 min-w-[300px]">
+          <div className="flex flex-col md:flex-row">
+            <div className="rounded-t-[20px] md:rounded-t-[0px] md:rounded-l-[20px] py-4 md:py-25 bg-lime-400 px-10 ">
               <img src={VectorA} alt="" className="max-w-[200px]" />
             </div>
 
-            <div className="relative rounded-r-[20px]">
+            <div className="relative min-w-[300px]">
               {/* Create App */}
               {currentStep === 0 && (
-                <div className="relative grid py-20  pb-30 rounded-r-[20px] bg-white w-full  px-30">
+                <div className="relative grid px-4 py-10 md:py-20  pb-30 rounded-b-[20px]  md:rounded-l-[0px] md:rounded-r-[20px] bg-white min-w-[300px]  md:px-30">
                   <label htmlFor="" className="py-4 font-bold">
                     Platform ?
                   </label>
-                  <div className="flex gap-10">
+                  <div className="md:flex gap-10">
                     <div className="flex items-center gap-3">
                       <input
                         type="checkbox"
@@ -115,10 +116,11 @@ export default function AppSubmission() {
                       DefcommOS
                     </div>
                   </div>
+
                   <label htmlFor="" className="py-6 font-bold">
                     Graphics
                   </label>
-                  <p>
+                  <p className="text-justify md:text-left" >
                     Ensure your app icon, screenshots, and videos are optimized
                     for promoting your app on Defcomm Stores. Familiarize
                     yourself with the content guidelines before uploading new
@@ -127,20 +129,22 @@ export default function AppSubmission() {
                     your default language.
                   </p>
 
-                  <div className="flex justify-between py-6 w-full">
+                  <div className="md:flex justify-between py-6 ">
                     <p>App icon *</p>
+                    
                     <div>
                       <form
                         action="/upload"
                         method="post"
                         enctype="multipart/form-data"
+                        
                       >
                         <input
                           type="file"
                           name="file"
                           placeholder="Drop app bundles here to upload"
                           accept="image/*,video/*,.pdf,.doc,.docx,.txt"
-                          className="border outline-none border-gray-300 min-w-[700px] flex justify-center items-center h-[300px]"
+                          className="px-4 py-6 border outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[300px]"
                           required
                         />
                       </form>
@@ -149,7 +153,7 @@ export default function AppSubmission() {
                     </div>
                   </div>
 
-                  <div className="flex justify-between py-6">
+                  <div className="md:flex justify-between py-6">
                     <p>Featured Images *</p>
                     <div>
                       <form
@@ -162,7 +166,7 @@ export default function AppSubmission() {
                           name="file"
                           placeholder="Drop app bundles here to upload"
                           accept="image/*,video/*,.pdf,.doc,.docx,.txt"
-                          className="border outline-none border-gray-300 min-w-[700px] flex justify-center items-center h-[300px]"
+                          className="border outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[300px]"
                           required
                         />
                       </form>
@@ -171,7 +175,7 @@ export default function AppSubmission() {
                     </div>
                   </div>
 
-                  <div className="flex justify-between py-6">
+                  <div className="md:flex justify-between py-6">
                     <p>Private Policy *</p>
 
                     <form
@@ -182,21 +186,21 @@ export default function AppSubmission() {
                       <input
                         type="text"
                         name="text"
-                        className="border outline-none border-gray-300 min-w-[700px] flex justify-center items-center h-[35px]"
+                        className="border px-4 outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[35px]"
                       />
                     </form>
-                  </div>
+                  </div> 
                 </div>
               )}
 
               {/* Shipping Page */}
               {currentStep === 1 && (
-                <div className="relative grid py-20  pb-30 rounded-r-[20px] bg-white w-full  px-30">
-                  <label htmlFor="" className="py-8 text-xl font-bold">
+                <div className="relative grid py-10 md:py-20  pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px] bg-white w-full px-4 md:px-30">
+                  <label htmlFor="" className="py-4 md:py-8 text-xl font-bold">
                     Create App Realease
                   </label>
 
-                  <div className="flex gap-20 py-6 w-full">
+                  <div className="md:flex gap-20 py-4 md:py-6 w-full">
                     <p>App Bundles *</p>
                     <div>
                       <form
@@ -209,14 +213,14 @@ export default function AppSubmission() {
                           name="file"
                           placeholder="Drop app bundles here to upload"
                           accept="image/*,video/*,.pdf,.doc,.docx,.txt"
-                          className="border outline-none border-gray-300 min-w-[700px] flex justify-center items-center h-[300px]"
+                          className="border outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[300px]"
                           required
                         />
                       </form>
                     </div>
                   </div>
 
-                  <div className="flex gap-16 py-6">
+                  <div className="md:flex gap-16 py-6">
                     <p>Release name *</p>
                     <div>
                       <form
@@ -227,7 +231,7 @@ export default function AppSubmission() {
                         <input
                           type="text"
                           name="text"
-                          className="border border-1 border-neutral-300 outline-none min-w-[700px] h-[35px]"
+                          className="border border-1 border-neutral-300 outline-none w-[320px] md:w-[800px] h-[35px]"
                         />
                       </form>
                       <p className="text-[12px] max-w-[700px]">
@@ -239,7 +243,7 @@ export default function AppSubmission() {
                     </div>
                   </div>
 
-                  <div className="flex gap-30  py-6">
+                  <div className="md:flex gap-30  py-6">
                     <p>Version *</p>
                     <div>
                       <form
@@ -250,13 +254,13 @@ export default function AppSubmission() {
                         <input
                           type="text"
                           name="text"
-                          className="border border-1 border-neutral-300 outline-none min-w-[700px] h-[35px]"
+                          className="border border-1 border-neutral-300 outline-none w-[320px] md:w-[800px] h-[35px]"
                         />
                       </form>
                     </div>
                   </div>
 
-                  <div className="flex gap-26 py-6">
+                  <div className="md:flex gap-26 py-6">
                     <p>Copyright *</p>
                     <div>
                       <form
@@ -267,7 +271,7 @@ export default function AppSubmission() {
                         <input
                           type="text"
                           name="text"
-                          className="border border-1 border-neutral-300 outline-none min-w-[700px] h-[35px]"
+                          className="border border-1 border-neutral-300 outline-none w-[320px] md:w-[800px] h-[35px]"
                         />
                       </form>
                     </div>
@@ -295,7 +299,7 @@ export default function AppSubmission() {
                     <div className="flex items-center gap-4">
                       <input
                         type="checkbox"
-                        className="appearance-none py-2 h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
+                        className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
                       />
                       Automatically release this version
                     </div>
@@ -314,7 +318,7 @@ export default function AppSubmission() {
               {/* Payment Page */}
               {currentStep === 2 && (
                 <div className="">
-                  <div className="relative grid py-20  pb-30 rounded-r-[20px] bg-white w-full  px-30">
+                  <div className="relative grid py-20  pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px] bg-white w-full px-4  md:px-30">
                     <label htmlFor="" className="py-8 text-xl font-bold">
                       Data Collection
                     </label>
@@ -379,19 +383,19 @@ export default function AppSubmission() {
               {/* Confirm Page */}
               {currentStep === 3 && (
                 <div className="">
-                  <div className="relative py-20  pb-30 rounded-r-[20px] bg-white w-full  px-30">
+                  <div className="relative py-20 px-4 pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px]  bg-white w-full  md:px-30">
                     <label htmlFor="" className="py-8 text-xl font-bold">
                       Product Page Review
                     </label>
 
-                    <div className="flex flex-col  py-10 w-full justify-center items-center">
-                      <div className="bg-gray-200 flex flex-col py-4 items-center justify-center w-[800px] h-[256px]">
+                    <div className="flex flex-col py-10 w-full justify-center items-center">
+                      <div className="bg-gray-200 flex flex-col px-4 py-4 items-center justify-center hover:scale-120 duration-300  h-[256px]">
                         <div className="text-[45px] text-lime-400">
                           <FiCheckCircle />
                         </div>
 
                         <p className="font-bold py-3">Data not collected</p>
-                        <p className="text-[12px]">
+                        <p className="text-[10px] md:text-[12px]">
                           The developer does not collect any data from this app
                         </p>
                       </div>
@@ -410,7 +414,7 @@ export default function AppSubmission() {
               {/* Success Page */}
               {currentStep === 4 && (
                 <div className="">
-                  <div className="relative grid py-20  pb-30 rounded-r-[20px] bg-white w-full  px-30">
+                  <div className="relative grid py-20  px-4 pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px]  bg-white w-full  md:px-30">
                     <label htmlFor="" className="py-8 text-xl font-bold">
                       Data Collection
                     </label>
