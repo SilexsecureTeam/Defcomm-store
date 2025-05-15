@@ -127,26 +127,27 @@ export default function Discover() {
         <div>
           {playDisplay ? (
             <div className={`   `}>
-              <h1 className="px-4 md:px-20  py-4 md:py-8 text-white text-[30px] md:text-[40px]">
+              <h1 className="px-4 md:px-50  py-4 md:py-8 text-white text-[40px] md:text-[40px]">
                 Programs Resources
               </h1>
 
-              <div className="grid md:flex gap-10 py-10 px-4 md:px-20 w-full">
+              <div className="grid md:flex justify-center gap-10 py-10 px-4 md:px-20 w-full">
                 <div className="flex flex-col md:flex-row min-w-[300px] ">
-                  <div className="flex justify-between rounded-t-[20px] px-4 py-6  md:rounded-t-[0px] flex-row md:gap-70 md:rounded-l-[20px] md:flex-col md:justify-center items-center bg-amber-100 md:px-10 ">
-                    <img src={VectorA} alt="" className="" />
+                  
+                  <div className="flex justify-between rounded-t-[20px] px-4   md:rounded-t-[0px] flex-row md:rounded-l-[20px] md:flex-col py-10 items-center bg-amber-100 md:px-10 ">
+                    <img src={VectorA} alt="" className="md:pt-10" />
 
-                    <div className="bg-black w-14 h-14 flex justify-center items-center rounded-4xl text-white">
+                    <div className="bg-black w-14 md:mb-1 h-14 flex justify-center items-center rounded-4xl text-white">
                       <TfiArrowRight />
                     </div>
                   </div>
 
-                  <div className="flex min-w-[300px] flex-col py-10 gap-50 md:rounded-l-[0px] rounded-b-[20px] md:rounded-r-[20px] bg-gray-400 px-6">
-                    <div>
-                      <h1 className="font-bold text-[40px]">
-                        Defcomm Store Connect
+                  <div className="flex min-w-[300px] max-w-[480px] flex-col py-10 justify-between md:rounded-l-[0px] rounded-b-[20px] md:rounded-r-[20px] bg-gray-400 px-6">
+                    <div className="text-[15px]">
+                      <h1 className="font-bold pt-10 text-[32px]">
+                        Defcomm Store <br/> Connect
                       </h1>
-                      <div className="flex gap-4 py-2 items-center">
+                      <div className="flex gap-4 py-4 items-center">
                         <img src={apps} alt="" className="w-8" />
                         <p
                           className="hover:underline cursor-pointer"
@@ -155,29 +156,29 @@ export default function Discover() {
                           Apps
                         </p>
                       </div>
-                      <div className="flex gap-4 items-center">
+                      <div className="flex gap-4 items-center py-4">
                         <img src={appanalystic} alt="" className="w-8" />
                         <p className="hover:underline">App Analytics</p>
                       </div>
 
-                      <div className="flex gap-4 py-2 items-center">
+                      <div className="flex gap-4 py-2 items-center py-4">
                         <img src={mynaui} alt="" className="w-8" />
                         <p className="hover:underline">Users and Access</p>
                       </div>
                     </div>
 
                     <div>
-                      <p className="text-[30px] underline">Get Started</p>
+                      <p className="text-[20px] pb-4 underline">Get Started</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-deffcom-lima min-w-[300px]  md:w-[400px] text-white rounded-[20px]  py-10 px-6">
-                  <div>
-                    <h1 className="text-[40px] ">
-                      Certificates, IDs & Profiles{" "}
+                <div className="bg-deffcom-lima min-w-[300px] max-w-[480px] text-white rounded-[20px]  py-10 px-6">
+                  <div className="text-[14px]">
+                    <h1 className="text-[32px] pt-10 ">
+                      Certificates, IDs <br/> & Profiles{" "}
                     </h1>
-                    <p className="py-5">
+                    <p className="py-5 text-[16px]">
                       Manage the certificates, identifiers, profiles, and
                       devices required to develop, test, and distribute apps
                     </p>
@@ -203,31 +204,31 @@ export default function Discover() {
                     <div className="bg-black w-14 h-14 flex justify-center items-center rounded-4xl text-white">
                       <TfiArrowRight />
                     </div>
-                    <p className="underline ">Get Started</p>
+                    <p className="underline text-[20px]">Get Started</p>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-8 rounded-[20px]  ">
+                <div className="flex flex-col max-w-[300px] justify-between gap-4 md:gap-0  rounded-[20px]  ">
                   <div className="bg-lime-400 px-10 rounded-4xl py-10">
                     <div className="flex justify-between items-center ">
-                      <p className="underline text-xl">Get Started</p>
+                      <p className="underline text-[20px]">Get Started</p>
                       <div className="bg-black w-14 h-14 flex justify-center items-center rounded-4xl text-white">
                         <TfiArrowRight />
                       </div>
                     </div>
 
-                    <div className="pt-40">
-                      <h1 className="text-[30px] ">Services</h1>
-                      <p>View and manage your usage of developer services.</p>
+                    <div className=" text-[16px] pt-30">
+                      <h1 className="text-[32px] ">Services</h1>
+                      <p >View and manage your usage of developer services.</p>
                     </div>
                   </div>
 
                   <div className="bg-white px-10 rounded-4xl">
                     <div className="py-10">
-                      <h1 className="text-[25px] ">Security settings</h1>
+                      <h1 className="text-[22px] ">Security settings</h1>
                     </div>
                     <div className="flex justify-between py-10 items-center pt-10">
-                      <p className="underline text-xl">Get Started</p>
+                      <p className="underline text-[20px]">Get Started</p>
                       <div className="bg-black w-14 h-14 flex justify-center items-center rounded-4xl text-white">
                         <TfiArrowRight />
                       </div>
