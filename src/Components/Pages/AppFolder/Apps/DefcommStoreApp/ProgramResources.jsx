@@ -39,7 +39,7 @@ export default function Discover() {
     <>
       <NavTwo />
       <div className="bg-deffcom-limagradiant py-10 md:py-20 ">
-        <div className="flex flex-col-reverse gap-8 md:flex-row px-4 pt-18 md:pt-4 md:pb-20 md:justify-between md:px-20 ">
+        <div className="flex flex-col-reverse gap-8 md:flex-row px-4 pt-18 md:pt-4 md:pb-20 md:justify-between md:px-30 ">
           <div className="w-[100px] md:w-fit p-2 md:p-4 bg-stone-600 border-l-8 border-lime-400">
             <img
               src={divOne}
@@ -126,14 +126,13 @@ export default function Discover() {
 
         <div>
           {playDisplay ? (
-            <div className={`   `}>
-              <h1 className="px-4 md:px-50  py-4 md:py-8 text-white text-[40px] md:text-[40px]">
+            <div className={` md:px-30   `}>
+              <h1 className="px-4  py-4 md:py-8 text-white text-[40px] md:text-[40px]">
                 Programs Resources
               </h1>
 
-              <div className="grid md:flex justify-center gap-10 py-10 px-4 md:px-20 w-full">
+              <div className="grid md:grid grid-cols-3 justify-center gap-10 py-10 px-4 w-full">
                 <div className="flex flex-col md:flex-row min-w-[300px] ">
-                  
                   <div className="flex justify-between rounded-t-[20px] px-4   md:rounded-t-[0px] flex-row md:rounded-l-[20px] md:flex-col py-10 items-center bg-amber-100 md:px-10 ">
                     <img src={VectorA} alt="" className="md:pt-10" />
 
@@ -142,10 +141,10 @@ export default function Discover() {
                     </div>
                   </div>
 
-                  <div className="flex min-w-[300px] max-w-[480px] flex-col py-10 justify-between md:rounded-l-[0px] rounded-b-[20px] md:rounded-r-[20px] bg-gray-400 px-6">
+                  <div className="flex min-w-[300px]  flex-col py-10 justify-between md:rounded-l-[0px] rounded-b-[20px] md:rounded-r-[20px] bg-gray-400 px-6">
                     <div className="text-[15px]">
                       <h1 className="font-bold pt-10 text-[32px]">
-                        Defcomm Store <br/> Connect
+                        Defcomm Store <br /> Connect
                       </h1>
                       <div className="flex gap-4 py-4 items-center">
                         <img src={apps} alt="" className="w-8" />
@@ -173,10 +172,10 @@ export default function Discover() {
                   </div>
                 </div>
 
-                <div className="bg-deffcom-lima min-w-[300px] max-w-[480px] text-white rounded-[20px]  py-10 px-6">
+                <div className="bg-deffcom-lima min-w-[300px] text-white rounded-[20px]  py-10 px-6">
                   <div className="text-[14px]">
                     <h1 className="text-[32px] pt-10 ">
-                      Certificates, IDs <br/> & Profiles{" "}
+                      Certificates, IDs <br /> & Profiles{" "}
                     </h1>
                     <p className="py-5 text-[16px]">
                       Manage the certificates, identifiers, profiles, and
@@ -219,7 +218,7 @@ export default function Discover() {
 
                     <div className=" text-[16px] pt-30">
                       <h1 className="text-[32px] ">Services</h1>
-                      <p >View and manage your usage of developer services.</p>
+                      <p>View and manage your usage of developer services.</p>
                     </div>
                   </div>
 

@@ -16,7 +16,7 @@ function NavTwo() {
     <div className="z-50">
       {/* Desktop Navigation */}
 
-      <div className="hidden md:flex px-6 text-white justify-between items-center bg-deffcom-lima">
+      <div className="hidden md:flex px-6 md:px-20 text-white justify-between items-center bg-deffcom-lima">
         <NavLink to="/">
           <img src={defflogo} alt="Deffcom Logo" className="w-20" />
         </NavLink>
