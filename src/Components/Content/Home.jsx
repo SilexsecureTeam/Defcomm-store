@@ -6,12 +6,12 @@ import { MdOutlineWatch } from "react-icons/md";
 import { CgArrowTopRight } from "react-icons/cg";
 import { BsDot } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
-import ArmyLady from "../../assets/Army Lady.png";
+import img1 from "../../assets/hero_img1.jpg";
 import ArmyMen from "../../assets/Army Men.png";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function Home() {
-  const imgslide = [ArmyLady, ArmyMen, ArmyLady, ArmyMen, ArmyLady, ArmyMen];
+  const imgslide = [img1, ArmyMen, img1, ArmyMen, img1, ArmyMen];
   const navigate = useNavigate();
   const [imgIndex, setImgIndex] = useState(0);
 
