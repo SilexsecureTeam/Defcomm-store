@@ -51,7 +51,7 @@ function Partners() {
       </div>
 
       <div className="bg-deffcom-lime py-10">
-        <div className="lg:flex justify-between px-4 md:px-30  ">
+        <div className="lg:flex justify-between px-4 md:px-10 gap-4">
           <div className=" text-white">
             <p className="flex items-center text-[13px]">
               {" "}
@@ -79,7 +79,7 @@ function Partners() {
           </div>
         </div>
 
-        <div className="lg:flex px-4 pt-10 justify-between md:px-30 relative min-h-80">
+        <div className="lg:flex px-4 pt-10 justify-between md:px-10 relative min-h-80">
           <div className="absolute pt-20 md:pt-0 lg:relative">
             <div className="flex gap-2 py-2">
               <div className="w-25 h-25 bg-lime-400 opacity-5 md:opacity-20 rounded-3xl"></div>

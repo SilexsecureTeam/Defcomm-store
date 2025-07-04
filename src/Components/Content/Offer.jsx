@@ -4,7 +4,7 @@ import { BsChevronDoubleDown } from "react-icons/bs";
 
 function Offer() {
   return (
-    <div className="relative mx-4 px-4 py-12 lg:mx-10 bg-black text-white rounded-[20px] lg:p-16 lg:rounded-[40px] mb-20">
+    <div className="relative mx-4 px-4 py-12 lg:mx-10 bg-black text-white rounded-[20px] lg:p-16 !pb-0 lg:rounded-[40px] mb-20">
       {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-center">
         <p className="font-bold text-[32px] lg:text-[50px] leading-tight mb-6 lg:mb-0">
@@ -57,7 +57,7 @@ function Offer() {
       </div>
 
       {/* Chevron Scroll Indicator */}
-      <div className="flex justify-center mt-12 relative z-10">
+      <div className="flex justify-center mt-12 relative top-5 z-10">
         <div className="bg-white text-black p-5 rounded-tl-2xl rotate-45">
           <p className="-rotate-45 text-2xl">
             <BsChevronDoubleDown />
