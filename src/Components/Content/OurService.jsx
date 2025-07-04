@@ -33,12 +33,12 @@ function OurService() {
             <img
               src={gisarrowo}
               alt="arrow"
-              className="absolute left-6 top-6 md:left-20 md:top-10 w-10"
+              className="absolute left-[20%] top-6 md:top-10 w-10"
             />
             <img
               src={GisArrow}
               alt="arrow"
-              className="absolute right-6 top-10 md:right-20 md:top-10 w-10"
+              className="absolute right-[20%] top-10 md:top-10 w-10"
             />
             <img
               src={Ellipse}
