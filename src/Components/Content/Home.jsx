@@ -6,12 +6,15 @@ import { MdOutlineWatch } from "react-icons/md";
 import { CgArrowTopRight } from "react-icons/cg";
 import { BsDot } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
-import img1 from "../../assets/hero_img1.jpg";
-import img2 from "../../assets/hero_img2.jpg";
+import img1 from "../../assets/hero_img3.jpg";
+import img2 from "../../assets/hero_img4.jpg";
+import img3 from "../../assets/hero_img1.jpg";
+import img4 from "../../assets/hero_img2.jpg";
+
 import { NavLink, useNavigate } from "react-router-dom";
 
 function Home() {
-  const imgslide = [img1, img2, img1, img2, img1, img2];
+  const imgslide = [img1, img2, img3, img4, img1, img2];
   const navigate = useNavigate();
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -95,11 +98,7 @@ function Home() {
           </div>
 
           <div className="px-4 absolute w-full items-center justify-between bottom-[20px] flex text-stone-600 md:px-10">
-            {/* <div className='w-[500px]'>
-                                <h1 className=' text-xs md:text-xl'>MyCard - Moneymanager</h1> 
-                                <p className='flex items-center'>2024 <BsDot /> Mobile App</p>
-                            </div> */}
-            <div className="flex text-lime-900 mdtext-4xl">
+            <div className="flex text-lime-900 md:text-4xl">
               <GoDotFill />
               <GoDotFill />
             </div>

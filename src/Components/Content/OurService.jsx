@@ -1,71 +1,124 @@
-import React from 'react'
-import Ellipse from "../../assets/Ellipse 3.png"
-import Defcomm from "../../assets/Defcomm-02 3 2 8.png"
-import Vector9 from "../../assets/Vector (9).png"
-import GisArrow from "../../assets/gis_arrow-o (1).png"
-import gisarrowo from "../../assets/gis_arrow-o.png"
+import React from "react";
+import Ellipse from "../../assets/Ellipse 3.png";
+import Defcomm from "../../assets/Defcomm-02 3 2 8.png";
+import Vector9 from "../../assets/Vector (9).png";
+import GisArrow from "../../assets/gis_arrow-o (1).png";
+import gisarrowo from "../../assets/gis_arrow-o.png";
 import { HiMiniArrowSmallRight } from "react-icons/hi2";
 
-
-
 function OurService() {
-    return (
-        <div className='px-4 w-full md:px-10 py-10 min-w-[300px]'>
-            <div className='grid justify-center md:flex   md:justify-between md:px-10'>
-                <div className='flex gap-4 md:gap-6 items-center'>
-                    <p className='text-[40px] font-bold'>02</p>
-                    <div className='bg-lime-400 text-[18px] px-8 md:text-[30px]  py-4 md:px-16 rounded-[30px]'>Our Services</div>
-                </div>
-                <div className='w-[300px] md:w-[600px]'>
-                    <p className='text-stone-500 text-[20px] md:text-[40px]'>
-                        <span className='font-bold text-black  '>Defcomm Stores is not just an app marketplace;</span> it is a fortified digital environment where security comes first.
-                    </p>
-                </div>
-            </div>
-
-            <div className=' flex flex-col md:px-10 justify-center md:flex-row w-full md:justify-between py-10'>
-                <div className='md:w-[400px]'>
-                    <div className=' relative bg-zinc-200 h-[300px] md:h-[400px]  md:w-[400px] rounded-4xl'>
-                        <img src={gisarrowo} alt=""  className=' left-8 top-15 md:top-25 absolute md:left-20'/>
-                        <img src={GisArrow} alt=""  className='top-18 right-16 md:top-26 absolute md:right-20'/>
-                        <img src={Ellipse} alt=""  className='top-20   md:top-30 absolute right-23'/>
-                        <img src={Ellipse} alt=""  className='top-30  md:top-40 absolute right-23'/>
-                        <img src={Ellipse} alt=""  className='top-40  md:top-50 absolute right-23'/>
-                     
-
-                    </div>
-
-                    <h1 className='text-[20px] md:text-[25px] font-bold'>Innovation</h1>
-                    <p className=' text-[15px] w-full md:w-full'>We redefining how secure communication works in the modern, hyperconnected world.</p>
-                </div>
-
-                <div className='flex flex-col gap-2 py-6 md:py-0  md:w-[400px]'>
-                    <div className='flex justify-between items-center px-6 py-3  md:px-10 text-[25px] font-bold bg-lime-400 md:h-[130px]  md:w-[400px] rounded-4xl'>
-                        <p>SHARE IT</p>
-                        <p><HiMiniArrowSmallRight /></p>
-                    </div>
-                    <div className=' relative bg-lime-400 h-[400px] md:w-[400px] rounded-4xl'>
-                    <img src={Vector9} alt=""  className='top-24 absolute right-16'/>
-                    <img src={Defcomm} alt=""  className='top-20 absolute right-9'/>
-                    </div>
-                    <h1 className='text-[20px] md:text-[25px]  font-bold'>Data & Privacy</h1>
-                    <p className='text-[15px]'>You have the power to select which data to share and with whom.</p>
-                </div>
-
-                <div className='md:w-[400px]'>
-                    <div className=' relative bg-black h-[400px]  w-full rounded-4xl'>
-                        <div className='absolute top-78 md:top-78 left-[-25px] rotate-55 md:left-[-18px] md:rotate-45 rounded-[50px] py-1 px-10 text-[25px] bg-white '>CYBER</div>
-                        <div className='absolute top-74 md:top-76 left-2 md:left-7 rotate-55 md:rotate-45 rounded-[50px] py-1 px-10 text-[25px] bg-white '>SECURITY</div>
-                        <div className='absolute top-62 md:top-67 left-10 md:left-17 rotate-55 md:rotate-47 rounded-[50px] py-1 px-10 text-[25px] bg-white '>PRIVACY</div>
-                        <div className='absolute top-75 right-18 rotate-280 rounded-[50px] py-1 px-10 text-[25px] bg-white '>DATA</div>
-                        <div className='absolute top-81 right-[-8px] rotate-325 rounded-[50px] py-1 px-10 text-[25px] bg-white '>POINT</div>
-                    </div>
-                    <h1 className='text-[20px] md:text-[25px] font-bold'>No Data Retention Policy</h1>
-                    <p className='text-[15px]'>Defcomm  is built with privacy-by-design principles, ensuring every interaction and data transaction is protected from interception, leaks, or unauthorised access.</p>
-                </div>
-            </div>
+  return (
+    <div className="px-4 py-10 md:px-8 w-full max-w-screen-xl mx-auto">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between md:items-center gap-8 mb-10">
+        <div className="flex items-center gap-4 md:gap-6">
+          <p className="text-4xl md:text-5xl font-bold">02</p>
+          <div className="bg-lime-400 text-lg md:text-2xl px-6 md:px-10 py-3 rounded-full">
+            Our Services
+          </div>
         </div>
-    )
+        <p className="text-gray-600 text-lg md:text-2xl max-w-xl">
+          <span className="font-bold text-black">
+            Defcomm Stores is not just an app marketplace;
+          </span>{" "}
+          it is a fortified digital environment where security comes first.
+        </p>
+      </div>
+
+      {/* Services Section */}
+      <div className="flex flex-col md:flex-row gap-10">
+        {/* Card 1: Innovation */}
+        <div className="flex-1 space-y-4">
+          <div className="relative bg-zinc-200 h-72 md:h-96 rounded-3xl overflow-hidden">
+            <img
+              src={gisarrowo}
+              alt="arrow"
+              className="absolute left-6 top-6 md:left-20 md:top-10 w-10"
+            />
+            <img
+              src={GisArrow}
+              alt="arrow"
+              className="absolute right-6 top-10 md:right-20 md:top-10 w-10"
+            />
+            <img
+              src={Ellipse}
+              alt="ellipse"
+              className="absolute right-0 left-0 m-auto top-[20%] w-[70%]"
+            />
+            <img
+              src={Ellipse}
+              alt="ellipse"
+              className="absolute right-0 left-0 m-auto top-[35%] w-[70%]"
+            />
+            <img
+              src={Ellipse}
+              alt="ellipse"
+              className="absolute right-0 left-0 m-auto top-[50%] w-[70%]"
+            />
+          </div>
+          <h1 className="text-xl md:text-2xl font-bold">Innovation</h1>
+          <p className="text-base">
+            We’re redefining how secure communication works in the modern,
+            hyperconnected world.
+          </p>
+        </div>
+
+        {/* Card 2: Data & Privacy */}
+        <div className="flex-1 space-y-4">
+          <div className="flex justify-between items-center px-6 py-4 text-xl font-bold bg-lime-400 rounded-3xl">
+            <p>SHARE IT</p>
+            <HiMiniArrowSmallRight />
+          </div>
+          <div className="relative bg-lime-400 h-72 md:h-96 rounded-3xl overflow-hidden">
+            <img
+              src={Vector9}
+              alt="vector"
+              className="absolute top-[20%] right-16 w-10"
+            />
+            <img
+              src={Defcomm}
+              alt="defcomm"
+              className="absolute top-0 right-0 bottom-0 left-0 m-auto w-[70%]"
+            />
+          </div>
+          <h1 className="text-xl md:text-2xl font-bold">Data & Privacy</h1>
+          <p className="text-base">
+            You have the power to select which data to share and with whom.
+          </p>
+        </div>
+
+        {/* Card 3: No Data Retention */}
+        <div className="flex-1 space-y-4">
+          <div className="relative bg-black h-72 md:h-96 rounded-3xl text-white flex items-center justify-center">
+            {/* You can tweak these for better visual balance */}
+            <div className="absolute bottom-5 left-0 rotate-[20deg] bg-white text-black px-6 py-1 rounded-full text-base md:text-xl">
+              CYBER
+            </div>
+            <div className="absolute bottom-8 left-[20%] rotate-[30deg] bg-white text-black px-6 py-1 rounded-full text-base md:text-xl">
+              SECURITY
+            </div>
+            <div className="absolute bottom-15 left-[30%] rotate-[30deg] bg-white text-black px-6 py-1 rounded-full text-base md:text-xl">
+              PRIVACY
+            </div>
+            <div className="absolute bottom-10 right-15 -rotate-[80deg] bg-white text-black px-6 py-1 rounded-full text-base md:text-xl">
+              DATA
+            </div>
+            <div className="absolute bottom-10 right-0 -rotate-[55deg] bg-white text-black px-6 py-1 rounded-full text-base md:text-xl">
+              POINT
+            </div>
+          </div>
+          <h1 className="text-xl md:text-2xl font-bold">
+            No Data Retention Policy
+          </h1>
+          <p className="text-base">
+            Defcomm is built with privacy-by-design principles, ensuring every
+            interaction and data transaction is protected from interception,
+            leaks, or unauthorised access.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default OurService
+export default OurService;
