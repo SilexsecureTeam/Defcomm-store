@@ -66,7 +66,7 @@ function Home() {
             </span>{" "}
             WE PROVIDE ABSOLUTE PRIVACY{" "}
           </p>
-          <h1 className="text-5xl md:text-7xl tracking-tight lg:text-8xl">
+          <h1 className="text-3xl md:text-5xl tracking-tight lg:text-8xl">
             Transforming ideas into beautifully crafted products.
           </h1>
           <div className="flex py-4 md:py-8 gap-4 text-black ">
