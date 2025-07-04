@@ -1,70 +1,86 @@
-import React from 'react'
+import React from "react";
 import { GoDotFill } from "react-icons/go";
 
-
 function WhyUs() {
-
-   
-
-    return (
-     <div className='bg-black w-full px-4 py-10 md:px-10 md:py-24  '>
-        <div className='md:flex gap-10 bg-neutral-900 px-4 py-10 md:px-30 md:py-30 '>
-            <div className=' pb-4 md:pb-0 text-white'>
-                 <p className='flex items-center text-[9px] md:text-[13px]'> <span className='text-lime-400 mdLtext-xl'><GoDotFill /></span> WHY CHOOSE US</p>
-                 <p className=' text-[20px] md:text-[40px] text-gray-500 pt-2 md:pt-4 tracking-tighter md:leading-12'>Why you should choose <span className='text-[25px] md:text-[45px] text-white'>Defcommstore</span></p>              
-            </div>
-
-           <div className='grid gap-10'>
-                <div className='  bg-black p-8'>
-                    <div className='flex gap-1'>
-                        <div className='w-2 h-10 bg-lime-400 rounded-t-md rounded-b-md '></div>
-                        <div className='w-2 h-10 bg-lime-400 rounded-t-md rounded-b-md '></div>
-                        <div className='w-2 h-10 bg-lime-400 rounded-t-md rounded-b-md '></div>
-                        <div className='w-2 h-10 bg-lime-400 rounded-t-md rounded-b-md '></div>
-                    </div>
-                    <h1 className='text-white'>Innovation</h1>
-                    <p className='text-stone-600'>Harness cutting-edge technology to stay ahead in a rapidly evolving market landscape.</p>
-                </div>
-
-                <div className='bg-black p-8'>
-                    <div className='flex gap-1'>
-                        <div className=''>
-                            <div className='w-4 h-4 bg-lime-800 rounded-[50px] '></div>
-                            <div className='w-4 h-10 bg-lime-400  '></div>
-                        </div>
-                        <div className=''>
-                            <div className='w-4 h-10 bg-lime-400  '>
-                            </div><div className='w-4 h-4 bg-lime-800 rounded-[50px] '></div>
-                       </div>
-                       <div className=''>
-                            <div className='w-4 h-4 bg-lime-800 rounded-[50px] '></div>
-                            <div className='w-4 h-10 bg-lime-400 '></div>
-                        </div>
-                 
-                  </div>
-                    <h1 className='text-white'>Simplicity</h1>
-                    <p className='text-stone-600'>Simplify complex process with intuitive and streamline workflows.</p>
-                </div>
-
-                <div className='bg-black p-8'>
-                    <div className='flex  gap-1'>
-                        <div className='flex items-center justify-center'>
-                            <div className='w-6 h-6 bg-lime-800 rounded-[50px] '></div>
-                            <div className='w-2 h-10 bg-lime-400'></div>
-                        </div>                 
-                  </div>
-                    <h1 className='text-white'>Flexibility</h1>
-                    <p className='text-stone-600'>Adapt similessly to changing business needs with customizable and scalable solutions.</p>
-                </div>
-            </div> 
+  return (
+    <div className="bg-black w-full px-4 py-16 md:px-20 md:py-24">
+      <div className="bg-neutral-900 rounded-xl px-6 py-10 md:px-20 md:py-20 flex flex-col lg:flex-row gap-12">
+        {/* Left section */}
+        <div className="text-white max-w-md">
+          <p className="flex items-center text-sm md:text-base mb-2">
+            <span className="text-lime-400 text-lg mr-1">
+              <GoDotFill />
+            </span>
+            WHY CHOOSE US
+          </p>
+          <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+            Why you should choose{" "}
+            <span className="text-white">Defcommstore</span>
+          </h2>
         </div>
+
+        {/* Right section - Cards */}
+        <div className="grid gap-8 w-full">
+          {/* Card 1 */}
+          <div className="bg-black p-6 rounded-lg shadow-md border border-neutral-800">
+            <div className="flex gap-1 mb-4">
+              {Array(4)
+                .fill(0)
+                .map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-2 h-10 bg-lime-400 rounded-md"
+                  ></div>
+                ))}
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-1">
+              Innovation
+            </h3>
+            <p className="text-stone-400 text-sm">
+              Harness cutting-edge technology to stay ahead in a rapidly
+              evolving market.
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-black p-6 rounded-lg shadow-md border border-neutral-800">
+            <div className="flex gap-2 mb-4">
+              {[0, 1, 2].map((_, i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <div className="w-4 h-4 bg-lime-800 rounded-full mb-1" />
+                  <div className="w-4 h-10 bg-lime-400" />
+                </div>
+              ))}
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-1">
+              Simplicity
+            </h3>
+            <p className="text-stone-400 text-sm">
+              Simplify complex processes with intuitive and streamlined
+              workflows.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-black p-6 rounded-lg shadow-md border border-neutral-800">
+            <div className="flex gap-2 mb-4">
+              <div className="flex flex-col items-center">
+                <div className="w-6 h-6 bg-lime-800 rounded-full mb-1" />
+                <div className="w-2 h-10 bg-lime-400" />
+              </div>
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-1">
+              Flexibility
+            </h3>
+            <p className="text-stone-400 text-sm">
+              Adapt seamlessly to evolving business needs with scalable
+              solutions.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-
-
-        
-
-  
-    )
+  );
 }
 
-export default WhyUs
+export default WhyUs;

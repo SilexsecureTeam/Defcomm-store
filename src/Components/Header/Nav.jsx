@@ -1,148 +1,117 @@
-import React from "react";
-import { HiBars2 } from "react-icons/hi2";
-import Logo from "../../assets/Defcomm-03 4.png";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { HiBars2 } from "react-icons/hi2";
 import { CgClose } from "react-icons/cg";
-import { useState } from "react";
 import { CiMobile1 } from "react-icons/ci";
 import { SlScreenTablet } from "react-icons/sl";
-import { MdLaptopChromebook } from "react-icons/md";
-import { MdOutlineWatch } from "react-icons/md";
+import { MdLaptopChromebook, MdOutlineWatch } from "react-icons/md";
+import Logo from "../../assets/Defcomm-03 4.png";
 import defcomm from "../../assets/Defcomm-02 3 2 8.png";
 
 function Nav() {
   const [dropDown, setDropDown] = useState(false);
   const navigate = useNavigate();
 
+  const handleNavigate = (path) => {
+    setDropDown(false); // close dropdown if mobile
+    scrollTo(0, 0);
+    navigate(path);
+  };
+
   return (
     <>
-      <div className="fixed left-0 top-0 w-full z-10 bg-white  flex items-center justify-between  px-4 md:px-10 py-2">
-        <NavLink to="/">
-          <div className="hidden md:flex">
-            <img src={Logo} alt="" className="w-[200px] h-[50px]" />
-          </div>
+      {/* Top Nav */}
+      <nav className="fixed left-0 top-0 w-full z-50 bg-white shadow-md flex items-center justify-between px-4 md:px-10 py-2">
+        {/* Logo Desktop */}
+        <NavLink to="/" className="hidden md:flex">
+          <img src={Logo} alt="Defcomm Logo" className="w-[200px] h-[50px]" />
         </NavLink>
 
-        <NavLink to="/">
-          <div className="block md:hidden ">
-            <img src={defcomm} alt="" className="w-[80px] h-[70px]" />
-          </div>
+        {/* Logo Mobile */}
+        <NavLink to="/" className="block md:hidden">
+          <img
+            src={defcomm}
+            alt="Defcomm Mobile Logo"
+            className="w-[80px] h-[70px]"
+          />
         </NavLink>
 
+        {/* Nav Links */}
         <div className="flex gap-4 items-center">
-          <ul className="flex gap-4 text-sm">
+          <ul className="hidden md:flex gap-6 text-sm font-medium">
+            {["GAMES", "APP", "BOOKS", "TV"].map((item) => (
+              <li
+                key={item}
+                className="cursor-pointer hover:text-lime-700 transition"
+                onClick={() => handleNavigate("/app")}
+              >
+                {item}
+              </li>
+            ))}
             <li
-              onClick={() => {
-                navigate("/app");
-              }}
-              className="cursor-pointer"
-            >
-              GAMES
-            </li>
-            <li
-              onClick={() => {
-                navigate("/app");
-              }}
-              className="cursor-pointer"
-            >
-              APP
-            </li>
-            <li
-              onClick={() => {
-                navigate("/app");
-              }}
-              className="cursor-pointer"
-            >
-              BOOKS
-            </li>
-            <li
-              onClick={() => {
-                navigate("/app");
-              }}
-              className="cursor-pointer"
-            >
-              TV
-            </li>
-            <li
-              onClick={() => {
-                navigate("/register");
-              }}
-              className="cursor-pointer font-bold hidden md:block"
+              className="cursor-pointer font-semibold hover:text-lime-700 transition"
+              onClick={() => handleNavigate("/register")}
             >
               LOGIN/REGISTER
             </li>
           </ul>
-          <div className="hidden md:flex text-3xl bg-lime-600 text-white p-1 rounded-[50px]">
+
+          {/* Icon for large screen (future use) */}
+          <div className="hidden md:flex text-3xl bg-lime-600 text-white p-1 rounded-full cursor-pointer">
             <HiBars2 />
           </div>
-          <div
-            onClick={() => {
-              setDropDown(!dropDown);
-            }}
-            className="md:hidden block text-3xl bg-lime-600 text-white p-2 rounded-full cursor-pointer"
+
+          {/* Mobile Menu Toggle */}
+          <button
+            aria-label="Toggle mobile menu"
+            onClick={() => setDropDown((prev) => !prev)}
+            className="md:hidden text-3xl bg-lime-600 text-white p-2 rounded-full"
           >
             {dropDown ? <CgClose /> : <HiBars2 />}
-          </div>
+          </button>
         </div>
-      </div>
+      </nav>
 
+      {/* Mobile Dropdown Menu */}
       <div
-        className={`md:hidden fixed left-0 top-[75px] w-full bg-white shadow-lg z-30 
-                transition-transform duration-300 ease-out 
-                ${
-                  dropDown
-                    ? "translate-y-0 opacity-100"
-                    : "-translate-y-10 opacity-0 pointer-events-none"
-                }`}
+        className={`md:hidden fixed left-0 top-[75px] w-full bg-white z-40 shadow-lg transition-all duration-300 ease-in-out
+          ${
+            dropDown
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-5 opacity-0 pointer-events-none"
+          }
+        `}
       >
-        <ul className="grid gap-3 text-md ">
-          <li 
-           onClick={() => {
-            navigate("/app");
-          }}
-          className="active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 cursor-pointer flex gap-1 items-center">
-            <p className="text-2xl">
-              <CiMobile1 />
-            </p>{" "}
-            MOBILE PHONE
-          </li>
-          <li 
-           onClick={() => {
-            navigate("/app");
-          }}
-          className="active hover:scale-110 px-10 duration-200  h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center">
-            <p className="text-lg">
-              <SlScreenTablet />
-            </p>{" "}
-            TABLET
-          </li>
+        <ul className="flex flex-col gap-3 py-4 text-sm font-medium">
           <li
-           onClick={() => {
-            navigate("/app");
-          }}
-          className="active hover:scale-110 px-10 duration-200  h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center">
-            <p className="text-2xl">
-              <MdLaptopChromebook />
-            </p>{" "}
-            DEFCOM-PC
-          </li>
-          <li 
-           onClick={() => {
-            navigate("/app");
-          }}
-          className="active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center">
-            <p className="text-2xl">
-              <MdOutlineWatch />
-            </p>{" "}
-            WATCH
-          </li>
-          <li
-            onClick={() => {
-              navigate("/register");
-            }}
-            className="font-bold active hover:scale-110 px-10 duration-200 h-12 hover:bg-gray-200 flex gap-1 cursor-pointer items-center "
+            onClick={() => handleNavigate("/app")}
+            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
           >
-            LOGIN/REGISTER
+            <CiMobile1 className="text-xl" /> MOBILE PHONE
+          </li>
+          <li
+            onClick={() => handleNavigate("/app")}
+            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
+          >
+            <SlScreenTablet className="text-xl" /> TABLET
+          </li>
+          <li
+            onClick={() => handleNavigate("/app")}
+            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
+          >
+            <MdLaptopChromebook className="text-xl" /> DEFCOM-PC
+          </li>
+          <li
+            onClick={() => handleNavigate("/app")}
+            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
+          >
+            <MdOutlineWatch className="text-xl" /> WATCH
+          </li>
+          <li
+            onClick={() => handleNavigate("/register")}
+            className="flex items-center gap-2 px-6 py-3 font-semibold hover:bg-gray-100 transition cursor-pointer"
+          >
+            LOGIN / REGISTER
           </li>
         </ul>
       </div>

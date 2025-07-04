@@ -1,154 +1,152 @@
-import React from 'react'
+import React from "react";
 import { GoDotFill } from "react-icons/go";
 import { CgArrowTopRight } from "react-icons/cg";
-import { useNavigate } from 'react-router-dom';
-import military from "../../assets/military 1 (1).png"
+import { useNavigate } from "react-router-dom";
+import useApp from "../../hooks/useApp";
 
 function Project() {
+  const navigate = useNavigate();
+  const { getAppListQuery } = useApp();
+  const { data, isLoading, isError, error } = getAppListQuery;
 
-    const navigate = useNavigate()
-
+  // Loading UI
+  if (isLoading) {
     return (
-        <div className='flex flex-col justify-center md:grid md:justify-none md:grid-cols-2 mx-4 py-10 md:py-20 md:my-10 md:px-20 md:gap-8 md:mx-10'> 
-            
-            <div className='w-full'>
-
-                <div>
-                    <p className='flex items-center text-[13px]'> <span className='text-lime-700 text-xl'><GoDotFill /></span> LASTEST PROJECT</p>
-                    <h1 className='text-[30px] py-2'>App Categories</h1>
-                    
-                    <div className='flex flex-col px-6 md:px-14 text-justify md:flex-row md:gap-4 py-10 items-center h-[350px] bg-stone-400 '>
-                        <div>
-                            <img src={military} alt="" className='w-[100px] md:w-[400px]'/>
-                        </div>
-                            <p>A secure, AI-powered medical application designed for military personnel, medics, and healthcare providers to manage battlefield and peacetime medical operations efficiently.</p>
-                    </div>
-                    
-                    <div className='flex items-center justify-between'>
-                        
-                        <div className='w-[500px] py-2'>
-                            <h1 className='text-2xl'>Medicals</h1> 
-                            <p className='flex items-center py-2  text-stone-600'>2024 <GoDotFill  /> UI/UX</p>
-                        </div>
-                        
-                        
-                        <button onClick={() => {navigate("/medical")}} className='bg-lime-700 py-3 px-3 cursor-pointer rounded-[50px]'>
-                            <CgArrowTopRight />
-                        </button>
-                        
-                     </div>
-                </div>
-
-                
-
-                <div>
-                    <div className='h-[350px] bg-stone-400 '>
-
-                    </div>
-                    <div className='flex items-center justify-between'>
-                        
-                        <div className='w-[500px] py-2'>
-                            <h1 className='text-2xl'>Office</h1> 
-                            <p className='flex items-center py-2 text-stone-600'>2024 <GoDotFill  /> Website</p>
-                        </div>
-                        
-                        <button onClick={() => {navigate("/medical")}} className='bg-lime-700 py-3 px-3 cursor-pointer rounded-[50px]'>
-                            <CgArrowTopRight />
-                        </button>
-                     </div>
-                </div>
-
-                
-
-                <div> 
-                    <div className='h-[350px] bg-stone-400 '>
-
-                    </div>
-                    <div className='flex items-center justify-between'>
-                        
-                        <div className='w-[500px] py-2'>
-                            <h1 className='text-2xl'>Qaltra</h1> 
-                            <p className='flex items-center py-2 text-stone-600'>2024 <GoDotFill  /> UI/UX</p>
-                        </div>
-                        
-                        <button onClick={() => {navigate("/medical")}} className='bg-lime-700 py-3 px-3 cursor-pointer rounded-[50px]'>
-                            <CgArrowTopRight />
-                        </button>
-                     </div>
-                </div>
-
-               
-            </div>
-            
-            <div>
-
-                <div>
-                    <div className='h-[350px] bg-black py-2'>
-
-                    </div>
-                     
-                     <div className='flex items-center justify-between'>
-                        
-                        <div className='w-[500px] py-2'>
-                            <h1 className='text-2xl'>Communications</h1> 
-                            <p className='flex items-center py-2 text-stone-600'>2024 <GoDotFill  /> Mobile App</p>
-                        </div>
-                        
-                        <button onClick={() => {navigate("/medical")}} className='bg-lime-700 py-3 px-3 cursor-pointer rounded-[50px]'>
-                            <CgArrowTopRight />
-                        </button>
-                     </div>
-                </div>
-
-                <div>
-                    <div className='h-[350px] bg-stone-400 py-2'>
-
-                    </div>
-                     
-                     <div className='flex items-center justify-between'>
-                        
-                        <div className='w-[500px] py-2'>
-                            <h1 className='text-2xl'>Phronix</h1> 
-                            <p className='flex items-center py-2 text-stone-600'>2024 <GoDotFill  /> Dashboard</p>
-                        </div>
-                        
-                        <button onClick={() => {navigate("/medical")}} className='bg-lime-700 py-3 px-3 cursor-pointer rounded-[50px]'>
-                            <CgArrowTopRight />
-                        </button>
-                     </div>
-                </div>
-  
-  
-  
-                <div>
-                        <div className='h-[350px] bg-stone-400  py-2'>
-
-                        </div>
-                        
-                        <div className='flex items-center justify-between'>
-                            
-                            <div className='w-[500px] py-2'>
-                                <h1 className='text-2xl'>Syntex</h1> 
-                                <p className='flex items-center py-2 text-stone-600'>2024 <GoDotFill  /> Branding</p>
-                            </div>
-                            
-                            <button onClick={() => {navigate("/medical")}} className='bg-lime-700 py-3 px-3 cursor-pointer rounded-[50px]'>
-                            <CgArrowTopRight />
-                        </button>
-                        </div>
-
-                    <div className='flex justify-center gap-1'>
-                        <button className='bg-lime-400 py-2 px-3 rounded-md'>LEARN MORE</button>
-                        <button onClick={() => {navigate("/medical")}} className='bg-lime-700 py-3 px-3 cursor-pointer rounded-[50px]'>
-                            <CgArrowTopRight />
-                        </button>
-                    </div>    
-                </div>
-                
-            </div>
-
+      <div className="w-full px-4 py-20 md:px-20">
+        <div className="flex justify-center mb-10">
+          <div className="h-12 w-12 border-4 border-lime-500 border-t-transparent animate-spin rounded-full" />
         </div>
-    )
+
+        <div className="grid md:grid-cols-2 gap-10">
+          {[...Array(4)].map((_, idx) => (
+            <div key={idx} className="animate-pulse space-y-3">
+              <div className="h-72 bg-stone-200 rounded-lg" />
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="h-6 bg-stone-300 rounded w-3/4 mb-2" />
+                  <div className="h-4 bg-stone-200 rounded w-1/2" />
+                </div>
+                <div className="h-10 w-10 rounded-full bg-stone-300" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Error UI
+  if (isError) {
+    return (
+      <div className="w-full px-4 py-20 md:px-20 text-center text-red-500">
+        <p>Something went wrong while fetching projects.</p>
+        {import.meta.env.MODE === "development" && (
+          <pre className="mt-2 text-xs text-stone-500">
+            {error?.message || "Unknown error"}
+          </pre>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full px-4 py-10 md:px-20 md:py-20">
+      <div className="grid md:grid-cols-2 gap-10">
+        {/* Left Column */}
+        <div className="flex flex-col gap-10">
+          <div>
+            <p className="flex items-center text-[13px] mb-1">
+              <span className="text-lime-700 text-xl mr-1">
+                <GoDotFill />
+              </span>
+              LATEST PROJECTS
+            </p>
+            <h1 className="text-[30px] font-semibold">App Categories</h1>
+          </div>
+
+          {data
+            ?.filter((_, i) => i % 2 === 0)
+            .map((app) => (
+              <div key={app.id}>
+                <div className="h-72 bg-stone-200 overflow-hidden mb-3">
+                  {app.image && (
+                    <img
+                      src={app.image}
+                      alt={app.name}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+                <div className="flex items-center justify-between">
+                  <article>
+                    <h1 className="text-2xl">{app.name}</h1>
+                    <p className="text-sm text-stone-500 flex items-center">
+                      {new Date(app.created_at).getFullYear()}
+                      <GoDotFill className="mx-1 text-[7px]" />
+                      {app.category || "Tech"}
+                    </p>
+                  </article>
+                  <button
+                    onClick={() => navigate(app.route)}
+                    className="cursor-pointer bg-lime-700 text-white p-3 rounded-full"
+                  >
+                    <CgArrowTopRight />
+                  </button>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        {/* Right Column */}
+        <div className="flex flex-col gap-10">
+          {data
+            ?.filter((_, i) => i % 2 !== 0)
+            .map((app) => (
+              <div key={app.id}>
+                <div className="h-72 bg-stone-200 overflow-hidden mb-3">
+                  {app.image && (
+                    <img
+                      src={app.image}
+                      alt={app.name}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
+                </div>
+                <div className="flex items-center justify-between">
+                  <article>
+                    <h1 className="text-2xl">{app.name}</h1>
+                    <p className="text-sm text-stone-500 flex items-center">
+                      {new Date(app.created_at).getFullYear()}
+                      <GoDotFill className="mx-1 text-[7px]" />
+                      {app.category || "Tech"}
+                    </p>
+                  </article>
+                  <button
+                    onClick={() => navigate("/medical")}
+                    className="cursor-pointer bg-lime-700 text-white p-3 rounded-full"
+                  >
+                    <CgArrowTopRight />
+                  </button>
+                </div>
+              </div>
+            ))}
+
+          {/* Learn More */}
+          <div className="flex justify-center items-center gap-2 mt-3">
+            <button className="bg-[#C6FC2B] py-2 px-5 rounded-md text-black font-semibold hover:bg-[#cae481] transition">
+              LEARN MORE
+            </button>
+            <button
+              onClick={() => navigate("/more")}
+              className="bg-[#C6FC2B] p-3 rounded-full"
+            >
+              <CgArrowTopRight />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Project
+export default Project;
