@@ -7,11 +7,11 @@ import { CgArrowTopRight } from "react-icons/cg";
 import { BsDot } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
 import img1 from "../../assets/hero_img1.jpg";
-import ArmyMen from "../../assets/Army Men.png";
+import img2 from "../../assets/hero_img2.jpg";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function Home() {
-  const imgslide = [img1, ArmyMen, img1, ArmyMen, img1, ArmyMen];
+  const imgslide = [img1, img2, img1, img2, img1, img2];
   const navigate = useNavigate();
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -66,7 +66,7 @@ function Home() {
             </span>{" "}
             WE PROVIDE ABSOLUTE PRIVACY{" "}
           </p>
-          <h1 className="text-[30px] tracking-tight md:text-[100px] md:leading-24 ">
+          <h1 className="text-5xl md:text-7xl tracking-tight lg:text-8xl">
             Transforming ideas into beautifully crafted products.
           </h1>
           <div className="flex py-4 md:py-8 gap-4 text-black ">
