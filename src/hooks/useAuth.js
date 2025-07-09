@@ -32,7 +32,7 @@ const useAuth = () => {
         access_token: userData?.data?.access_token,
         user: { ...userData?.data },
       });
-      navigate("/start");
+      navigate("/store/start");
     },
     onError: (err) => {
       onFailure({
@@ -83,7 +83,7 @@ const useAuth = () => {
     },
     onSuccess: (userData, variables) => {
       updateAuth(userData);
-      navigate(variables?.from || "/start", { replace: true });
+      navigate(variables?.from || "/store/start", { replace: true });
       onSuccess({
         message: "OTP Verified!",
         success: "Continuing to dashboard",
