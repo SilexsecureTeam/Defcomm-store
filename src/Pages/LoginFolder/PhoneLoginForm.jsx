@@ -81,7 +81,6 @@ const PhoneLoginForm = () => {
               inputProps={{ required: true }}
               inputStyle={{
                 width: "100%",
-                height: "24px",
                 padding: "14px",
                 paddingLeft: "44px",
                 borderRadius: "0.75rem",
