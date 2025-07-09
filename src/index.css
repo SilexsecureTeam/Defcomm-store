@@ -1,64 +1,75 @@
 @import "tailwindcss";
 
-@layer utilities{
-    .bg-video-gradient{
-    background-image: linear-gradient(to bottom, rgb(224, 221, 221), rgb(255, 255, 255), rgb(153, 153, 153));
-    
+@layer utilities {
+  .bg-video-gradient {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(224, 221, 221),
+      rgb(255, 255, 255),
+      rgb(153, 153, 153)
+    );
   }
+}
+
+@layer utilities {
+  .bg-deffcom-lime {
+    background-color: rgb(42, 65, 1);
   }
+}
 
-
- 
-
-  @layer utilities{
-    .bg-deffcom-lime{
-        background-color: rgb(42, 65, 1);
-    } 
+@layer utilities {
+  .bg-deffcom-limetwo {
+    background-color: rgb(47, 74, 1);
   }
+}
 
-  @layer utilities{
-    .bg-deffcom-limetwo{
-        background-color: rgb(47, 74, 1);
-    } 
+@layer utilities {
+  .bg-deffcom-lima {
+    background-color: rgb(35, 54, 1);
   }
+}
 
-  @layer utilities{
-    .bg-deffcom-lima{
-        background-color: rgb(35, 54, 1);
-    } 
+@layer utilities {
+  .bg-deffcom-limagradiant {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(35, 54, 1),
+      rgb(35, 54, 1),
+      black,
+      black
+    );
   }
+}
 
-  @layer utilities{
-    .bg-deffcom-limagradiant{ 
-      background-image: linear-gradient(to bottom,  rgb(35, 54, 1),  rgb(35, 54, 1), black, black)
-    } 
+@layer utilities {
+  .bg-deffcomarmy-lime {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(57, 88, 1),
+      rgb(43, 66, 1),
+      black,
+      black
+    );
   }
+}
 
-  @layer utilities{
-    .bg-deffcomarmy-lime{
-      background-image: linear-gradient(to bottom, rgb(57, 88, 1), rgb(43, 66, 1), black, black);
-    } 
-  }
-
-  @layer utilities{
-    .bg-nav-background{
+@layer utilities {
+  .bg-nav-background {
     background-color: rgba(42, 65, 1, 0.144);
-    
   }
-  }
-  
-  @layer utilities{
-    .a:active{
-      color: rgb(153, 236, 8);
-    }
-    
-  }
+}
 
-  @Layer base {
-    @font-face{
-        font-family: 'poppins';
-        src: local('Poppins'), url(./fonts/Poppins-Light.ttf) format('truetype');
-      }
+@layer utilities {
+  .a:active {
+    color: rgb(153, 236, 8);
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "poppins";
+    src: local("Poppins"), url(./fonts/Poppins-Light.ttf) format("truetype");
+  }
 }
 
 /* @layer utilities{
@@ -73,36 +84,23 @@
 
   } */
 
-  @layer utilities {
-    .animate-infinite-scroll {
-      animation: scroll-x 60s linear infinite;
-      scroll-behavior: smooth;
+@layer utilities {
+  .animate-infinite-scroll {
+    animation: scroll-x 60s linear infinite;
+    scroll-behavior: smooth;
+  }
+}
+
+@layer base {
+  @keyframes scroll-x {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
     }
   }
-  
-  @layer base {
-    @keyframes scroll-x {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-  }
-  
-/* @layer utilities {
-  type: checkbox;
-  } */
-
-
-  /* @layer utilities{
-    input[type="checkbox"]{
-      border-radius: 50%;
-    }
-  
-  } */
-
+}
 
 @layer utilities {
   @keyframes scroll-reverse {
@@ -118,11 +116,43 @@
     animation: scroll-reverse 50s linear infinite;
   }
 }
-  
-  
-  
 
-   
-  
-     
-   
+body,
+html {
+  width: 100vw;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+/* Style the entire website's scrollbar */
+::-webkit-scrollbar {
+  width: 2px; /* Set the width of the scrollbar */
+  height: 0px; /* Set the height for horizontal scrollbar (if any) */
+}
+
+/* Style the track (the background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background: #999; /* Light gray track color */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+/* Style the thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #101500; /* Dark gray thumb color */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+/* Style the thumb when it's being hovered */
+::-webkit-scrollbar-thumb:hover {
+  background: #0f5a02; /* Darker color when hovered */
+}
+
+/* Optional: Style for the corner where the vertical and horizontal scrollbars meet */
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+@media (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 0px; /* Set the width of the scrollbar */
+    height: 0px; /* Set the height for horizontal scrollbar (if any) */
+  }
+}

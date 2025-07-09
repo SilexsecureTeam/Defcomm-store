@@ -1,19 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import NavTwo from "../../../../Header/NavTwo";
 import divOne from "../../../../../assets/arcticons_govee-home.png";
 import VectorA from "../../../../../assets/simple-icons_appstore.png";
-import { TfiArrowRight } from "react-icons/tfi";
-import { TfiArrowLeft } from "react-icons/tfi";
-import { useState } from "react";
+import { TfiArrowRight, TfiArrowLeft } from "react-icons/tfi";
 import { BsCheck } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 import { FiCheckCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 export default function AppSubmission() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
- 
   const steps = ["Create App", "Shipping", "Payment", "Confirm", "Success"];
 
   const nextStep = () => {
@@ -25,472 +22,269 @@ export default function AppSubmission() {
   };
 
   return (
-    <div className="font-[poppins] ">
+    <div className="font-[poppins]">
       <NavTwo />
-
-      <div className="bg-deffcom-limagradiant py-20 z-[-10px]">
-        <div className="flex flex-col gap-8 md:flex-row px-4 pt-4 pb-20 md:justify-between md:px-20 ">
-          
-          <div className="w-[100px] p-2 md:w-fit md:p-4 bg-stone-600 border-l-8 border-lime-400">
-            <img
-              src={divOne}
-              alt=""
-              className="p-4 md:p-6 rounded-3xl bg-deffcom-lima"
-            />
-          </div>
-
-          <div className="flex text-white text-[8px] space-x-0">
-            {steps.map((step, index) => (
-              <div key={step} className="flex flex-col items-center">
-                <div className="flex items-center">
-                  <div
-                    className={`w-4 h-4 md:w-5 md:h-5 rounded-full flex text-white text-[14px] items-center justify-center
-                    ${index <= currentStep ? "bg-lime-400" : "bg-white"}`}
-                  >
-                    {index < currentStep ? <BsCheck /> : null}
-                  </div>
-
-                  {index < steps.length - 1 && (
-                    <div
-                      className={`h-1 w-14 md:w-20 mx-1 rounded-md ${
-                        index < currentStep ? "bg-lime-400" : "bg-white"
-                      }`}
-                    />
-                  )}
-                </div>
-                <span className="text-white mt-1">{step}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div
-          className={`${currentStep === 4 ? "block" : "hidden"} absolute right-4 top-30 md:right-28 md:top-64 bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white`}
-          onClick={() => navigate("/dataCol")}
-        >
-          <FaPlus />
-        </div>
-
-        {/* Page rendering */}
-
-        <div className="px-4 md:px-20 min-w-[300px]">
-          <div className="flex flex-col md:flex-row">
-            <div className="rounded-t-[20px] md:rounded-t-[0px] md:rounded-l-[20px] py-4 md:py-25 bg-lime-400 px-10 ">
-              <img src={VectorA} alt="" className="max-w-[200px]" />
+      <div className="bg-deffcom-limagradiant py-20">
+        <div className="container mx-auto px-4 space-y-8">
+          {/* Top Header Section */}
+          <div className="flex flex-col md:flex-row justify-between gap-6 items-center">
+            <div className="w-fit p-4 bg-stone-600 border-l-8 border-lime-400">
+              <img
+                src={divOne}
+                alt="logo"
+                className="p-4 md:p-6 rounded-3xl bg-deffcom-lima"
+              />
             </div>
 
-            <div className="relative min-w-[300px]">
-              {/* Create App */}
-              {currentStep === 0 && (
-                <div className="relative grid px-4 py-10 md:py-20  pb-30 rounded-b-[20px]  md:rounded-l-[0px] md:rounded-r-[20px] bg-white min-w-[300px]  md:px-30">
-                  <label htmlFor="" className="py-4 font-bold">
-                    Platform ?
-                  </label>
-                  <div className="md:flex gap-10">
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        className={`appearance-none text-white h-5 w-5 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer`}
-                      />
-                      Andriod
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        className="appearance-none h-5 w-5 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                      />
-                      iOS
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        className="appearance-none h-5 w-5 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                      />
-                      Unbuntu
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="checkbox"
-                        className="appearance-none h-5 w-5 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                      />
-                      DefcommOS
-                    </div>
-                  </div>
-
-                  <label htmlFor="" className="py-6 font-bold">
-                    Graphics
-                  </label>
-                  <p className="text-justify md:text-left" >
-                    Ensure your app icon, screenshots, and videos are optimized
-                    for promoting your app on Defcomm Stores. Familiarize
-                    yourself with the content guidelines before uploading new
-                    graphics. If you provide translations for your store listing
-                    without localized graphics, we will use the graphics from
-                    your default language.
-                  </p>
-
-                  <div className="md:flex justify-between py-6 ">
-                    <p>App icon *</p>
-                    
-                    <div>
-                      <form
-                        action="/upload"
-                        method="post"
-                        enctype="multipart/form-data"
-                        
-                      >
-                        <input
-                          type="file"
-                          name="file"
-                          placeholder="Drop app bundles here to upload"
-                          accept="image/*,video/*,.pdf,.doc,.docx,.txt"
-                          className="px-4 py-6 border outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[300px]"
-                          required
-                        />
-                      </form>
-                      Your app icon must be a PNG or JPEG, up to 1 MB, 512 px by
-                      512 px
-                    </div>
-                  </div>
-
-                  <div className="md:flex justify-between py-6">
-                    <p>Featured Images *</p>
-                    <div>
-                      <form
-                        action="/upload"
-                        method="post"
-                        enctype="multipart/form-data"
-                      >
-                        <input
-                          type="file"
-                          name="file"
-                          placeholder="Drop app bundles here to upload"
-                          accept="image/*,video/*,.pdf,.doc,.docx,.txt"
-                          className="border outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[300px]"
-                          required
-                        />
-                      </form>
-                      Your feature graphic must be a PNG or JPEG, up to 15 MB,
-                      and 1,024 px by 500 px
-                    </div>
-                  </div>
-
-                  <div className="md:flex justify-between py-6">
-                    <p>Private Policy *</p>
-
-                    <form
-                      action="/upload"
-                      method="post"
-                      enctype="multipart/form-data"
+            <div className="flex text-white text-[8px] md:text-[12px] overflow-x-auto md:justify-center">
+              {steps.map((step, index) => (
+                <div key={step} className="flex flex-col items-center mx-2">
+                  <div className="flex items-center">
+                    <div
+                      className={`w-5 h-5 rounded-full flex items-center justify-center text-white text-xs ${
+                        index <= currentStep ? "bg-lime-400" : "bg-white"
+                      }`}
                     >
-                      <input
-                        type="text"
-                        name="text"
-                        className="border px-4 outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[35px]"
-                      />
-                    </form>
-                  </div> 
-                </div>
-              )}
-
-              {/* Shipping Page */}
-              {currentStep === 1 && (
-                <div className="relative grid py-10 md:py-20  pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px] bg-white w-full px-4 md:px-30">
-                  <label htmlFor="" className="py-4 md:py-8 text-xl font-bold">
-                    Create App Realease
-                  </label>
-
-                  <div className="md:flex gap-20 py-4 md:py-6 w-full">
-                    <p>App Bundles *</p>
-                    <div>
-                      <form
-                        action="/upload"
-                        method="post"
-                        enctype="multipart/form-data"
-                      >
-                        <input
-                          type="file"
-                          name="file"
-                          placeholder="Drop app bundles here to upload"
-                          accept="image/*,video/*,.pdf,.doc,.docx,.txt"
-                          className="border outline-none border-gray-300 w-[320px] md:w-[800px] flex justify-center items-center h-[300px]"
-                          required
-                        />
-                      </form>
+                      {index < currentStep ? <BsCheck /> : null}
                     </div>
+                    {index < steps.length - 1 && (
+                      <div
+                        className={`h-1 w-10 mx-1 rounded-md ${
+                          index < currentStep ? "bg-lime-400" : "bg-white"
+                        }`}
+                      />
+                    )}
                   </div>
+                  <span className="mt-1 whitespace-nowrap">{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-                  <div className="md:flex gap-16 py-6">
-                    <p>Release name *</p>
+          {/* Floating Add Button */}
+          {currentStep === 4 && (
+            <div
+              className="fixed right-4 bottom-10 md:right-10 md:bottom-20 bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white z-50 cursor-pointer"
+              onClick={() => navigate("/dataCol")}
+            >
+              <FaPlus />
+            </div>
+          )}
+
+          {/* Form Content */}
+          <div className="w-full max-w-[1280px] mx-auto flex flex-col md:flex-row gap-y-6">
+            {/* Left Icon */}
+            <div className="bg-[#89AF20] rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none py-6 px-6 flex justify-center">
+              <img
+                src={VectorA}
+                alt="platform"
+                className="max-w-[200px] h-fit"
+              />
+            </div>
+
+            {/* Right Form Area */}
+            <div className="w-full bg-white rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-6 space-y-8">
+              {currentStep === 0 && (
+                <>
+                  {/* Step 1: Create App */}
+                  <div className="space-y-6">
+                    <label className="font-bold block">Platform?</label>
+                    <div className="grid grid-cols-2 md:flex gap-4">
+                      {["Android", "iOS", "Ubuntu", "DefcommOS"].map(
+                        (platform) => (
+                          <label
+                            key={platform}
+                            className="flex items-center gap-3"
+                          >
+                            <input
+                              type="checkbox"
+                              className="appearance-none h-5 w-5 border border-black rounded-full bg-white checked:bg-lime-400"
+                            />
+                            {platform}
+                          </label>
+                        )
+                      )}
+                    </div>
+
                     <div>
-                      <form
-                        action="/upload"
-                        method="post"
-                        enctype="multipart/form-data"
-                      >
-                        <input
-                          type="text"
-                          name="text"
-                          className="border border-1 border-neutral-300 outline-none w-[320px] md:w-[800px] h-[35px]"
-                        />
-                      </form>
-                      <p className="text-[12px] max-w-[700px]">
-                        This is intended for internal identification purposes
-                        only and will not be displayed to users on the Defcomm
-                        Store. We've proposed a name based on the initial app
-                        bundle or APK in this release.
+                      <label className="font-bold">Graphics</label>
+                      <p className="text-sm text-justify">
+                        Ensure your app icon, screenshots, and videos are
+                        optimized for promoting your app on Defcomm Stores...
                       </p>
                     </div>
-                  </div>
 
-                  <div className="md:flex gap-30  py-6">
-                    <p>Version *</p>
-                    <div>
-                      <form
-                        action="/upload"
-                        method="post"
-                        enctype="multipart/form-data"
-                      >
+                    {["App icon", "Featured Images"].map((labelText, idx) => (
+                      <div key={idx} className="space-y-2">
+                        <label>{labelText} *</label>
                         <input
-                          type="text"
-                          name="text"
-                          className="border border-1 border-neutral-300 outline-none w-[320px] md:w-[800px] h-[35px]"
+                          type="file"
+                          accept="image/*,video/*"
+                          className="w-full max-w-[800px] h-[300px] border border-gray-300 p-4"
                         />
-                      </form>
-                    </div>
-                  </div>
-
-                  <div className="md:flex gap-26 py-6">
-                    <p>Copyright *</p>
-                    <div>
-                      <form
-                        action="/upload"
-                        method="post"
-                        enctype="multipart/form-data"
-                      >
-                        <input
-                          type="text"
-                          name="text"
-                          className="border border-1 border-neutral-300 outline-none w-[320px] md:w-[800px] h-[35px]"
-                        />
-                      </form>
-                    </div>
-                  </div>
-
-                  <label htmlFor="" className="py-4 font-bold">
-                    Create App Release
-                  </label>
-                  <p className="text-[12px] max-w-[700px]">
-                    To make your app available on the Defcomm Store, you can
-                    automatically release it after it’s been approved by Defcomm
-                    Review. You can also manually release it on the App Store at
-                    a later date
-                  </p>
-
-                  <div className="py-6 text-[12px]">
-                    <div className="flex items-center gap-4">
-                      <input
-                        type="checkbox"
-                        className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                      />
-                      Manually release this version
-                    </div>
-
-                    <div className="flex items-center gap-4">
-                      <input
-                        type="checkbox"
-                        className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                      />
-                      Automatically release this version
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <input
-                        type="checkbox"
-                        className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                      />
-                      Automatically release this version after App Review, no
-                      earlier than
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Payment Page */}
-              {currentStep === 2 && (
-                <div className="">
-                  <div className="relative grid py-20  pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px] bg-white w-full px-4  md:px-30">
-                    <label htmlFor="" className="py-8 text-xl font-bold">
-                      Data Collection
-                    </label>
-
-                    <p className="py-4">
-                      Thanks for helping users understand your app's privacy
-                      practices. Remember that you're responsible for any
-                      third-party code that is added to your app, so if your
-                      third-party partners collect data from your app, you must
-                      represent that in your responses.
-                    </p>
-
-                    <ul className="px-10 list-disc ">
-                      <li className="py-2">
-                        “Collect” refers to transmitting data off the device in
-                        a way that allows you and/or your third-party partners
-                        to access it for a period longer than necessary to
-                        service the transmitted request in real time.
-                      </li>
-
-                      <li className="py-2">
-                        “Third-party partners” include analytics tools,
-                        advertising networks, third-party SDKs, or other
-                        external vendors whose code you have added to the app.
-                      </li>
-                    </ul>
-
-                    <p className="py-4">
-                      You can{" "}
-                      <span className="underline">
-                        view the full list of questions{" "}
-                      </span>{" "}
-                      at any time.
-                    </p>
-
-                    <p className="font-bold ">
-                      Do you or your third-party partners collect data from this
-                      app?
-                    </p>
-
-                    <div className="py-6 text-[12px]">
-                      <div className="flex items-center gap-4">
-                        <input
-                          type="checkbox"
-                          className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                        />
-                        Yes, we collect data from this app
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <input
-                          type="checkbox"
-                          className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                        />
-                        No, we do not collect data from this app
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Confirm Page */}
-              {currentStep === 3 && (
-                <div className="">
-                  <div className="relative py-20 px-4 pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px]  bg-white w-full  md:px-30">
-                    <label htmlFor="" className="py-8 text-xl font-bold">
-                      Product Page Review
-                    </label>
-
-                    <div className="flex flex-col py-10 w-full justify-center items-center">
-                      <div className="bg-gray-200 flex flex-col px-4 py-4 items-center justify-center hover:scale-120 duration-300  h-[256px]">
-                        <div className="text-[45px] text-lime-400">
-                          <FiCheckCircle />
-                        </div>
-
-                        <p className="font-bold py-3">Data not collected</p>
-                        <p className="text-[10px] md:text-[12px]">
-                          The developer does not collect any data from this app
+                        <p className="text-sm">
+                          {labelText === "App icon"
+                            ? "Must be PNG or JPEG, up to 1 MB, 512x512 px"
+                            : "Must be PNG or JPEG, up to 15 MB, 1024x500 px"}
                         </p>
                       </div>
+                    ))}
 
-                      <button className=" text-white py-2 mt-14 mb-6 bg-deffcom-lima w-[160px]">
-                        Data Type
-                      </button>
-                      <p className="text-[12px] ">
-                        Data is not collected from this app
-                      </p>
+                    <div>
+                      <label>Privacy Policy *</label>
+                      <input
+                        type="text"
+                        className="w-full max-w-[800px] h-10 border border-gray-300 px-4"
+                        placeholder="Enter URL"
+                      />
                     </div>
                   </div>
-                </div>
+                </>
               )}
 
-              {/* Success Page */}
-              {currentStep === 4 && (
-                <div className="">
-                  <div className="relative grid py-20  px-4 pb-30 rounded-b-[20px] md:rounded-l-[0px] md:rounded-r-[20px]  bg-white w-full  md:px-30">
-                    <label htmlFor="" className="py-8 text-xl font-bold">
-                      Data Collection
+              {currentStep === 1 && (
+                <>
+                  {/* Step 2: Shipping */}
+                  <div className="space-y-6">
+                    <label className="text-xl font-bold block">
+                      Create App Release
                     </label>
 
-                    <p className="py-4">
-                      Thanks for helping users understand your app's privacy
-                      practices. Remember that you're responsible for any
-                      third-party code that is added to your app, so if your
-                      third-party partners collect data from your app, you must
-                      represent that in your responses.
-                    </p>
-
-                    <ul className="px-10 list-disc ">
-                      <li className="py-2">
-                        “Collect” refers to transmitting data off the device in
-                        a way that allows you and/or your third-party partners
-                        to access it for a period longer than necessary to
-                        service the transmitted request in real time.
-                      </li>
-
-                      <li className="py-2">
-                        “Third-party partners” include analytics tools,
-                        advertising networks, third-party SDKs, or other
-                        external vendors whose code you have added to the app.
-                      </li>
-                    </ul>
-
-                    <p className="py-4">
-                      You can{" "}
-                      <span className="underline">
-                        view the full list of questions{" "}
-                      </span>{" "}
-                      at any time.
-                    </p>
-
-                    <p className="font-bold ">
-                      Do you or your third-party partners collect data from this
-                      app?
-                    </p>
-
-                    <div className="py-6 text-[12px]">
-                      <div className="flex items-center gap-4">
+                    {[
+                      "App Bundles",
+                      "Release Name",
+                      "Version",
+                      "Copyright",
+                    ].map((field, i) => (
+                      <div key={i} className="space-y-2">
+                        <label>{field} *</label>
                         <input
-                          type="checkbox"
-                          className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
+                          type="text"
+                          className="w-full max-w-[800px] h-10 border border-gray-300 px-4"
                         />
-                        Yes, we collect data from this app
                       </div>
+                    ))}
 
-                      <div className="flex items-center gap-4">
-                        <input
-                          type="checkbox"
-                          className="appearance-none h-3 w-3 border border-black rounded-full bg-white checked:bg-lime-400 checked:border-transparent focus:outline-none cursor-pointer"
-                        />
-                        No, we do not collect data from this app
-                      </div>
+                    <div className="space-y-4 text-sm">
+                      <label className="font-bold">Release Type</label>
+                      {["Manually", "Automatically", "Auto after review"].map(
+                        (release, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              className="appearance-none h-3 w-3 border border-black rounded-full checked:bg-lime-400"
+                            />
+                            <span>{release}</span>
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
-                </div>
+                </>
               )}
 
-              <div className="flex gap-6 absolute right-30 bottom-10">
-                <div
-                  className="bg-black w-14 h-14 flex justify-center items-center rounded-4xl text-white cursor-pointer"
-                  onClick={prevStep}
-                >
-                  <TfiArrowLeft />
-                </div>
-                <div
-                  className={`bg-black w-14 h-14 flex justify-center items-center rounded-4xl text-white cursor-pointer ${
-                    currentStep === 4 ? "hidden" : "block"
-                  }`}
-                  onClick={nextStep}
-                >
-                  <TfiArrowRight />
-                </div>
+              {currentStep === 2 && (
+                <>
+                  {/* Step 3: Payment */}
+                  <div className="space-y-6">
+                    <label className="text-xl font-bold block">
+                      Data Collection
+                    </label>
+                    <div className="pl-2 space-y-6">
+                      <p>
+                        Thanks for helping users understand your app's privacy
+                        practices. Remember that you're responsible for any
+                        third-party code that is added to your app, so if your
+                        third-party partners collect data from your app, you
+                        must represent that in your responses.
+                      </p>
+                      <ul className="list-disc pl-6 text-sm space-y-2">
+                        <li>
+                          “Collect” refers to transmitting data off device...
+                        </li>
+                        <li>
+                          “Third-party partners” include analytics tools,
+                          SDKs...
+                        </li>
+                      </ul>
+                      <p className="text-sm">
+                        View the{" "}
+                        <span className="underline">
+                          full list of questions
+                        </span>
+                        .
+                      </p>
+                      <p className="text-sm font-semibold">
+                        Do you or your third-party partners collect data from
+                        this app?
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      {["Yes", "No"].map((opt, i) => (
+                        <label key={i} className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            className="appearance-none h-3 w-3 border border-black rounded-full checked:bg-lime-400"
+                          />
+                          {opt}, we {opt === "Yes" ? "" : "do not "}collect data
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {currentStep === 3 && (
+                <>
+                  {/* Step 4: Confirm */}
+                  <div className="flex flex-col items-center space-y-6">
+                    <div className="bg-gray-200 w-full max-w-[400px] text-center py-10 rounded-xl">
+                      <div className="text-[45px] text-lime-400">
+                        <FiCheckCircle />
+                      </div>
+                      <p className="font-bold pt-3">Data not collected</p>
+                      <p className="text-sm">This app collects no user data</p>
+                    </div>
+                    <button className="bg-deffcom-lima text-white px-6 py-2">
+                      Data Type
+                    </button>
+                    <p className="text-sm">
+                      Data is not collected from this app
+                    </p>
+                  </div>
+                </>
+              )}
+
+              {currentStep === 4 && (
+                <>
+                  {/* Step 5: Success */}
+                  <div className="space-y-6">
+                    <label className="text-xl font-bold block">
+                      Final Review
+                    </label>
+                    <p>You've completed all steps. Submit when ready.</p>
+                  </div>
+                </>
+              )}
+
+              {/* Navigation Buttons */}
+              <div className="flex justify-end gap-4 pt-10">
+                {currentStep > 0 && (
+                  <button
+                    className="bg-black text-white w-14 h-14 rounded-full flex items-center justify-center"
+                    onClick={prevStep}
+                  >
+                    <TfiArrowLeft />
+                  </button>
+                )}
+                {currentStep < steps.length - 1 && (
+                  <button
+                    className="bg-black text-white w-14 h-14 rounded-full flex items-center justify-center"
+                    onClick={nextStep}
+                  >
+                    <TfiArrowRight />
+                  </button>
+                )}
               </div>
             </div>
           </div>
