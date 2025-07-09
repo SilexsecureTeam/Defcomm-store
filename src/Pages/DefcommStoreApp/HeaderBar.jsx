@@ -32,11 +32,11 @@ export default function HeaderBar({ showpage }) {
             to={`/store${path}`}
             title={path.replaceAll("/", "")}
             key={index}
-            className={`flex items-center justify-center h-fit p-4 rounded-xl ${
+            className={`flex-shrink-0 flex items-center justify-center h-fit p-4 rounded-xl ${
               index === 0 ? "bg-white" : "bg-lime-900/20"
             } transition-all duration-300 ease-in-out cursor-pointer hover:scale-105`}
           >
-            <img src={src} alt="" className="w-6" />
+            <img src={src} alt="" className="flex-shrink-0 w-6" />
           </NavLink>
         ))}
       </div>
