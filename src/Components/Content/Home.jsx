@@ -6,15 +6,15 @@ import { MdOutlineWatch } from "react-icons/md";
 import { CgArrowTopRight } from "react-icons/cg";
 import { BsDot } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
-import img1 from "../../assets/hero_img3.jpg";
-import img2 from "../../assets/hero_img4.jpg";
+import img1 from "../../assets/slide1.jpg";
+import img2 from "../../assets/slide2.jpg";
 import img3 from "../../assets/hero_img1.jpg";
 import img4 from "../../assets/hero_img2.jpg";
 
 import { NavLink, useNavigate } from "react-router-dom";
 
 function Home({ slideShow = true }) {
-  const imgslide = [img1, img2, img3, img4, img1, img2];
+  const imgslide = [img1, img2, img1, img2];
   const navigate = useNavigate();
   const [imgIndex, setImgIndex] = useState(0);
 
