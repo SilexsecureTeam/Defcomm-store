@@ -69,7 +69,7 @@ const PhoneLoginForm = () => {
   };
 
   return (
-    <div className="w-80">
+    <div className="w-full max-w-80">
       {!showOtp ? (
         <>
           <div className="mb-4">
