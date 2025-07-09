@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import searcherAnim from "../assets/anim/loader.json";
 import Lottie from "lottie-react";
-import mainLogoTwo from "../assets/logoB.png";
+import mainLogoTwo from "../assets/LogoB.png";
 
 function Fallback() {
   const lottieRef = useRef();
