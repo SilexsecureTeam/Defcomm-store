@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import NavTwo from "../../../../Header/NavTwo";
-import divOne from "../../../../../assets/arcticons_govee-home.png";
-import VectorA from "../../../../../assets/simple-icons_appstore.png";
+import NavTwo from "../../../../Components/Header/NavTwo";
+import divOne from "../../../../assets/arcticons_govee-home.png";
+import VectorA from "../../../../assets/simple-icons_appstore.png";
 import { TfiArrowRight, TfiArrowLeft } from "react-icons/tfi";
 import { BsCheck } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
@@ -24,10 +24,10 @@ export default function AppSubmission() {
   return (
     <div className="font-[poppins]">
       <NavTwo />
-      <div className="bg-deffcom-limagradiant py-20">
+      <div className="bg-deffcom-limagradiant py-20 w-full">
         <div className="container mx-auto px-4 space-y-8">
           {/* Top Header Section */}
-          <div className="flex flex-col md:flex-row justify-between gap-6 items-center">
+          <div className="sticky top-0 bg-deffcom-lima flex flex-col md:flex-row justify-between gap-6 items-center">
             <div className="w-fit p-4 bg-stone-600 border-l-8 border-lime-400">
               <img
                 src={divOne}
@@ -271,7 +271,7 @@ export default function AppSubmission() {
               <div className="flex justify-end gap-4 pt-10">
                 {currentStep > 0 && (
                   <button
-                    className="bg-black text-white w-14 h-14 rounded-full flex items-center justify-center"
+                    className="bg-black cursor-pointer text-white w-14 h-14 rounded-full flex items-center justify-center"
                     onClick={prevStep}
                   >
                     <TfiArrowLeft />
@@ -279,7 +279,7 @@ export default function AppSubmission() {
                 )}
                 {currentStep < steps.length - 1 && (
                   <button
-                    className="bg-black text-white w-14 h-14 rounded-full flex items-center justify-center"
+                    className="bg-black cursor-pointer text-white w-14 h-14 rounded-full flex items-center justify-center"
                     onClick={nextStep}
                   >
                     <TfiArrowRight />

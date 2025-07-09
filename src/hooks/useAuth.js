@@ -23,12 +23,16 @@ const useAuth = () => {
       const { data } = await axiosClient().post("/register", formData);
       return data;
     },
-    onSuccess: (data) => {
+    onSuccess: (userData) => {
       onSuccess({
         message: "Account Created",
         success: "Account created successfully!",
       });
-      navigate("/login");
+      updateAuth({
+        access_token: userData?.data?.access_token,
+        user: { ...userData?.data },
+      });
+      navigate("/start");
     },
     onError: (err) => {
       onFailure({
@@ -93,11 +97,33 @@ const useAuth = () => {
     },
   });
 
+  // 🚪 Logout
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      queryClient.clear(); // Clear cache
+    },
+    onSuccess: () => {
+      updateAuth(null);
+      navigate("/register", {
+        state: { from: null, fromLogout: true },
+        replace: true,
+      });
+      onSuccess({
+        message: "Logout successful",
+        success: "You have been logged out.",
+      });
+    },
+    onError: (err) => {
+      onFailure({ message: "Logout Failed", error: extractErrorMessage(err) });
+    },
+  });
+
   return {
     registerMutation,
     verifyEmailMutation,
     verifyOtpMutation,
     requestOtpMutation,
+    logout: logoutMutation.mutate,
   };
 };
 

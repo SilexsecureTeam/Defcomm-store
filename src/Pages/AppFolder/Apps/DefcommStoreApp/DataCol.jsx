@@ -1,7 +1,7 @@
 import React from "react";
-import NavTwo from "../../../../Header/NavTwo";
-import divOne from "../../../../../assets/arcticons_govee-home.png";
-import VectorA from "../../../../../assets/simple-icons_appstore.png";
+import NavTwo from "../../../../Components/Header/NavTwo";
+import divOne from "../../../../assets/arcticons_govee-home.png";
+import VectorA from "../../../../assets/simple-icons_appstore.png";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 

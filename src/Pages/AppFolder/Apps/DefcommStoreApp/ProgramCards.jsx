@@ -1,9 +1,9 @@
 import React from "react";
-import VectorA from "../../../../../assets/VectorA.png";
+import VectorA from "../../../../assets/VectorA.png";
 import { TfiArrowRight } from "react-icons/tfi";
-import apps from "../../../../../assets/clarity_vmw-app-outline-badged.png";
-import appanalystic from "../../../../../assets/clarity_analytics-line.png";
-import mynaui from "../../../../../assets/mynaui_user-circle-solid.png";
+import apps from "../../../../assets/clarity_vmw-app-outline-badged.png";
+import appanalystic from "../../../../assets/clarity_analytics-line.png";
+import mynaui from "../../../../assets/mynaui_user-circle-solid.png";
 
 export default function ProgramCards({ setPlayDisplay, playDisplay }) {
   return (
@@ -86,7 +86,7 @@ export default function ProgramCards({ setPlayDisplay, playDisplay }) {
         </div>
 
         {/* Card 3 */}
-        <div className="lg:col-span-2 flex flex-col gap-6">
+        <div className="md:col-span-4 lg:col-span-2 flex flex-col md:flex-row lg:flex-col gap-6">
           <div className="bg-lime-400 p-6 rounded-[20px] text-black shadow">
             <div className="flex justify-between items-center mb-4">
               <p className="underline text-[18px]">Get Started</p>

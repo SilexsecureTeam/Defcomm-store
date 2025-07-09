@@ -1,3 +1,10 @@
+import divTwo from "../assets/grommet-icons_resources.png";
+import divThree from "../assets/gg_profile.png";
+import divFour from "../assets/Group 5338.png";
+import divFive from "../assets/Vector.png";
+import divSix from "../assets/Vector (1).png";
+import divSeven from "../assets/secure 2.png";
+import divEight from "../assets/icons8-contacts 1.png";
 export const listofregistration = {
   individual: [
     {
@@ -32,3 +39,13 @@ export const listofregistration = {
     },
   ],
 };
+
+export const navItems = [
+  { src: divTwo, path: "/resources" },
+  { src: divThree, path: "/profile" },
+  { src: divFour, path: "/PPT" },
+  { src: divFive, path: "/medical" },
+  { src: divSix, path: "/appCert" },
+  { src: divSeven, path: "/dataCol" },
+  { src: divEight, path: "/appSub" },
+];

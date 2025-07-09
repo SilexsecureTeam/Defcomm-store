@@ -9,9 +9,9 @@ import {
 import SvgOne from "../LoginFolder/SVGs/SvgOne";
 import SvgTwo from "../LoginFolder/SVGs/SvgTwo";
 import SvgThree from "../LoginFolder/SVGs/SvgThree";
-import Defcomm from "../../../assets/Defcomm-03 1.png";
+import Defcomm from "../../assets/Defcomm-03 1.png";
 import SvgFive from "../LoginFolder/SVGs/SvgFive";
-import defcommlogo from "../../../assets/defcommlogo.png";
+import defcommlogo from "../../assets/defcommlogo.png";
 import { LiaLongArrowAltDownSolid } from "react-icons/lia";
 import { LiaLongArrowAltUpSolid } from "react-icons/lia";
 import { useNavigate, NavLink } from "react-router-dom";
@@ -43,7 +43,6 @@ function Login() {
 
   //for navigation to membership page
   const navigate = useNavigate();
-  
 
   const [inputValue, setInputValue] = useState({
     username: "",
@@ -73,13 +72,16 @@ function Login() {
   return (
     <div className="relative bg-deffcom-lime h-[650px] md:h-[900px]">
       <div className="fixed px-2 z-30 left-0 top-0 w-full bg-nav-background flex justify-between bg-red-500 md:px-8 items-center">
-       
         <NavLink to="/">
           <div>
-            <img src={defcommlogo} alt="" className="w-[70px] h-[50px] md:w-[100px] md:h-[100px] " />
+            <img
+              src={defcommlogo}
+              alt=""
+              className="w-[70px] h-[50px] md:w-[100px] md:h-[100px] "
+            />
           </div>
         </NavLink>
-        
+
         <div className=" w-[70px] md:text-xl text-center bg-white md:w-[130px] py-1 rounded-4xl">
           Login
         </div>
@@ -151,7 +153,10 @@ function Login() {
         </motion.div>
 
         <div className=" my-10 md:my-20 px-4 md:px-10 justify-center border-1 border-neutral-400/10 shadow-xl absolute md:ml-70 bg-deffcom-limetwo text-white w-[300px] h-[350px] md:w-[390px] md:h-[400px]">
-         <form onSubmit={submitForm} className="flex gap-4 md:gap-6 flex-col py-8">
+          <form
+            onSubmit={submitForm}
+            className="flex gap-4 md:gap-6 flex-col py-8"
+          >
             <p className="font-bold w-full text-center my-4">Developer Login</p>
             <input
               type="username"
@@ -172,7 +177,7 @@ function Login() {
             />
             <button className="py-2 md:py-3 rounded-xl bg-black">Login</button>
           </form>
-          
+
           <div className="flex text-xs justify-between">
             <button className="text-lime-400 cursor-pointer">
               Already have account?
@@ -201,13 +206,12 @@ function Login() {
 
         <div className="md:hidden block items-center text-xs justify-between py-8 text-white pb-14 px-14">
           <ul className="flex flex-col gap-4 md:flex-row justify-center items-center ">
-              <li className="underline underline-offset-4">PRODUCT</li>
-              <li className="underline underline-offset-4">SUPPORT</li>
-              <li className="underline underline-offset-4">COOPERATION</li>
-              <li className="underline underline-offset-4">COMMUNITY</li>
-            </ul>
+            <li className="underline underline-offset-4">PRODUCT</li>
+            <li className="underline underline-offset-4">SUPPORT</li>
+            <li className="underline underline-offset-4">COOPERATION</li>
+            <li className="underline underline-offset-4">COMMUNITY</li>
+          </ul>
         </div>
-
 
         <div className="flex items-center px-4 text-xs justify-between  md:py-10 text-white md:pb-14 md:px-14">
           <div>
@@ -232,7 +236,9 @@ function Login() {
           </div>
 
           <div className="">
-            <p className="text-[10px]">&copy;Copyright Defcomm, All Rights Reserved.</p>
+            <p className="text-[10px]">
+              &copy;Copyright Defcomm, All Rights Reserved.
+            </p>
           </div>
         </div>
       </div>

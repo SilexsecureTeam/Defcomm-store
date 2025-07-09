@@ -1,5 +1,5 @@
 import React from "react";
-import { listofregistration } from "../../../utils/dummies";
+import { listofregistration } from "../../utils/dummies";
 
 const EnrollmentDescription = ({ type }) => {
   const list = listofregistration[type] || [];

@@ -3,7 +3,7 @@ import OTPVerification from "./OTPVerification";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-const OrganizationEnrollmentForm = ({ createAcct, setCreateAcct }) => {
+const OrganizationEnrollmentForm = () => {
   return (
     <div className="bg-white text-black rounded-md p-6 md:p-10 shadow-md w-full max-w-2xl mx-auto">
       <form>

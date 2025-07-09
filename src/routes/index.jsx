@@ -1,41 +1,53 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
+  RouterProvider, // ✅ you need this!
 } from "react-router-dom";
 
-import Layout from "../Components/Pages/Layout";
-
-// Route Guards
+// Layout & Guards
+import Layout from "../Pages/Layout";
 import PublicRoute from "./PublicRoute";
 import AppRoute from "./AppRoute";
+import Fallback from "../Components/Fallback";
 
-// Pages
-import HomePages from "../Components/Content/HomePages";
-import AppPages from "../Components/Pages/AppFolder/AppPages";
-import MedicalApp from "../Components/Pages/AppFolder/Apps/Medical/MedicalApp";
-import PPT from "../Components/Pages/AppFolder/Apps/Medical/DownloadMedicalApps/PPT";
-import Login from "../Components/Pages/LoginFolder/Login";
-import Membership from "../Components/Pages/LoginFolder/Membership";
+// Lazy-loaded Pages
+const HomePages = lazy(() => import("../Components/Content/HomePages"));
+const AppPages = lazy(() => import("../Pages/AppFolder/AppPages"));
+const MedicalApp = lazy(() =>
+  import("../Pages/AppFolder/Apps/Medical/MedicalApp")
+);
+const PPT = lazy(() =>
+  import("../Pages/AppFolder/Apps/Medical/DownloadMedicalApps/PPT")
+);
+const Login = lazy(() => import("../Pages/LoginFolder/Login"));
+const Membership = lazy(() => import("../Pages/LoginFolder/Membership"));
 
-// Footer pages
-import Privacy from "../Components/Footer/Privacy";
-import TermofUse from "../Components/Footer/TermofUse";
-import DevAgreement from "../Components/Footer/DevAgreement";
+const Privacy = lazy(() => import("../Components/Footer/Privacy"));
+const TermofUse = lazy(() => import("../Components/Footer/TermofUse"));
+const DevAgreement = lazy(() => import("../Components/Footer/DevAgreement"));
 
-// DefcommStoreApp Pages
-import ProgramResources from "../Components/Pages/AppFolder/Apps/DefcommStoreApp/ProgramResources";
-import AppSubmission from "../Components/Pages/AppFolder/Apps/DefcommStoreApp/AppSubmission";
-import DataCollection from "../Components/Pages/AppFolder/Apps/DefcommStoreApp/DataCol";
-import AppCertification from "../Components/Pages/AppFolder/Apps/DefcommStoreApp/AppCertification";
+const ProgramResources = lazy(() =>
+  import("../Pages/AppFolder/Apps/DefcommStoreApp/ProgramResources")
+);
+const AppSubmission = lazy(() =>
+  import("../Pages/AppFolder/Apps/DefcommStoreApp/AppSubmission")
+);
+const DataCollection = lazy(() =>
+  import("../Pages/AppFolder/Apps/DefcommStoreApp/DataCol")
+);
+const AppCertification = lazy(() =>
+  import("../Pages/AppFolder/Apps/DefcommStoreApp/AppCertification")
+);
 
+const ComingSoon = lazy(() => import("../Pages/ComingSoon"));
+
+// Route config
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      {/* Public Layout Pages */}
-
-      {/* Public-Only Routes */}
+      {/* Public */}
       <Route element={<PublicRoute />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePages />} />
@@ -45,7 +57,7 @@ const router = createBrowserRouter(
         <Route path="register" element={<Membership />} />
       </Route>
 
-      {/* Protected App Routes */}
+      {/* Protected */}
       <Route element={<AppRoute />}>
         <Route path="medical" element={<MedicalApp />} />
         <Route path="PPT" element={<PPT />} />
@@ -55,12 +67,20 @@ const router = createBrowserRouter(
         <Route path="appCert" element={<AppCertification />} />
       </Route>
 
-      {/* Always Public */}
+      {/* Public Footer */}
       <Route path="privacy" element={<Privacy />} />
       <Route path="termofuse" element={<TermofUse />} />
       <Route path="devagreement" element={<DevAgreement />} />
+      <Route path="/*" element={<ComingSoon />} />
     </>
   )
 );
 
-export default router;
+// Default export for App.jsx
+const RouterWithSuspense = () => (
+  <Suspense fallback={<Fallback />}>
+    <RouterProvider router={router} />
+  </Suspense>
+);
+
+export default RouterWithSuspense;

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { FaSpinner } from "react-icons/fa6";
 import { FiCheckCircle, FiXCircle, FiEye, FiEyeOff } from "react-icons/fi";
 
-const RegisterForm = ({ setCreateAcct, setOtp }) => {
+const RegisterForm = () => {
   const { registerMutation, verifyEmailMutation } = useAuth();
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
@@ -145,7 +145,7 @@ const RegisterForm = ({ setCreateAcct, setOtp }) => {
           className="w-full py-2 px-4 border border-gray-300 rounded-xl"
           placeholder="Birthday"
         />
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-xs text-gray-500 mt-1">
           Let us know about your birthday so as not to miss a gift
         </p>
         {errors.birthday && (

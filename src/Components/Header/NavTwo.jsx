@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { HiBars2 } from "react-icons/hi2";
 import { CgClose } from "react-icons/cg";
+import ProfileDropdown from "../ProfileDropdown";
 
 function NavTwo() {
   const [dropDown, setDropDown] = useState(false);
@@ -17,7 +18,9 @@ function NavTwo() {
       {/* Desktop Navigation */}
 
       <div className="hidden lg:flex px-6 lg:px-20 text-white gap-2 justify-between items-center bg-deffcom-lima">
-        <img src={defflogo} alt="Deffcom Logo" className="w-20" />
+        <NavLink to="/">
+          <img src={defflogo} alt="Deffcom Logo" className="w-20" />
+        </NavLink>
 
         <p className="">Discover</p>
 
@@ -31,18 +34,7 @@ function NavTwo() {
           />
         </div>
 
-        <div className="flex items-center justify-center gap-6">
-          <div className="bg-lime-900/40 flex items-center justify-center h-10 w-10 rounded-full">
-            <FaRegBell className="text-white" />
-          </div>
-
-          <p>Hello, Natasya</p>
-
-          <div className="flex items-center gap-1 px-2 bg-white p-1 w-20 rounded-3xl text-black">
-            <div className="bg-gray-400 h-8 w-8 rounded-full"></div>
-            <MdOutlineKeyboardArrowDown />
-          </div>
-        </div>
+        <ProfileDropdown />
       </div>
 
       {/* Mobile Navigation */}
@@ -52,7 +44,7 @@ function NavTwo() {
         </NavLink>
 
         <button
-          className="text-[30px] text-white focus:outline-none lg:hidden block text-3xl bg-lime-600 text-white p-2 rounded-full cursor-pointer"
+          className="text-[30px]focus:outline-none lg:hidden block text-3xl bg-lime-600 text-white p-2 rounded-full cursor-pointer"
           onClick={() => setDropDown(!dropDown)}
           aria-label="Toggle Menu"
         >

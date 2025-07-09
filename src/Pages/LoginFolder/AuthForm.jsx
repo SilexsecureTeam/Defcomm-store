@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import defcommlogo from "../../../assets/defcommlogo.png";
+import defcommlogo from "../../assets/defcommlogo.png";
 import AuthTabs from "./AuthTabs";
 import RegisterForm from "./RegisterForm";
 import PhoneLoginForm from "./PhoneLoginForm";

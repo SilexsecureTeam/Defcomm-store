@@ -1,13 +1,13 @@
 import React from "react";
-import NavTwo from "../../../../Header/NavTwo";
-import divOne from "../../../../../assets/arcticons_govee-home.png";
+import NavTwo from "../../../../Components/Header/NavTwo";
+import divOne from "../../../../assets/arcticons_govee-home.png";
 import { FaPlus } from "react-icons/fa6";
-import VectorA from "../../../../../assets/VectorA.png";
-import img from "../../../../../assets/healthicons_network-5g.png";
-import imgone from "../../../../../assets/logos_wifi.png";
-import imgtwo from "../../../../../assets/motorcycle 1.png";
-import imgthree from "../../../../../assets/streamline_mouse-wireless-1.png";
-import imgfour from "../../../../../assets/healthicons_network-5g.png";
+import VectorA from "../../../../assets/VectorA.png";
+import img from "../../../../assets/healthicons_network-5g.png";
+import imgone from "../../../../assets/logos_wifi.png";
+import imgtwo from "../../../../assets/motorcycle 1.png";
+import imgthree from "../../../../assets/streamline_mouse-wireless-1.png";
+import imgfour from "../../../../assets/healthicons_network-5g.png";
 
 function AppCertification() {
   return (
@@ -34,7 +34,7 @@ function AppCertification() {
         <div className="px-4 md:px-10 pt-10">
           <div className="flex flex-col md:flex-row">
             {/* Left Icon Panel */}
-            <div className="rounded-t-[20px] md:rounded-t-none md:rounded-l-[20px] bg-lime-400 px-6 py-6 md:py-20 flex justify-center items-center">
+            <div className="rounded-t-[20px] md:rounded-t-none md:rounded-l-[20px] bg-lime-400 px-6 py-6 md:py-20 flex justify-center items-center md:items-start">
               <img src={VectorA} alt="" className="max-w-[200px]" />
             </div>
 

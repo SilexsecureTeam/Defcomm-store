@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavTwo from "../../../../Header/NavTwo";
+import NavTwo from "../../../../Components/Header/NavTwo";
 import { useNavigate } from "react-router-dom";
 import HeaderBar from "./HeaderBar";
 import ProgramCards from "./ProgramCards";
@@ -10,21 +10,11 @@ export default function ProgramResources() {
   const [showpage, setShowPage] = useState(false);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/appSub");
-  };
-
   return (
     <>
       <NavTwo />
       <div className="bg-deffcom-limagradiant py-10 md:py-20">
-        <HeaderBar
-          showpage={showpage}
-          setShowPage={setShowPage}
-          playDisplay={playDisplay}
-          setPlayDisplay={setPlayDisplay}
-          handleClick={handleClick}
-        />
+        <HeaderBar />
         {playDisplay ? (
           <ProgramCards
             setPlayDisplay={setPlayDisplay}
