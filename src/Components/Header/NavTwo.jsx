@@ -19,7 +19,7 @@ function NavTwo() {
 
       <div className="hidden md:flex px-6 text-white gap-2 justify-between items-center w-[95%] max-w-[1200px] mx-auto">
         <NavLink to="/store/start">
-          <img src={defflogo} alt="Deffcom Logo" className="w-20" />
+          <img src={defflogo} alt="Deffcom Logo" className="w-16 md:w-20" />
         </NavLink>
 
         <p className="">Discover</p>
