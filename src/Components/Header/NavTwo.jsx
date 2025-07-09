@@ -38,10 +38,14 @@ function NavTwo() {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="fixed top-0 left-0 w-full flex justify-between items-center px-4 py-4 md:hidden bg-deffcom-lima z-50 h-16">
+      <div className="fixed top-0 left-0 w-full flex md:justify-between gap-2 items-center px-4 py-4 md:hidden bg-deffcom-lima z-50 h-16">
         <NavLink to="/store/start">
           <img src={defflogo} alt="Deffcom Logo" className="w-20" />
         </NavLink>
+
+        <div className="ml-auto">
+          <ProfileDropdown />
+        </div>
 
         <button
           className="text-[30px]focus:outline-none md:hidden block text-3xl bg-lime-600 text-white p-2 rounded-full cursor-pointer"
