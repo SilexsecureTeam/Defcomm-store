@@ -40,7 +40,7 @@ function NavTwo() {
       {/* Mobile Navigation */}
       <div className="fixed top-0 left-0 w-full flex md:justify-between gap-2 items-center px-4 py-4 md:hidden bg-deffcom-lima z-50 h-16">
         <NavLink to="/store/start">
-          <img src={defflogo} alt="Deffcom Logo" className="w-20" />
+          <img src={defflogo} alt="Deffcom Logo" className="w-16 md:w-20" />
         </NavLink>
 
         <div className="ml-auto">
