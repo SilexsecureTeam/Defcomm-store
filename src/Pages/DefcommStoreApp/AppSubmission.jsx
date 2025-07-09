@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import NavTwo from "../../../../Components/Header/NavTwo";
-import divOne from "../../../../assets/arcticons_govee-home.png";
-import VectorA from "../../../../assets/simple-icons_appstore.png";
+import NavTwo from "../../Components/Header/NavTwo";
+import divOne from "../../assets/arcticons_govee-home.png";
+import VectorA from "../../assets/simple-icons_appstore.png";
 import { TfiArrowRight, TfiArrowLeft } from "react-icons/tfi";
 import { BsCheck } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";

@@ -1,11 +1,13 @@
 import React from "react";
-import VectorA from "../../../../assets/VectorA.png";
+import VectorA from "../../assets/VectorA.png";
 import { TfiArrowRight } from "react-icons/tfi";
-import apps from "../../../../assets/clarity_vmw-app-outline-badged.png";
-import appanalystic from "../../../../assets/clarity_analytics-line.png";
-import mynaui from "../../../../assets/mynaui_user-circle-solid.png";
+import apps from "../../assets/clarity_vmw-app-outline-badged.png";
+import appanalystic from "../../assets/clarity_analytics-line.png";
+import mynaui from "../../assets/mynaui_user-circle-solid.png";
+import { useNavigate } from "react-router-dom";
 
-export default function ProgramCards({ setPlayDisplay, playDisplay }) {
+export default function ProgramCards() {
+  const navigate = useNavigate();
   return (
     <div className="px-4 md:px-10 max-w-[1440px] mx-auto">
       <h1 className="text-white text-[30px] md:text-[40px] font-bold py-6">
@@ -26,16 +28,16 @@ export default function ProgramCards({ setPlayDisplay, playDisplay }) {
               <h2 className="font-bold text-[24px] mb-4">
                 Defcomm Store Connect
               </h2>
-              <div className="flex gap-3 items-center mb-3">
+              <div className="flex gap-3 items-center mb-3 *:cursor-pointer">
                 <img src={apps} alt="apps" className="w-6" />
                 <button
                   className="hover:underline text-left"
-                  onClick={() => setPlayDisplay(!playDisplay)}
+                  onClick={() => navigate("/store/apps")}
                 >
                   Apps
                 </button>
               </div>
-              <div className="flex gap-3 items-center mb-3">
+              <div className="flex gap-3 items-center mb-3 *:cursor-pointer">
                 <img src={appanalystic} alt="analytics" className="w-6" />
                 <p className="hover:underline">App Analytics</p>
               </div>

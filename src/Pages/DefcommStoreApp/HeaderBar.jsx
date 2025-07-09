@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
-import divOne from "../../../../assets/arcticons_govee-home.png";
-import { navItems } from "../../../../utils/dummies";
+import divOne from "../../assets/arcticons_govee-home.png";
+import { navItems } from "../../utils/dummies";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -11,12 +11,12 @@ export default function HeaderBar({ showpage }) {
     navigate("/appSub");
   };
   return (
-    <div className="flex flex-col-reverse gap-8 md:flex-row px-4 pt-18 md:pt-4 md:pb-20 md:justify-between md:px-30 ">
-      <div className="flex-shrink-0  w-[100px] md:w-fit p-2 md:p-4 bg-stone-600 border-l-8 border-lime-400">
+    <div className="flex gap-6 md:flex-row justify-between w-[95%] max-w-[1200px] mx-auto">
+      <div className="flex items-center justify-center p-2 w-max h-fit bg-stone-600 border-l-8 border-[#759719]">
         <img
           src={divOne}
           alt=""
-          className="p-4 md:p-6 rounded-3xl bg-deffcom-lima"
+          className="p-2 w-12 rounded-xl bg-deffcom-lima"
         />
       </div>
 
@@ -29,20 +29,14 @@ export default function HeaderBar({ showpage }) {
       >
         {navItems.map(({ src, path }, index) => (
           <NavLink
-            to={path}
+            to={`/store${path}`}
             title={path.replaceAll("/", "")}
             key={index}
-            className="flex-shrink-0"
+            className={`flex items-center justify-center h-fit p-4 rounded-xl ${
+              index === 0 ? "bg-white" : "bg-lime-900/20"
+            } transition-all duration-300 ease-in-out cursor-pointer hover:scale-105`}
           >
-            <img
-              src={src}
-              alt=""
-              className={`w-[50px] md:w-18 p-4 md:p-6 rounded-3xl ${
-                index === 0
-                  ? "bg-white"
-                  : "bg-lime-900/20 transition-all duration-300 ease-in-out cursor-pointer hover:scale-105"
-              }`}
-            />
+            <img src={src} alt="" className="w-6" />
           </NavLink>
         ))}
       </div>

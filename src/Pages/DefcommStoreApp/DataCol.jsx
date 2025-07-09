@@ -1,9 +1,10 @@
 import React from "react";
-import NavTwo from "../../../../Components/Header/NavTwo";
-import divOne from "../../../../assets/arcticons_govee-home.png";
-import VectorA from "../../../../assets/simple-icons_appstore.png";
+import NavTwo from "../../Components/Header/NavTwo";
+import divOne from "../../assets/arcticons_govee-home.png";
+import VectorA from "../../assets/simple-icons_appstore.png";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import HeaderBar from "./HeaderBar";
 
 export default function DataCollection() {
   const navigate = useNavigate();
@@ -13,19 +14,11 @@ export default function DataCollection() {
       <NavTwo />
 
       <div className="bg-deffcom-limagradiant py-10 overflow-x-hidden">
-        {/* Header row */}
-        <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-20 pb-10 gap-4">
-          <div className="w-[100px] md:w-fit p-4 bg-stone-600 border-l-8 border-lime-400">
-            <img
-              src={divOne}
-              alt=""
-              className="p-4 md:p-6 rounded-3xl bg-deffcom-lima"
-            />
-          </div>
-
+        <HeaderBar />
+        <div className="my-2 flex items-center justify-end px-10">
           <div
             className="bg-deffcom-lima border-2 border-lime-400 w-14 h-14 flex justify-center items-center rounded-4xl text-white cursor-pointer"
-            onClick={() => navigate("/appCert")}
+            onClick={() => navigate("/store/appCert")}
           >
             <FaPlus />
           </div>

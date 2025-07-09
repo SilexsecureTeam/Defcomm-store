@@ -1,11 +1,11 @@
 import React from "react";
-import VectorA from "../../../../assets/VectorA.png";
-import Groupone from "../../../../assets/Group 5335.png";
-import start from "../../../../assets/material-icon-theme_verified.png";
-import fileDev from "../../../../assets/Secure File Sharing.png";
-import militarymail from "../../../../assets/Secure Email.png";
-import Bullet from "../../../../assets/Armour (1) 1.png";
-import iSurvive from "../../../../assets/militar 1.png";
+import VectorA from "../../assets/VectorA.png";
+import Groupone from "../../assets/Group 5335.png";
+import start from "../../assets/material-icon-theme_verified.png";
+import fileDev from "../../assets/Secure File Sharing.png";
+import militarymail from "../../assets/Secure Email.png";
+import Bullet from "../../assets/Armour (1) 1.png";
+import iSurvive from "../../assets/militar 1.png";
 import { FiArrowRight } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa6";
 import { TbCircleCheck } from "react-icons/tb";

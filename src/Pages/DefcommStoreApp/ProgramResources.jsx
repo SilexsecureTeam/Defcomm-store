@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavTwo from "../../../../Components/Header/NavTwo";
+import NavTwo from "../../Components/Header/NavTwo";
 import { useNavigate } from "react-router-dom";
 import HeaderBar from "./HeaderBar";
 import ProgramCards from "./ProgramCards";

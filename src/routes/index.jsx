@@ -14,13 +14,9 @@ import Fallback from "../Components/Fallback";
 
 // Lazy-loaded Pages
 const HomePages = lazy(() => import("../Components/Content/HomePages"));
-const AppPages = lazy(() => import("../Pages/AppFolder/AppPages"));
-const MedicalApp = lazy(() =>
-  import("../Pages/AppFolder/Apps/Medical/MedicalApp")
-);
-const PPT = lazy(() =>
-  import("../Pages/AppFolder/Apps/Medical/DownloadMedicalApps/PPT")
-);
+const AppPages = lazy(() => import("../Pages/AppPages"));
+const MedicalApp = lazy(() => import("../Pages/MedicalApp"));
+const PPT = lazy(() => import("../Pages/DownloadMedicalApps/PPT"));
 const Login = lazy(() => import("../Pages/LoginFolder/Login"));
 const Membership = lazy(() => import("../Pages/LoginFolder/Membership"));
 
@@ -29,18 +25,18 @@ const TermofUse = lazy(() => import("../Components/Footer/TermofUse"));
 const DevAgreement = lazy(() => import("../Components/Footer/DevAgreement"));
 
 const ProgramResources = lazy(() =>
-  import("../Pages/AppFolder/Apps/DefcommStoreApp/ProgramResources")
+  import("../Pages/DefcommStoreApp/ProgramResources")
 );
 const AppSubmission = lazy(() =>
-  import("../Pages/AppFolder/Apps/DefcommStoreApp/AppSubmission")
+  import("../Pages/DefcommStoreApp/AppSubmission")
 );
-const DataCollection = lazy(() =>
-  import("../Pages/AppFolder/Apps/DefcommStoreApp/DataCol")
-);
+const DataCollection = lazy(() => import("../Pages/DefcommStoreApp/DataCol"));
 const AppCertification = lazy(() =>
-  import("../Pages/AppFolder/Apps/DefcommStoreApp/AppCertification")
+  import("../Pages/DefcommStoreApp/AppCertification")
 );
-
+const AppSubmissionPanel = lazy(() =>
+  import("../Pages/DefcommStoreApp/AppSubmissionPanel")
+);
 const ComingSoon = lazy(() => import("../Pages/ComingSoon"));
 
 // Route config
@@ -51,26 +47,27 @@ const router = createBrowserRouter(
       <Route element={<PublicRoute />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePages />} />
-          <Route path="app" element={<AppPages />} />
+          <Route path="/app" element={<AppPages />} />
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Membership />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Membership />} />
       </Route>
 
       {/* Protected */}
-      <Route element={<AppRoute />}>
+      <Route path="/store/" element={<AppRoute />}>
         <Route path="medical" element={<MedicalApp />} />
         <Route path="PPT" element={<PPT />} />
         <Route path="start" element={<ProgramResources />} />
+        <Route path="apps" element={<AppSubmissionPanel />} />
         <Route path="appSub" element={<AppSubmission />} />
         <Route path="dataCol" element={<DataCollection />} />
         <Route path="appCert" element={<AppCertification />} />
       </Route>
 
       {/* Public Footer */}
-      <Route path="privacy" element={<Privacy />} />
-      <Route path="termofuse" element={<TermofUse />} />
-      <Route path="devagreement" element={<DevAgreement />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/termofuse" element={<TermofUse />} />
+      <Route path="/devagreement" element={<DevAgreement />} />
       <Route path="/*" element={<ComingSoon />} />
     </>
   )
