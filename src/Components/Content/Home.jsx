@@ -13,7 +13,7 @@ import img4 from "../../assets/hero_img2.jpg";
 
 import { NavLink, useNavigate } from "react-router-dom";
 
-function Home() {
+function Home({ slideShow = true }) {
   const imgslide = [img1, img2, img3, img4, img1, img2];
   const navigate = useNavigate();
   const [imgIndex, setImgIndex] = useState(0);
@@ -88,22 +88,24 @@ function Home() {
           </div>
         </div>
 
-        <div className="relative md:pt-20 overflow-x-hidden whitespace-nowrap w-full">
-          <div className="flex  gap-10   animate-infinite-scroll w-max  h-96 md:h-[450px]">
-            {[...imgslide, ...imgslide].map((img, index) => (
-              <div key={index} className="flex-shrike-0">
-                <img src={img} alt={`slide-${index}`} className=" h-full" />
-              </div>
-            ))}
-          </div>
+        {slideShow && (
+          <div className="relative md:pt-20 overflow-x-hidden whitespace-nowrap w-full">
+            <div className="flex  gap-10   animate-infinite-scroll w-max  h-96 md:h-[450px]">
+              {[...imgslide, ...imgslide].map((img, index) => (
+                <div key={index} className="flex-shrike-0">
+                  <img src={img} alt={`slide-${index}`} className=" h-full" />
+                </div>
+              ))}
+            </div>
 
-          <div className="px-4 absolute w-full items-center justify-between bottom-[20px] flex text-stone-600 md:px-10">
-            <div className="flex text-lime-900 md:text-4xl">
-              <GoDotFill />
-              <GoDotFill />
+            <div className="px-4 absolute w-full items-center justify-between bottom-[20px] flex text-stone-600 md:px-10">
+              <div className="flex text-lime-900 md:text-4xl">
+                <GoDotFill />
+                <GoDotFill />
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

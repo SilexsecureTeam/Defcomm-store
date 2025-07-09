@@ -7,7 +7,7 @@ import FAQ from "../../Components/Content/FAQ";
 function AppPages() {
   return (
     <div>
-      <Home />
+      <Home slideShow={false} />
       <Project />
       <Offer />
       {/* <FAQ /> */}
