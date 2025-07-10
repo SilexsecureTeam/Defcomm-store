@@ -50,7 +50,7 @@ function Nav() {
             ))}
             <li
               className="cursor-pointer font-semibold hover:text-lime-700 transition"
-              onClick={() => handleNavigate("/register")}
+              onClick={() => handleNavigate("/membership/individual")}
             >
               LOGIN/REGISTER
             </li>
@@ -108,7 +108,7 @@ function Nav() {
             <MdOutlineWatch className="text-xl" /> WATCH
           </li>
           <li
-            onClick={() => handleNavigate("/register")}
+            onClick={() => handleNavigate("/membership/individual")}
             className="flex items-center gap-2 px-6 py-3 font-semibold hover:bg-gray-100 transition cursor-pointer"
           >
             LOGIN / REGISTER

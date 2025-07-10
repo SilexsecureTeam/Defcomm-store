@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavTwo from "../../Components/Header/NavTwo";
 import { useNavigate } from "react-router-dom";
 import HeaderBar from "./HeaderBar";
 import ProgramCards from "./ProgramCards";
@@ -12,8 +11,7 @@ export default function ProgramResources() {
 
   return (
     <>
-      <NavTwo />
-      <div className="bg-deffcom-limagradiant py-10 md:py-20">
+      <div className="py-10 md:py-20">
         <HeaderBar />
         {playDisplay ? (
           <ProgramCards

@@ -10,6 +10,9 @@
     );
   }
 }
+body {
+  @apply font-sans;
+}
 
 @layer utilities {
   .bg-deffcom-lime {

@@ -1,6 +1,4 @@
 import React from "react";
-import NavTwo from "../../Components/Header/NavTwo";
-import divOne from "../../assets/arcticons_govee-home.png";
 import { FaPlus } from "react-icons/fa6";
 import VectorA from "../../assets/VectorA.png";
 import img from "../../assets/healthicons_network-5g.png";
@@ -13,7 +11,6 @@ import HeaderBar from "./HeaderBar";
 function AppCertification() {
   return (
     <>
-      <NavTwo />
       <div className="bg-deffcom-limagradiant py-10">
         <HeaderBar />
         <div className="mt-2 flex items-center justify-end px-10">

@@ -53,7 +53,7 @@ export default function ProgramCards() {
         {/* Card 2 */}
         <div className="lg:col-span-2 bg-deffcom-lima text-white rounded-[20px] p-6 flex flex-col justify-between shadow">
           <div>
-            <h2 className="text-[28px] font-bold mb-4">
+            <h2 className="text-[28px] font-semibold mb-4">
               Certificates, IDs <br /> & Profiles
             </h2>
             <p className="text-[15px] mb-6">
@@ -89,22 +89,24 @@ export default function ProgramCards() {
 
         {/* Card 3 */}
         <div className="md:col-span-4 lg:col-span-2 flex flex-col md:flex-row lg:flex-col gap-6">
-          <div className="bg-lime-400 p-6 rounded-[20px] text-black shadow">
+          <div className="flex flex-col bg-[#C6FC2B] p-6 rounded-[20px] text-black shadow min-h-80">
             <div className="flex justify-between items-center mb-4">
               <p className="underline text-[18px]">Get Started</p>
               <div className="bg-black w-12 h-12 flex justify-center items-center rounded-full text-white">
                 <TfiArrowRight />
               </div>
             </div>
-            <div>
-              <h2 className="text-[24px] font-bold mb-2">Services</h2>
+            <div className="mt-auto">
+              <h2 className="text-[24px] font-semibold mb-2">Services</h2>
               <p>View and manage your usage of developer services.</p>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-[20px] text-black shadow">
-            <h2 className="text-[20px] font-bold mb-6">Security Settings</h2>
-            <div className="flex justify-between items-center">
+          <div className="flex flex-col bg-white p-6 rounded-[20px] text-black shadow">
+            <h2 className="text-[20px] font-semibold mb-6">
+              Security Settings
+            </h2>
+            <div className="mt-auto flex justify-between items-center">
               <p className="underline text-[18px]">Get Started</p>
               <div className="bg-black w-12 h-12 flex justify-center items-center rounded-full text-white">
                 <TfiArrowRight />

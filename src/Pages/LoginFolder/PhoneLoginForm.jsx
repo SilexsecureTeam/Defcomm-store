@@ -58,7 +58,6 @@ const PhoneLoginForm = () => {
       { phone: `+${phone}`, otp },
       {
         onSuccess: () => {
-          console.log("✅ OTP verified");
           setError("");
         },
         onError: () => {
@@ -81,13 +80,13 @@ const PhoneLoginForm = () => {
               inputProps={{ required: true }}
               inputStyle={{
                 width: "100%",
-                height: "40px",
+                height: "42px",
                 padding: "14px",
                 paddingLeft: "44px",
                 borderRadius: "0.75rem",
                 border: "1px solid #D1D5DB",
               }}
-              containerStyle={{ height: "40px" }}
+              containerStyle={{ height: "42px" }}
             />
           </div>
 
@@ -96,7 +95,7 @@ const PhoneLoginForm = () => {
           <button
             type="button"
             onClick={handleRequestOtp}
-            className="w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
+            className="cursor-pointer w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
             disabled={requestOtpMutation.isPending}
           >
             {requestOtpMutation.isPending ? (
@@ -140,7 +139,7 @@ const PhoneLoginForm = () => {
           <button
             type="button"
             onClick={handleVerifyOtp}
-            className="w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
+            className="cursor-pointer w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
             disabled={verifyOtpMutation.isPending || otp.length !== 4}
           >
             {verifyOtpMutation.isPending ? (
@@ -154,7 +153,7 @@ const PhoneLoginForm = () => {
             <button
               type="button"
               onClick={handleRequestOtp}
-              className="w-full mt-3 bg-black hover:bg-gray-800 text-white py-3 rounded-xl"
+              className="cursor-pointer w-full mt-3 bg-black hover:bg-gray-800 text-white py-3 rounded-xl"
               disabled={requestOtpMutation.isPending}
             >
               {requestOtpMutation.isPending ? (

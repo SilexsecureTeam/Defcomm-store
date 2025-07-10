@@ -1,8 +1,13 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+// tailwind.config.mjs
+import { defineConfig } from "tailwindcss";
+
+export default defineConfig({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./fonts"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Commissioner"', "sans-serif"],
+      },
       gridTemplateColumns: {
         responsive: "repeat(auto-fill, minmax(200px, 1fr))",
         "responsive-sm": "repeat(auto-fill, minmax(180px, 1fr))",
@@ -18,7 +23,6 @@ export default {
       animation: {
         scroll: "scroll 20s linear infinite",
       },
-
       keyframes: {
         scroll: {
           from: { transform: "translateX(0%)" },
@@ -28,4 +32,4 @@ export default {
     },
   },
   plugins: [],
-};
+});

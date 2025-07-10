@@ -5,15 +5,23 @@ import divFive from "../assets/Vector.png";
 import divSix from "../assets/Vector (1).png";
 import divSeven from "../assets/secure 2.png";
 import divEight from "../assets/icons8-contacts 1.png";
+
+//apps
+import Groupone from "../assets/Group 5335.png";
+import fileDev from "../assets/Secure File Sharing.png";
+import militarymail from "../assets/Secure Email.png";
+import Bullet from "../assets/Armour (1) 1.png";
+import iSurvive from "../assets/militar 1.png";
+
 export const listofregistration = {
   individual: [
     {
       bold: "Legal Name: ",
-      text: " Your full legal name is required to enter into agreements with Defcomm. This name will also appear as the seller name for your apps on the App Store.",
+      text: "Your full legal name is necessary to enter into agreements with Defcomm. This name will also be displayed as the seller name for your applications on the Defcomm Store.",
     },
     {
       bold: "Contact Information: ",
-      text: " You must provide a valid email, phone number, and physical address. P.O. boxes are not accepted",
+      text: " You must provide a valid email address, phone number, and physical address. P.O. Boxes are not accepted.",
     },
   ],
   organization: [
@@ -48,4 +56,12 @@ export const navItems = [
   { src: divSix, path: "/appCert" },
   { src: divSeven, path: "/dataCol" },
   { src: divEight, path: "/appSub" },
+];
+
+export const apps = [
+  { name: "Secure Call", img: Groupone },
+  { name: "FileDev Sharing", img: fileDev },
+  { name: "MilitaryMail", img: militarymail },
+  { name: "Bullet Precision", img: Bullet },
+  { name: "iSurvive", img: iSurvive },
 ];

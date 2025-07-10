@@ -1,16 +1,17 @@
 import React from "react";
 
-const AuthTabs = ({ activeTab, setActiveTab, setLoginPassword, setOtp }) => {
+const AuthTabs = ({ activeTab, setActiveTab }) => {
   return (
     <div className="flex items-center justify-between py-4 min-w-[270px] md:min-w-[300px]">
       <div className="flex gap-4">
         <div
           onClick={() => {
             setActiveTab("register");
-            setLoginPassword(false);
           }}
           className={`cursor-pointer underline-offset-8 ${
-            activeTab === "register" ? "underline decoration-pink-500" : ""
+            activeTab === "register"
+              ? "pb-2 border-b-2 border-b-pink-500 text-black"
+              : "text-gray-600"
           }`}
         >
           Register
@@ -18,14 +19,14 @@ const AuthTabs = ({ activeTab, setActiveTab, setLoginPassword, setOtp }) => {
         <div
           onClick={() => {
             setActiveTab("login");
-            setLoginPassword(true);
-            setOtp(false);
           }}
           className={`cursor-pointer underline-offset-8 ${
-            activeTab === "login" ? "underline decoration-pink-500" : ""
+            activeTab === "login"
+              ? "pb-2 border-b-2 border-b-pink-500 text-black"
+              : "text-gray-600"
           }`}
         >
-          Login
+          Log in
         </div>
       </div>
     </div>

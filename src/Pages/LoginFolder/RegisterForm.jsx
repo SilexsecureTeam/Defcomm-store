@@ -6,7 +6,9 @@ import useAuth from "../../hooks/useAuth";
 import { FaSpinner } from "react-icons/fa6";
 import { FiCheckCircle, FiXCircle, FiEye, FiEyeOff } from "react-icons/fi";
 
-const RegisterForm = () => {
+const RegisterForm = ({ userType = "individual" }) => {
+  const role = userType === "organization" ? "company" : "user";
+
   const { registerMutation, verifyEmailMutation } = useAuth();
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
@@ -70,7 +72,7 @@ const RegisterForm = () => {
       country: data.country,
       dob: data.birthday,
       gender,
-      role: "user",
+      role,
     };
 
     registerMutation.mutate(payload);

@@ -1,6 +1,4 @@
 import React from "react";
-import NavTwo from "../../Components/Header/NavTwo";
-import divOne from "../../assets/arcticons_govee-home.png";
 import VectorA from "../../assets/simple-icons_appstore.png";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +9,6 @@ export default function DataCollection() {
 
   return (
     <>
-      <NavTwo />
-
       <div className="bg-deffcom-limagradiant py-10 overflow-x-hidden">
         <HeaderBar />
         <div className="my-2 flex items-center justify-end px-10">

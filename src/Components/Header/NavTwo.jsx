@@ -14,7 +14,7 @@ function NavTwo() {
 
   const navigate = useNavigate();
   return (
-    <div className="sticky top-0 left-0 w-full flex justify-between items-center py-4 bg-deffcom-lima z-50 h-16">
+    <div className="sticky top-0 left-0 w-full flex justify-between items-center py-4 z-50 h-16  bg-transparent backdrop-blur-lg">
       {/* Desktop Navigation */}
 
       <div className="hidden md:flex px-6 text-white gap-2 justify-between items-center w-[95%] max-w-[1200px] mx-auto">
@@ -58,7 +58,7 @@ function NavTwo() {
 
       {/* Mobile Dropdown Menu */}
       <ul
-        className={`md:hidden text-white fixed left-0 top-[75px] w-full bg-deffcom-limagradiant shadow-lg z-30 
+        className={`md:hidden text-white w-full bg-deffcom-limagradiant shadow-lg z-30 
         transition-transform duration-300 ease-out 
         ${
           dropDown

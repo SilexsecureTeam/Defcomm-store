@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Nav from "../../Components/Header/Nav";
 import FooterTwo from "../../Components/Footer/FooterTwo";
 
@@ -10,18 +10,24 @@ import IndividualEnrollmentForm from "./IndividualEnrollmentForm";
 import OrganizationEnrollmentForm from "./OrganizationEnrollmentForm";
 import ActionButtons from "./ActionButtons";
 
-import { listofregistration } from "../../utils/dummies"; // external JSON or constants
+import { listofregistration } from "../../utils/dummies";
 
 const Membership = () => {
-  const [changeText, setChangeText] = useState("individual");
-  const [showForm, setShowForm] = useState(false);
-  const [createAcct, setCreateAcct] = useState(false);
-  const [activeTab, setActiveTab] = useState("register");
+  const { userType = "individual", authTab = "" } = useParams();
+
+  const changeText = userType; // ✅ derived directly from URL
+  const [showForm, setShowForm] = useState(
+    authTab === "register" || authTab === "login"
+  );
+  const [activeTab, setActiveTab] = useState(authTab || "register");
   const [loginPassword, setLoginPassword] = useState(false);
   const [passwordLogin, setPasswordLogin] = useState(false);
-  const [otp, setOtp] = useState(false);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    setActiveTab(authTab || "register");
+    setShowForm(authTab === "register" || authTab === "login");
+  }, [authTab]);
+
   return (
     <>
       <Nav />
@@ -35,15 +41,18 @@ const Membership = () => {
       <div className="bg-deffcom-lime text-white font-[poppins] py-10 px-4 md:px-10">
         <EnrollmentTabs
           changeText={changeText}
-          setChangeText={setChangeText}
           setShowForm={setShowForm}
+          showForm={showForm}
         />
 
         <div className="flex justify-center">
           <div className="w-full max-w-4xl">
             {changeText === "individual" ? (
               showForm ? (
-                <IndividualEnrollmentForm />
+                <IndividualEnrollmentForm
+                  activeTab={activeTab}
+                  userType={changeText}
+                />
               ) : (
                 <EnrollmentDescription
                   type="individual"
@@ -51,7 +60,10 @@ const Membership = () => {
                 />
               )
             ) : showForm ? (
-              <OrganizationEnrollmentForm />
+              <OrganizationEnrollmentForm
+                activeTab={activeTab}
+                userType={changeText}
+              />
             ) : (
               <EnrollmentDescription
                 type="organization"
@@ -62,7 +74,13 @@ const Membership = () => {
         </div>
 
         <div className="flex max-w-4xl mx-auto">
-          <ActionButtons showForm={showForm} setShowForm={setShowForm} />
+          <ActionButtons
+            showForm={showForm}
+            setShowForm={setShowForm}
+            authType={activeTab}
+            changeText={changeText}
+            navigate={useNavigate()}
+          />
         </div>
       </div>
 
