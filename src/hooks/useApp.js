@@ -16,9 +16,7 @@ const useApp = () => {
       const { data } = await client.get("/app/list");
       return data?.data || [];
     },
-    staleTime: 0,
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
+    enabled: !!authDetails,
   });
 
   // GET: Single app

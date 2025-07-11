@@ -17,8 +17,8 @@ export default function MyApps() {
 
       <div className="md:flex rounded-[20px] overflow-hidden mt-2">
         {/* Sidebar Icon */}
-        <div className="bg-lime-400 p-6 flex-shrink-0 flex justify-center items-center">
-          <img src={VectorA} alt="VectorA" className="w-20 md:w-24" />
+        <div className="bg-lime-400 p-6 flex-shrink-0 flex justify-center">
+          <img src={VectorA} alt="VectorA" className="w-20 md:w-24 h-fit" />
         </div>
 
         {/* Content Area */}

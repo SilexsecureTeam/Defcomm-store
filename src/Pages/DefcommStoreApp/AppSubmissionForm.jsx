@@ -25,9 +25,15 @@ export default function AppSubmissionForm() {
   const [dataCollectionFields, setDataCollectionFields] = useState([]);
 
   const methods = useForm({
-    defaultValues: Object.fromEntries(
-      appSubmissionSteps.flatMap((s) => s.fields.map((f) => [f.name, ""]))
-    ),
+    defaultValues: {
+      ...Object.fromEntries(
+        appSubmissionSteps.flatMap((s) => s.fields.map((f) => [f.name, ""]))
+      ),
+      name_value: "",
+      contact_email_value: "",
+      contact_phone_value: "",
+      contact_address_value: "",
+    },
     mode: "onTouched",
   });
 
@@ -84,6 +90,33 @@ export default function AppSubmissionForm() {
       setDataCollectionFields([]); // Clear fields if not on step 4
     }
   }, [step, collectsDataValue, yesCollect, noCollect]);
+  useEffect(() => {
+    if (
+      step !== 4 ||
+      collectsDataValue !== "Yes, we collect data from this app"
+    )
+      return;
+
+    const checkAndAssign = (checkboxName, fieldValue) => {
+      if (watch(checkboxName)) {
+        setValue(`${checkboxName}_value`, fieldValue || "");
+      } else {
+        setValue(`${checkboxName}_value`, "");
+      }
+    };
+
+    checkAndAssign("name", authDetails?.user?.name);
+    checkAndAssign("contact_email", authDetails?.user?.email);
+    checkAndAssign("contact_phone", authDetails?.user?.phone);
+    checkAndAssign("contact_address", authDetails?.user?.address);
+  }, [
+    step,
+    watch("name"),
+    watch("contact_email"),
+    watch("contact_phone"),
+    watch("contact_address"),
+    authDetails,
+  ]);
 
   const nextStep = async () => {
     const isLastStep = step === appSubmissionSteps.length - 1;
