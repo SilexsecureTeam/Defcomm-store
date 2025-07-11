@@ -219,10 +219,14 @@ export const yesCollect = [
     className: "text-xl font-semibold mt-8 mb-2 text-gray-800",
   },
   {
-    name: "name",
+    name: "contact_name",
     label: "Name",
     type: "checkbox",
     desc: "Including first or last name",
+  },
+  {
+    name: "contact_name_value",
+    type: "hidden",
   },
   {
     name: "contact_email",
@@ -231,16 +235,28 @@ export const yesCollect = [
     desc: "Including but not limited to a hashed email address",
   },
   {
+    name: "contact_email_value",
+    type: "hidden",
+  },
+  {
     name: "contact_phone",
     label: "Phone Numbers",
     type: "checkbox",
     desc: "Including but not limited to a hashed phone number",
   },
   {
+    name: "contact_phone_value",
+    type: "hidden",
+  },
+  {
     name: "contact_address",
     label: "Physical Address",
     type: "checkbox",
     desc: "Such as a home address, physical address, or mailing address",
+  },
+  {
+    name: "contact_address_value",
+    type: "hidden",
   },
   {
     name: "contact_other",

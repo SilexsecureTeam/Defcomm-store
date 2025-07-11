@@ -11,9 +11,9 @@ import {
 } from "../../utils/formFields";
 import HeaderBarTwo from "../../Components/store/HeaderBarTwo";
 import { AuthContext } from "../../context/AuthContext";
-import FormStepper from "../../Components/store/FormStepper";
-import FormFieldRenderer from "../../Components/store/FormFieldRenderer";
-import SubmissionNavigators from "../../Components/store/SubmissionNavigators";
+import FormStepper from "../../Components/store/apps/FormStepper";
+import FormFieldRenderer from "../../Components/store/apps/FormFieldRenderer";
+import SubmissionNavigators from "../../Components/store/apps/SubmissionNavigators";
 import useApp from "../../hooks/useApp";
 
 export default function AppSubmissionForm() {
@@ -29,10 +29,10 @@ export default function AppSubmissionForm() {
       ...Object.fromEntries(
         appSubmissionSteps.flatMap((s) => s.fields.map((f) => [f.name, ""]))
       ),
-      name_value: "",
-      contact_email_value: "",
-      contact_phone_value: "",
-      contact_address_value: "",
+      contact_name: "",
+      contact_email: "",
+      contact_phone: "",
+      contact_address: "",
     },
     mode: "onTouched",
   });
@@ -90,6 +90,7 @@ export default function AppSubmissionForm() {
       setDataCollectionFields([]); // Clear fields if not on step 4
     }
   }, [step, collectsDataValue, yesCollect, noCollect]);
+
   useEffect(() => {
     if (
       step !== 4 ||
@@ -97,26 +98,35 @@ export default function AppSubmissionForm() {
     )
       return;
 
-    const checkAndAssign = (checkboxName, fieldValue) => {
+    const checkAndAssign = (checkboxName, fieldValue, valueFieldName) => {
       if (watch(checkboxName)) {
-        setValue(`${checkboxName}_value`, fieldValue || "");
+        setValue(valueFieldName, fieldValue || "");
       } else {
-        setValue(`${checkboxName}_value`, "");
+        setValue(valueFieldName, "");
       }
     };
 
-    checkAndAssign("name", authDetails?.user?.name);
-    checkAndAssign("contact_email", authDetails?.user?.email);
-    checkAndAssign("contact_phone", authDetails?.user?.phone);
-    checkAndAssign("contact_address", authDetails?.user?.address);
-  }, [
-    step,
-    watch("name"),
-    watch("contact_email"),
-    watch("contact_phone"),
-    watch("contact_address"),
-    authDetails,
-  ]);
+    checkAndAssign(
+      "contact_name",
+      authDetails?.user?.name,
+      "contact_name_value"
+    );
+    checkAndAssign(
+      "contact_email",
+      authDetails?.user?.email,
+      "contact_email_value"
+    );
+    checkAndAssign(
+      "contact_phone",
+      authDetails?.user?.phone,
+      "contact_phone_value"
+    );
+    checkAndAssign(
+      "contact_address",
+      authDetails?.user?.address,
+      "contact_address_value"
+    );
+  }, [step, collectsDataValue, watch, setValue, authDetails]);
 
   const nextStep = async () => {
     const isLastStep = step === appSubmissionSteps.length - 1;
@@ -175,20 +185,41 @@ export default function AppSubmissionForm() {
   const onSubmit = async (data) => {
     const formData = new FormData();
 
+    const checkboxFields = [
+      "contact_name",
+      "contact_email",
+      "contact_phone",
+      "contact_address",
+    ];
+
     for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        const value = data[key];
-        if (value instanceof File) {
-          formData.append(key, value, value.name);
-        } else if (value !== null && value !== undefined) {
-          formData.append(key, String(value));
+      if (!data.hasOwnProperty(key)) continue;
+
+      const value = data[key];
+
+      // Handle contact fields separately
+      if (checkboxFields.includes(key)) {
+        const actualValue = data[`${key}_value`];
+        if (value === true && actualValue) {
+          formData.append(key, actualValue);
         }
+        continue; // Don't append boolean "true"
+      }
+
+      // Skip the *_value fields
+      if (key.endsWith("_value")) continue;
+
+      // Regular file and text fields
+      if (value instanceof File) {
+        formData.append(key, value, value.name);
+      } else if (value !== null && value !== undefined) {
+        formData.append(key, String(value));
       }
     }
 
     formData.set("release", normalizeRelease(data.release));
     formData.set("collect_data", normalizeCollectData(data.collect_data));
-    formData.append("id", ""); // Include empty `id` if needed
+    formData.append("id", ""); // if required
 
     try {
       const result = await createAppMutation.mutateAsync(formData);

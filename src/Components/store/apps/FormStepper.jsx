@@ -1,6 +1,6 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
-import { appSubmissionSteps } from "../../utils/formFields";
+import { appSubmissionSteps } from "../../../utils/formFields";
 
 export default function FormStepper({ step }) {
   const stepColors = [

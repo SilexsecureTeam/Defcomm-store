@@ -3,8 +3,8 @@ import VectorA from "../../assets/VectorA.png";
 import HeaderBarTwo from "../../Components/store/HeaderBarTwo";
 import HeaderBar from "../../Components/store/HeaderBar";
 import useApp from "../../hooks/useApp";
-import AppGrid from "../../Components/store/AppGrid";
-import AppGridSkeleton from "../../Components/store/AppGridSkeleton";
+import AppGrid from "../../Components/store/apps/AppGrid";
+import AppGridSkeleton from "../../Components/store/apps/AppGridSkeleton";
 
 export default function MyApps() {
   const { getAppListQuery } = useApp();
