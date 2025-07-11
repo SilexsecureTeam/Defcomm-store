@@ -38,7 +38,7 @@ function NavTwo() {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="fixed top-0 left-0 w-full flex md:justify-between gap-2 items-center px-4 py-4 md:hidden bg-deffcom-lima z-50 h-16">
+      <div className="relative w-full flex md:justify-between gap-2 items-center px-4 py-4 md:hidden bg-transparent backdrop-blur-lg h-16">
         <NavLink to="/store/start">
           <img src={defflogo} alt="Deffcom Logo" className="w-16 md:w-20" />
         </NavLink>
@@ -58,7 +58,7 @@ function NavTwo() {
 
       {/* Mobile Dropdown Menu */}
       <ul
-        className={`md:hidden text-white w-full bg-deffcom-limagradiant shadow-lg z-30 
+        className={`absolute top-16 md:hidden text-white w-full bg-[#36460A] backdrop-blur-lg shadow-lg z-30 
         transition-transform duration-300 ease-out 
         ${
           dropDown
@@ -67,7 +67,7 @@ function NavTwo() {
         }`}
       >
         <li
-          className="active hover:scale-110 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
+          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
           onClick={() => {
             navigate("/store/app");
           }}
@@ -75,7 +75,7 @@ function NavTwo() {
           Apps
         </li>
         <li
-          className="active hover:scale-110 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
+          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
           onClick={() => {
             navigate("/store/dataCol");
           }}
@@ -83,7 +83,7 @@ function NavTwo() {
           Data Collection
         </li>
         <li
-          className="active hover:scale-110 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
+          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
           onClick={() => {
             navigate("/store/PPT");
           }}
@@ -91,7 +91,7 @@ function NavTwo() {
           PPT
         </li>
         <li
-          className="active hover:scale-110 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
+          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
           onClick={() => {
             navigate("/store/appSub");
           }}

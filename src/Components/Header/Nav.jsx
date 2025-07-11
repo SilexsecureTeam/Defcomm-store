@@ -74,7 +74,7 @@ function Nav() {
 
       {/* Mobile Dropdown Menu */}
       <div
-        className={`md:hidden fixed left-0 top-[75px] w-full bg-white z-40 shadow-lg transition-all duration-300 ease-in-out
+        className={`md:hidden absolute left-0 top-[75px] w-full bg-white z-40 shadow-lg transition-all duration-300 ease-in-out
           ${
             dropDown
               ? "translate-y-0 opacity-100"

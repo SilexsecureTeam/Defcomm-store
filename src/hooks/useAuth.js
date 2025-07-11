@@ -104,7 +104,7 @@ const useAuth = () => {
     },
     onSuccess: () => {
       updateAuth(null);
-      navigate("/register", {
+      navigate("/membership/individual", {
         state: { from: null, fromLogout: true },
         replace: true,
       });

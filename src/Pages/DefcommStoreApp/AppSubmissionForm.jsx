@@ -1,57 +1,112 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
-import { BsCheck } from "react-icons/bs";
+import React, { useEffect, useState, useContext } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { FiArrowLeft } from "react-icons/fi";
 import { TbCircleCheck } from "react-icons/tb";
 import VectorA from "../../assets/VectorA.png";
 import { useNavigate } from "react-router-dom";
-import { appSubmissionSteps } from "../../utils/formFields";
-import HeaderBarTwo from "./HeaderBarTwo";
-import { FaUpload } from "react-icons/fa";
-import { useContext } from "react";
+import {
+  appSubmissionSteps,
+  noCollect,
+  yesCollect,
+} from "../../utils/formFields";
+import HeaderBarTwo from "../../Components/store/HeaderBarTwo";
 import { AuthContext } from "../../context/AuthContext";
+import FormStepper from "../../Components/store/FormStepper";
+import FormFieldRenderer from "../../Components/store/FormFieldRenderer";
+import SubmissionNavigators from "../../Components/store/SubmissionNavigators";
 
 export default function AppSubmissionForm() {
   const { authDetails } = useContext(AuthContext);
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [useDefaultSupport, setUseDefaultSupport] = useState(false);
+  const [dataCollectionFields, setDataCollectionFields] = useState([]);
+
+  const methods = useForm({
+    defaultValues: Object.fromEntries(
+      appSubmissionSteps.flatMap((s) => s.fields.map((f) => [f.name, ""]))
+    ),
+    mode: "onTouched",
+  });
 
   const {
-    register,
     handleSubmit,
     setValue,
     watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: Object.fromEntries(
-      appSubmissionSteps.flatMap((s) => s.fields.map((f) => [f.name, ""]))
-    ),
-  });
+    trigger,
+  } = methods;
 
   const currentStepData = appSubmissionSteps.find((s) => s.step === step);
-
-  const autofillSupportInfo = {
-    supportEmail: authDetails?.user?.email,
-    supportPhone: authDetails?.user?.phone,
-    supportWebsite: authDetails?.user?.website || "www.defcomm.ng",
-  };
+  const collectsDataValue = watch("collectsData");
 
   useEffect(() => {
-    if (useDefaultSupport) {
-      for (const key in autofillSupportInfo) {
-        setValue(key, autofillSupportInfo[key]);
+    if (step === 0) {
+      if (useDefaultSupport) {
+        setValue("supportEmail", authDetails?.user?.email || "");
+        setValue("supportPhone", authDetails?.user?.phone || "");
+        setValue(
+          "supportWebsite",
+          authDetails?.user?.website || "www.defcomm.ng"
+        );
+      } else {
+        // Only clear if the current value matches the default, otherwise user input is preserved
+        if (watch("supportEmail") === (authDetails?.user?.email || ""))
+          setValue("supportEmail", "");
+        if (watch("supportPhone") === (authDetails?.user?.phone || ""))
+          setValue("supportPhone", "");
+        if (watch("supportWebsite") === "www.defcomm.ng")
+          setValue("supportWebsite", "");
+      }
+    }
+  }, [useDefaultSupport, setValue, watch, authDetails, step]);
+
+  useEffect(() => {
+    const cleanupUrls = () => {
+      const files = Object.values(watch()).filter((val) => val instanceof File);
+      const urls = files.map((file) => URL.createObjectURL(file));
+      urls.forEach((url) => URL.revokeObjectURL(url));
+    };
+    return cleanupUrls;
+  }, [watch]);
+
+  // Dynamically set fields for Step 4 based on "collectsData" selection
+  useEffect(() => {
+    if (step === 4) {
+      if (collectsDataValue === "Yes, we collect data from this app") {
+        setDataCollectionFields(yesCollect);
+      } else {
+        setDataCollectionFields(noCollect);
       }
     } else {
-      setValue("supportEmail", "");
-      setValue("supportPhone", "");
-      setValue("supportWebsite", "");
+      setDataCollectionFields([]); // Clear fields if not on step 4
     }
-  }, [useDefaultSupport, setValue]);
+  }, [step, collectsDataValue, yesCollect, noCollect]);
 
-  const nextStep = () => {
-    if (step < appSubmissionSteps.length - 1) {
+  const nextStep = async () => {
+    // Determine the fields that are actually rendered and filter for required ones
+    let fieldsToValidate = [];
+    if (step === 4) {
+      fieldsToValidate = dataCollectionFields
+        .filter((field) => field.required && field.type !== "display")
+        .map((field) => field.name);
+    } else {
+      fieldsToValidate = currentStepData.fields
+        .filter((field) => field.required && field.type !== "display")
+        .map((field) => field.name);
+    }
+
+    // If on step 0 and using default support, manually add support fields to validation
+    if (step === 0 && useDefaultSupport) {
+      fieldsToValidate.push("supportEmail", "supportPhone", "supportWebsite");
+    }
+    const isValid = await trigger(fieldsToValidate);
+    // Only proceed if validation passes AND it's not the last step
+    if (isValid && step < appSubmissionSteps.length - 1) {
       setStep(step + 1);
+    } else {
+      console.log("Validation errors on current step:", errors);
+      // Optionally scroll to first error or provide user feedback
     }
   };
 
@@ -61,234 +116,185 @@ export default function AppSubmissionForm() {
     }
   };
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const onSubmit = async (data) => {
+    console.log("Final Form Data:", data);
+
+    const formData = new FormData();
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        const value = data[key];
+        // Skip display fields when submitting
+        const fieldDef = currentStepData.fields.find((f) => f.name === key);
+        if (fieldDef && fieldDef.type === "display") {
+          continue;
+        }
+
+        if (value instanceof File) {
+          formData.append(key, value, value.name);
+        } else if (value !== null && value !== undefined) {
+          formData.append(key, String(value));
+        }
+      }
+    }
+
+    try {
+      const response = await fetch("YOUR_API_ENDPOINT_HERE/submit-app", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to submit app.");
+      }
+
+      const result = await response.json();
+      console.log("App submission successful:", result);
+      navigate("/submission-success");
+    } catch (error) {
+      console.error("Error submitting app:", error);
+      alert(`Submission failed: ${error.message}`);
+    }
   };
+
+  // Determine which fields to render for the current step
+  const fieldsToRender =
+    step === 4 ? dataCollectionFields : currentStepData.fields;
 
   return (
     <div className="p-4 md:p-10">
       {step === 0 && <HeaderBarTwo title="Defcomm New App Submission" />}
-      {step > 0 && (
-        <div className="relative mb-10 px-4 md:px-12 max-w-lg">
-          <div className="relative z-10 flex justify-between items-center">
-            {appSubmissionSteps.slice(1).map((s, index, array) => {
-              const isCompleted = s.step < step;
-              const isCurrent = s.step === step;
+      {step > 0 && <FormStepper step={step} />}
 
-              // Step colors
-              const stepColors = ["bg-lime-500", "bg-red-500", "bg-blue-500"];
-              const circleColor =
-                isCompleted || isCurrent
-                  ? stepColors[index] || "bg-gray-400"
-                  : "bg-gray-300";
+      <FormProvider {...methods}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white rounded-[20px] overflow-hidden md:flex relative mt-5 shadow-lg"
+        >
+          <div className="bg-[#89AF20] p-6 md:p-10 flex-shrink-0 flex justify-center items-start relative ">
+            <button
+              type="button"
+              onClick={() => navigate("/store/apps")}
+              className="cursor-pointer font-bold absolute top-4 left-4 flex items-center text-sm text-gray-800 hover:text-gray-900"
+            >
+              <FiArrowLeft size={20} className="mr-1" /> Back to Apps
+            </button>
+            <img
+              src={VectorA}
+              alt="Vector A"
+              className="w-20 md:w-24 h-fit mt-10 invert brightness-125"
+            />
+          </div>
 
-              // Line color should be based on the *previous* step’s completion
-              const lineColor =
-                s.step - 1 < step
-                  ? stepColors[index - 1] || "bg-gray-400"
-                  : "bg-gray-400";
+          <div className="p-6 md:p-10 flex-1 space-y-6 relative w-full md:max-w-[70%] mx-auto">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+              {currentStepData.title}
+            </h2>
 
-              return (
-                <div
-                  key={s.step}
-                  className="flex flex-col items-center w-1/4 relative"
-                >
-                  {/* Connecting line FROM previous step TO this one */}
-                  {index > 0 && (
-                    <div
-                      className={`absolute top-3 -left-1/2 h-0.5 ${lineColor} z-0`}
-                      style={{ width: "100%" }}
-                    />
-                  )}
+            {(step === 0 || step === 3) && currentStepData.description && (
+              <p className="text-gray-700 text-sm mb-6 whitespace-pre-line">
+                {currentStepData.description}
+              </p>
+            )}
 
-                  {/* Circle */}
-                  <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold z-10 ${circleColor}`}
+            {step === 4 &&
+              collectsDataValue === "Yes, we collect data from this app" && (
+                <p className="text-gray-700 text-sm mb-6 whitespace-pre-line">
+                  Thanks for helping users understand your app's privacy
+                  practices. Remember that you're responsible for any
+                  third-party code that is added to your app, so if your
+                  third-party partners collect data from your app, you must
+                  represent that in your responses.
+                  <br />
+                  <br />
+                  • "Collect" refers to transmitting data off the device in a
+                  way that allows you and/or your third-party partners to access
+                  it for a period longer than necessary to service the
+                  transmitted request in real time.
+                  <br />
+                  <br />
+                  • Third-party partners include analytics tools, advertising
+                  networks, third-party SDKs, or other external vendors whose
+                  code you have added to the app.
+                  <br />
+                  <br />
+                  You can view the full list of questions at any time.
+                </p>
+              )}
+
+            {step === 5 && (
+              <p className="text-gray-700 text-lg my-8">
+                {currentStepData.content}
+              </p>
+            )}
+
+            {/* Render fields for Step 0 with specific ordering */}
+            {step === 0 ? (
+              <>
+                {fieldsToRender
+                  .filter(
+                    (field) =>
+                      ![
+                        "supportEmail",
+                        "supportPhone",
+                        "supportWebsite",
+                      ].includes(field.name)
+                  )
+                  .map((field) => (
+                    <FormFieldRenderer key={field.name} field={field} />
+                  ))}
+
+                {/* Support Information section */}
+                <div className="flex flex-wrap gap-2 justify-between items-center pt-4 mt-4 border-t border-gray-200">
+                  <h3 className="font-bold text-xl text-gray-800">
+                    Add New User
+                  </h3>
+                  <label
+                    className={`flex items-center gap-2 text-sm cursor-pointer select-none transition-colors duration-200 ${
+                      useDefaultSupport
+                        ? "text-lime-700 font-semibold"
+                        : "text-gray-500"
+                    }`}
+                    onClick={() => setUseDefaultSupport(!useDefaultSupport)}
                   >
-                    {isCompleted ? <BsCheck size={16} /> : s.step}
-                  </div>
-
-                  {/* Title */}
-                  <span className="mt-2 text-[10px] md:text-[12px] text-white text-center whitespace-nowrap">
-                    {s.title || "\u00A0"}
-                  </span>
+                    <TbCircleCheck
+                      size={20}
+                      className={
+                        useDefaultSupport ? "text-lime-600" : "text-gray-400"
+                      }
+                    />
+                    Use my default support info
+                  </label>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white rounded-[20px] overflow-hidden md:flex relative mt-5"
-      >
-        {/* Left Sidebar */}
-        <div className="bg-[#89AF20] p-6 md:p-10 flex-shrink-0 flex justify-center items-start relative">
-          <button
-            type="button"
-            onClick={() => navigate("/store/apps")}
-            className="cursor-pointer font-bold absolute top-4 left-4 flex items-center text-sm text-gray-800 hover:text-gray-900"
-          >
-            <FiArrowLeft size={20} /> Back to Apps
-          </button>
-          <img
-            src={VectorA}
-            alt="Vector A"
-            className="w-20 md:w-24 h-fit mt-10 invert"
-          />
-        </div>
-
-        {/* Right Form Panel */}
-        <div className="p-6 md:p-10 flex-1 space-y-6 relative max-w-[80%] mx-auto">
-          <h2 className="text-2xl font-bold mb-4">{currentStepData.title}</h2>
-
-          {/* Dynamic Form Fields */}
-          {currentStepData.fields.map(
-            ({
-              name,
-              label,
-              placeholder,
-              type,
-              required,
-              options,
-              maxLength,
-              desc,
-              layout,
-            }) => (
-              <div
-                key={name}
-                className={`mb-6 grid ${
-                  layout
-                    ? "md:grid-cols-[200px_1fr] gap-2"
-                    : "flex-col grid-col-1"
-                }`}
-              >
-                <label htmlFor={name} className="mb-1 font-medium">
-                  {label}
-                </label>
-
-                {type === "textarea" ? (
-                  <textarea
-                    id={name}
-                    placeholder={placeholder}
-                    maxLength={maxLength}
-                    {...register(name, { required })}
-                    className="w-full bg-gray-100 px-4 py-3 text-sm"
-                  />
-                ) : type === "radio-group" ? (
-                  <div className="space-y-2">
-                    {options.map((opt) => (
-                      <label key={opt} className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          value={opt}
-                          {...register(name, { required })}
-                          className="appearance-none h-4 w-4 border border-black rounded-full checked:bg-lime-400"
-                        />
-                        {opt}
-                      </label>
-                    ))}
-                  </div>
-                ) : type === "radio-group-flex" ? (
-                  <div className="space-y-2 flex flex-wrap gap-4 md:gap-7  items-center">
-                    {options.map((opt) => (
-                      <label key={opt} className="flex items-center gap-2">
-                        <input
-                          type="radio"
-                          value={opt}
-                          {...register(name, { required })}
-                          className="appearance-none h-4 w-4 border border-black rounded-full checked:bg-lime-400"
-                        />
-                        {opt}
-                      </label>
-                    ))}
-                  </div>
-                ) : type === "images" ? (
-                  <div className="space-y-6">
-                    {desc && (
-                      <p className="text-sm text-gray-400 py-4">{desc}</p>
-                    )}
-                    {options.map((image, index) => (
-                      <figure
-                        key={index}
-                        className="grid md:grid-cols-[200px_1fr] items-start gap-4"
-                      >
-                        <label className="text-sm font-semibold text-gray-700 mt-2">
-                          {image?.label}
-                        </label>
-
-                        <section className="min-h-60 text-gray-600 border border-dashed border-gray-400 bg-gray-50 flex flex-col items-center justify-center text-center p-6 hover:bg-gray-100 transition cursor-pointer">
-                          <div className="w-12 h-12 mb-3 bg-gray-200 rounded-full flex items-center justify-center">
-                            <FaUpload size="30" />
-                          </div>
-                          <p className="text-xs max-w-xs mt-2">
-                            {image?.desc || "Drop PNG or JPEG to upload"}
-                          </p>
-                        </section>
-                      </figure>
-                    ))}
-                  </div>
-                ) : (
-                  <input
-                    id={name}
-                    type={type}
-                    placeholder={placeholder}
-                    maxLength={maxLength}
-                    {...register(name, { required })}
-                    className="w-full bg-gray-100 px-4 py-3 text-sm"
-                  />
-                )}
-
-                {/* ✅ Inject support toggle after category */}
-                {step === 0 && name === "category" && (
-                  <div className="flex flex-wrap gap-2 justify-between items-center pt-4 mt-4">
-                    <h3 className="font-bold text-xl">Add New User</h3>
-                    <label
-                      className={`flex items-center gap-2 text-sm text-gray-400 cursor-pointer select-none transition-colors duration-200 ${
-                        useDefaultSupport ? "text-lime-700" : "text-gray-400"
-                      }`}
-                      onClick={() => setUseDefaultSupport(!useDefaultSupport)}
-                    >
-                      <TbCircleCheck size={20} />
-                      Use my default support info
-                    </label>
-                  </div>
-                )}
-              </div>
-            )
-          )}
-
-          {/* Footer */}
-          <div className="flex justify-end gap-3 items-center pt-6">
-            {step > 0 && (
-              <button
-                type="button"
-                onClick={prevStep}
-                className="cursor-pointer bg-black text-white w-12 h-12 rounded-full flex items-center justify-center"
-              >
-                <FiArrowLeft />
-              </button>
-            )}
-            {step < appSubmissionSteps.length - 1 ? (
-              <button
-                type="button"
-                onClick={nextStep}
-                className="cursor-pointer bg-black text-white w-12 h-12 rounded-full flex items-center justify-center"
-              >
-                <FiArrowRight />
-              </button>
+                {/* Render support fields */}
+                {fieldsToRender
+                  .filter(
+                    (field) =>
+                      field.name === "supportEmail" ||
+                      field.name === "supportPhone" ||
+                      field.name === "supportWebsite"
+                  )
+                  .map((field) => (
+                    <FormFieldRenderer key={field.name} field={field} />
+                  ))}
+              </>
             ) : (
-              <button
-                type="submit"
-                className="bg-lime-600 text-white px-6 py-2 rounded-full"
-              >
-                Submit
-              </button>
+              // Render all fields normally for other steps (including dynamically generated for step 4)
+              fieldsToRender.map((field) => (
+                <FormFieldRenderer key={field.name} field={field} />
+              ))
             )}
+
+            <SubmissionNavigators
+              step={step}
+              prevStep={prevStep}
+              nextStep={nextStep}
+              appSubmissionSteps={appSubmissionSteps}
+            />
           </div>
-        </div>
-      </form>
+        </form>
+      </FormProvider>
     </div>
   );
 }

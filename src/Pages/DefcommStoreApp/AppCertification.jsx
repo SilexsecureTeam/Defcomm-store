@@ -6,7 +6,7 @@ import imgone from "../../assets/logos_wifi.png";
 import imgtwo from "../../assets/motorcycle 1.png";
 import imgthree from "../../assets/streamline_mouse-wireless-1.png";
 import imgfour from "../../assets/healthicons_network-5g.png";
-import HeaderBar from "./HeaderBar";
+import HeaderBar from "../../Components/store/HeaderBar";
 
 function AppCertification() {
   return (

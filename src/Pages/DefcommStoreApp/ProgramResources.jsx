@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderBar from "./HeaderBar";
+import HeaderBar from "../../Components/store/HeaderBar";
 import ProgramCards from "./ProgramCards";
 import AppSubmissionPanel from "./AppSubmissionPanel"; // You’ll create this too
 

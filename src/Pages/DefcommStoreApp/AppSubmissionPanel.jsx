@@ -5,9 +5,9 @@ import start from "../../assets/material-icon-theme_verified.png";
 import VectorA from "../../assets/VectorA.png";
 import AppSubmissionForm from "./AppSubmissionForm";
 import { useNavigate } from "react-router-dom";
-import HeaderBarTwo from "./HeaderBarTwo";
+import HeaderBarTwo from "../../Components/store/HeaderBarTwo";
 import { apps } from "../../utils/dummies";
-import HeaderBar from "./HeaderBar";
+import HeaderBar from "../../Components/store/HeaderBar";
 export default function AppSubmissionPanel() {
   return (
     <div className="p-4 md:p-10 space-y-10">

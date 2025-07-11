@@ -2,7 +2,7 @@ import React from "react";
 import VectorA from "../../assets/simple-icons_appstore.png";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import HeaderBar from "./HeaderBar";
+import HeaderBar from "../../Components/store/HeaderBar";
 
 export default function DataCollection() {
   const navigate = useNavigate();
