@@ -14,9 +14,11 @@ import { AuthContext } from "../../context/AuthContext";
 import FormStepper from "../../Components/store/FormStepper";
 import FormFieldRenderer from "../../Components/store/FormFieldRenderer";
 import SubmissionNavigators from "../../Components/store/SubmissionNavigators";
+import useApp from "../../hooks/useApp";
 
 export default function AppSubmissionForm() {
   const { authDetails } = useContext(AuthContext);
+  const { createAppMutation } = useApp();
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [useDefaultSupport, setUseDefaultSupport] = useState(false);
@@ -38,23 +40,23 @@ export default function AppSubmissionForm() {
   } = methods;
 
   const currentStepData = appSubmissionSteps.find((s) => s.step === step);
-  const collectsDataValue = watch("collectsData");
+  const collectsDataValue = watch("collect_data");
 
   useEffect(() => {
     if (step === 0) {
       if (useDefaultSupport) {
-        setValue("supportEmail", authDetails?.user?.email || "");
-        setValue("supportPhone", authDetails?.user?.phone || "");
+        setValue("email", authDetails?.user?.email || "");
+        setValue("phone", authDetails?.user?.phone || "");
         setValue(
           "supportWebsite",
           authDetails?.user?.website || "www.defcomm.ng"
         );
       } else {
         // Only clear if the current value matches the default, otherwise user input is preserved
-        if (watch("supportEmail") === (authDetails?.user?.email || ""))
-          setValue("supportEmail", "");
-        if (watch("supportPhone") === (authDetails?.user?.phone || ""))
-          setValue("supportPhone", "");
+        if (watch("email") === (authDetails?.user?.email || ""))
+          setValue("email", "");
+        if (watch("phone") === (authDetails?.user?.phone || ""))
+          setValue("phone", "");
         if (watch("supportWebsite") === "www.defcomm.ng")
           setValue("supportWebsite", "");
       }
@@ -84,7 +86,11 @@ export default function AppSubmissionForm() {
   }, [step, collectsDataValue, yesCollect, noCollect]);
 
   const nextStep = async () => {
-    // Determine the fields that are actually rendered and filter for required ones
+    const isLastStep = step === appSubmissionSteps.length - 1;
+    const isSecondToLastStep = step === appSubmissionSteps.length - 2;
+
+    if (isLastStep) return; // prevent from advancing further
+
     let fieldsToValidate = [];
     if (step === 4) {
       fieldsToValidate = dataCollectionFields
@@ -96,17 +102,23 @@ export default function AppSubmissionForm() {
         .map((field) => field.name);
     }
 
-    // If on step 0 and using default support, manually add support fields to validation
     if (step === 0 && useDefaultSupport) {
-      fieldsToValidate.push("supportEmail", "supportPhone", "supportWebsite");
+      fieldsToValidate.push("email", "phone", "supportWebsite");
     }
+
     const isValid = await trigger(fieldsToValidate);
-    // Only proceed if validation passes AND it's not the last step
-    if (isValid && step < appSubmissionSteps.length - 1) {
-      setStep(step + 1);
+    if (isValid) {
+      // Delay the transition to allow click event to fully resolve first
+      if (isSecondToLastStep) {
+        // Delay advancing to final step so button doesn’t act like submit
+        setTimeout(() => {
+          setStep((prev) => prev + 1);
+        }, 50);
+      } else {
+        setStep((prev) => prev + 1);
+      }
     } else {
       console.log("Validation errors on current step:", errors);
-      // Optionally scroll to first error or provide user feedback
     }
   };
 
@@ -116,20 +128,23 @@ export default function AppSubmissionForm() {
     }
   };
 
-  const onSubmit = async (data) => {
-    console.log("Final Form Data:", data);
+  const normalizeRelease = (text) => {
+    if (text.includes("Manually")) return "manual";
+    if (text.includes("no earlier")) return "automatic_earlier";
+    return "automatic";
+  };
+  const normalizeCollectData = (val) => {
+    if (val === "Yes, we collect data from this app") return "yes";
+    if (val === "No, we do not collect data from this app") return "no";
+    return "";
+  };
 
+  const onSubmit = async (data) => {
     const formData = new FormData();
 
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
         const value = data[key];
-        // Skip display fields when submitting
-        const fieldDef = currentStepData.fields.find((f) => f.name === key);
-        if (fieldDef && fieldDef.type === "display") {
-          continue;
-        }
-
         if (value instanceof File) {
           formData.append(key, value, value.name);
         } else if (value !== null && value !== undefined) {
@@ -138,22 +153,16 @@ export default function AppSubmissionForm() {
       }
     }
 
+    formData.set("release", normalizeRelease(data.release));
+    formData.set("collect_data", normalizeCollectData(data.collect_data));
+    formData.append("id", ""); // Include empty `id` if needed
+
     try {
-      const response = await fetch("YOUR_API_ENDPOINT_HERE/submit-app", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to submit app.");
-      }
-
-      const result = await response.json();
-      console.log("App submission successful:", result);
-      navigate("/submission-success");
+      const result = await createAppMutation.mutateAsync(formData);
+      console.log("App submitted:", result);
+      navigate("/store/apps");
     } catch (error) {
-      console.error("Error submitting app:", error);
+      console.error("Submission failed:", error);
       alert(`Submission failed: ${error.message}`);
     }
   };
@@ -169,7 +178,13 @@ export default function AppSubmissionForm() {
 
       <FormProvider {...methods}>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={(e) => {
+            if (step < appSubmissionSteps.length - 1) {
+              e.preventDefault(); // Cancel submit if not on last step
+              return;
+            }
+            handleSubmit(onSubmit)(e);
+          }}
           className="bg-white rounded-[20px] overflow-hidden md:flex relative mt-5 shadow-lg"
         >
           <div className="bg-[#89AF20] p-6 md:p-10 flex-shrink-0 flex justify-center items-start relative ">
@@ -235,11 +250,7 @@ export default function AppSubmissionForm() {
                 {fieldsToRender
                   .filter(
                     (field) =>
-                      ![
-                        "supportEmail",
-                        "supportPhone",
-                        "supportWebsite",
-                      ].includes(field.name)
+                      !["email", "phone", "supportWebsite"].includes(field.name)
                   )
                   .map((field) => (
                     <FormFieldRenderer key={field.name} field={field} />
@@ -271,8 +282,8 @@ export default function AppSubmissionForm() {
                 {fieldsToRender
                   .filter(
                     (field) =>
-                      field.name === "supportEmail" ||
-                      field.name === "supportPhone" ||
+                      field.name === "email" ||
+                      field.name === "phone" ||
                       field.name === "supportWebsite"
                   )
                   .map((field) => (
@@ -291,6 +302,7 @@ export default function AppSubmissionForm() {
               prevStep={prevStep}
               nextStep={nextStep}
               appSubmissionSteps={appSubmissionSteps}
+              loading={createAppMutation.isPending}
             />
           </div>
         </form>

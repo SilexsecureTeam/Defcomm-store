@@ -6,13 +6,6 @@ import divSix from "../assets/Vector (1).png";
 import divSeven from "../assets/secure 2.png";
 import divEight from "../assets/icons8-contacts 1.png";
 
-//apps
-import Groupone from "../assets/Group 5335.png";
-import fileDev from "../assets/Secure File Sharing.png";
-import militarymail from "../assets/Secure Email.png";
-import Bullet from "../assets/Armour (1) 1.png";
-import iSurvive from "../assets/militar 1.png";
-
 export const listofregistration = {
   individual: [
     {
@@ -56,12 +49,4 @@ export const navItems = [
   { src: divSix, path: "/appCert" },
   { src: divSeven, path: "/dataCol" },
   { src: divEight, path: "/appSub" },
-];
-
-export const apps = [
-  { name: "Secure Call", img: Groupone },
-  { name: "FileDev Sharing", img: fileDev },
-  { name: "MilitaryMail", img: militarymail },
-  { name: "Bullet Precision", img: Bullet },
-  { name: "iSurvive", img: iSurvive },
 ];

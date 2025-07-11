@@ -2,11 +2,11 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { axiosClient } from "../services/axios-client";
 import { onSuccess, onFailure } from "../utils/notifications/Notification";
 import { extractErrorMessage } from "../utils/formmaters";
-
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 const useApp = () => {
-  const client = axiosClient(
-    "45|VGtvjqAhxSvccBMCTqYkn6DgaXoVui4kgnHXnmuY6d746ba2"
-  );
+  const { authDetails } = useContext(AuthContext);
+  const client = axiosClient(authDetails?.access_token);
   const queryClient = useQueryClient();
 
   // GET: List all apps
@@ -34,7 +34,12 @@ const useApp = () => {
 
   // POST: Create app
   const createAppMutation = useMutation({
-    mutationFn: (payload) => client.post("/app/create", payload),
+    mutationFn: (payload) =>
+      client.post("/app/create", payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
     onSuccess: () => {
       queryClient.invalidateQueries(["appList"]);
       onSuccess({ message: "App created successfully" });

@@ -125,7 +125,7 @@ const FormFieldRenderer = ({ field }) => {
                   <img
                     src={previewUrl}
                     alt="Preview"
-                    className="max-w-full max-h-full object-contain rounded-md"
+                    className="w-20 h-20 object-contain rounded-md"
                   />
                 ) : (
                   <div className="text-center p-4 bg-gray-200 rounded-md">

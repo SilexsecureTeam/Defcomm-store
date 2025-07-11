@@ -1,11 +1,13 @@
 import React from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { FaSpinner } from "react-icons/fa";
 
 const SubmissionNavigators = ({
   step,
   appSubmissionSteps,
   nextStep,
   prevStep,
+  loading,
 }) => {
   return (
     <div className="flex justify-end gap-3 items-center pt-6 border-t border-gray-200 mt-8">
@@ -29,9 +31,19 @@ const SubmissionNavigators = ({
       ) : (
         <button
           type="submit"
-          className="bg-lime-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-lime-700 transition-colors duration-200"
+          disabled={loading}
+          aria-busy={loading}
+          aria-live="polite"
+          className={`px-6 py-3 rounded-full font-semibold flex items-center gap-2 transition-colors duration-200 ${
+            loading
+              ? "bg-lime-400 cursor-not-allowed"
+              : "bg-lime-600 hover:bg-lime-700 text-white"
+          }`}
         >
-          Submit App
+          {loading && (
+            <FaSpinner className="animate-spin text-white" size={16} />
+          )}
+          {loading ? "Submitting..." : "Submit App"}
         </button>
       )}
     </div>

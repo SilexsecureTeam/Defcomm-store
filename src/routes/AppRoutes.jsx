@@ -19,9 +19,7 @@ const ProgramResources = lazy(() =>
 const AppSubmission = lazy(() =>
   import("../Pages/DefcommStoreApp/AppSubmission")
 );
-const AppSubmissionPanel = lazy(() =>
-  import("../Pages/DefcommStoreApp/AppSubmissionPanel")
-);
+const MyApps = lazy(() => import("../Pages/DefcommStoreApp/MyApps"));
 const DataCollection = lazy(() => import("../Pages/DefcommStoreApp/DataCol"));
 const AppCertification = lazy(() =>
   import("../Pages/DefcommStoreApp/AppCertification")
@@ -37,7 +35,7 @@ const AppRoutes = (
       <Route path="medical" element={<MedicalApp />} />
       <Route path="PPT" element={<PPT />} />
       <Route path="start" element={<ProgramResources />} />
-      <Route path="apps" element={<AppSubmissionPanel />} />
+      <Route path="apps" element={<MyApps />} />
       <Route path="app/new" element={<AppSubmissionForm />} />
       <Route path="appSub" element={<AppSubmission />} />
       <Route path="dataCol" element={<DataCollection />} />

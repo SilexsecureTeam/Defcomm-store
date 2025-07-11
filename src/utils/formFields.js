@@ -8,7 +8,7 @@ export const appSubmissionSteps = [
     description: "",
     fields: [
       {
-        name: "appName",
+        name: "name",
         label: "App Name",
         placeholder: "Max 100 characters",
         type: "text",
@@ -31,14 +31,14 @@ export const appSubmissionSteps = [
         required: true,
       },
       {
-        name: "supportEmail",
+        name: "email",
         label: "Customer support email address",
         placeholder: "server@defcomm.ng",
         type: "email",
         required: true,
       },
       {
-        name: "supportPhone",
+        name: "phone",
         label: "Customer support phone",
         placeholder: "+234 70 32205578",
         type: "tel",
@@ -59,7 +59,7 @@ export const appSubmissionSteps = [
     description: "", // No step-level description here
     fields: [
       {
-        name: "platform",
+        name: "os",
         label: "Platforms ?",
         type: "radio-group-flex",
         options: ["Android", "IOS", "Ubuntu", "DefcommOS"],
@@ -79,7 +79,7 @@ export const appSubmissionSteps = [
         text: `Ensure your app icon, screenshots, and videos are optimized for promoting your app on Defcomm Stores. Familiarize yourself with the content guidelines before uploading new graphics. If you provide translations for your store listing without localized graphics, we will use the graphics from your default language.`,
       },
       {
-        name: "appIcon",
+        name: "app_icon",
         label: "App Icon",
         type: "image",
         layout: true,
@@ -87,7 +87,7 @@ export const appSubmissionSteps = [
         required: true,
       },
       {
-        name: "featuredImages",
+        name: "feature_image",
         label: "Featured Images",
         layout: true,
         type: "image",
@@ -95,7 +95,7 @@ export const appSubmissionSteps = [
         required: true,
       },
       {
-        name: "privacyPolicy",
+        name: "policy",
         label: "Privacy Policy",
         placeholder: "",
         layout: true, // For layout purposes (label on left, input on right)
@@ -110,7 +110,7 @@ export const appSubmissionSteps = [
     description: "", // No step-level description here
     fields: [
       {
-        name: "appBundle",
+        name: "app_bundle",
         label: "App Bundles",
         type: "file",
         layout: true,
@@ -118,7 +118,7 @@ export const appSubmissionSteps = [
         required: true,
       },
       {
-        name: "releaseName",
+        name: "name_release",
         label: "Release name",
         placeholder: "",
         type: "text",
@@ -157,7 +157,7 @@ export const appSubmissionSteps = [
         className: "text-gray-700 text-sm mb-4",
       },
       {
-        name: "releaseType",
+        name: "release",
         label: "",
         type: "radio-group",
         options: [
@@ -181,7 +181,7 @@ export const appSubmissionSteps = [
     You can view the full list of questions at any time.`,
     fields: [
       {
-        name: "collectsData",
+        name: "collect_data",
         label:
           "Do you or your third-party partners collect data from this app?",
         type: "radio-group",
@@ -225,25 +225,25 @@ export const yesCollect = [
     desc: "Including first or last name",
   },
   {
-    name: "emailAddress",
+    name: "contact_email",
     label: "Email Address",
     type: "checkbox",
     desc: "Including but not limited to a hashed email address",
   },
   {
-    name: "phoneNumbers",
+    name: "contact_phone",
     label: "Phone Numbers",
     type: "checkbox",
     desc: "Including but not limited to a hashed phone number",
   },
   {
-    name: "physicalAddress",
+    name: "contact_address",
     label: "Physical Address",
     type: "checkbox",
     desc: "Such as a home address, physical address, or mailing address",
   },
   {
-    name: "otherContactInfo",
+    name: "contact_other",
     label: "Other Contact Info",
     type: "checkbox",
     desc: "Any other information that can be used to contact the user outside the app",
@@ -257,13 +257,13 @@ export const yesCollect = [
     className: "text-xl font-semibold mt-8 mb-2 text-gray-800",
   },
   {
-    name: "preciseLocation",
+    name: "location_precise",
     label: "Precise Location",
     type: "checkbox",
     desc: "Information that describes the location of a user or device with the same or greater resolution as a latitude and longitude with three or more decimal places",
   },
   {
-    name: "approximateLocation",
+    name: "location_coarse",
     label: "Coarse Location",
     type: "checkbox",
     desc: "Information that describes the location of a user or device with lower resolution than a latitude and longitude with three or more decimal places, such as approximate location services",
