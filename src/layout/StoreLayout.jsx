@@ -15,7 +15,7 @@ function StoreLayout() {
     >
       <NavTwo />
       <HeaderBar />
-      <main className="flex-grow ">
+      <main className="flex-grow w-[95%] max-w-[1400px] mx-auto">
         <Outlet />
       </main>
     </div>
