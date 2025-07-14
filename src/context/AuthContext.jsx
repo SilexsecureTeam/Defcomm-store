@@ -6,10 +6,24 @@ export const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const queryClient = useQueryClient();
 
+  // Helper to inject isDevMode
+  const enhanceUser = (user) => {
+    if (!user) return null;
+    const status = user?.user?.statusApp;
+    return {
+      ...user,
+      user: {
+        ...user.user,
+        isDevMode: status === "approved",
+      },
+    };
+  };
+
   // Read from sessionStorage on mount
   const [authDetails, setAuthDetails] = useState(() => {
     const storedUser = sessionStorage.getItem("authUser");
-    return storedUser ? JSON.parse(storedUser) : null;
+    const parsed = storedUser ? JSON.parse(storedUser) : null;
+    return enhanceUser(parsed);
   });
 
   // Query for getting auth details (React Query cache)
@@ -17,27 +31,31 @@ export const AuthProvider = ({ children }) => {
     queryKey: ["authUser"],
     queryFn: () => Promise.resolve(authDetails),
     initialData: authDetails,
-    staleTime: 0, // Ensure immediate refetch on changes
+    staleTime: 0,
   });
 
   // Sync query data with auth state
   useEffect(() => {
-    if (data) setAuthDetails(data);
+    if (data) {
+      const enhanced = enhanceUser(data);
+      setAuthDetails(enhanced);
+    }
   }, [data]);
 
   // Function to update auth state and React Query
   const updateAuth = (newUser) => {
-    setAuthDetails(newUser);
-    if (newUser) {
-      sessionStorage.setItem("authUser", JSON.stringify(newUser));
-      queryClient.setQueryData(["authUser"], newUser); // Update React Query
+    const enhanced = enhanceUser(newUser);
+    setAuthDetails(enhanced);
+
+    if (enhanced) {
+      sessionStorage.setItem("authUser", JSON.stringify(enhanced));
+      queryClient.setQueryData(["authUser"], enhanced);
     } else {
       sessionStorage.removeItem("authUser");
-      queryClient.removeQueries(["authUser"]); // Completely remove query
+      queryClient.removeQueries(["authUser"]);
     }
   };
 
-  // Add isAuthenticated boolean for convenience
   const isAuthenticated = !!authDetails;
 
   return (

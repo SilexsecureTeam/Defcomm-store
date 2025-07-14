@@ -11,8 +11,6 @@ export default function ProgramResources() {
   return (
     <>
       <div className="py-10 md:py-20">
-        <HeaderBar />
-
         <ProgramCards
           setPlayDisplay={setPlayDisplay}
           playDisplay={playDisplay}

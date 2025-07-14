@@ -17,7 +17,7 @@ const useAuth = () => {
   const { authDetails, updateAuth } = useContext(AuthContext);
   const client = axiosClient(authDetails?.access_token);
 
-  // ✅ Register Mutation
+  //  Register Mutation
   const registerMutation = useMutation({
     mutationFn: async (formData) => {
       const { data } = await axiosClient().post("/register", formData);
@@ -26,13 +26,8 @@ const useAuth = () => {
     onSuccess: (userData) => {
       onSuccess({
         message: "Account Created",
-        success: "Account created successfully!",
+        success: "Account created successfully! You need to verify.",
       });
-      updateAuth({
-        access_token: userData?.data?.access_token,
-        user: { ...userData?.data },
-      });
-      navigate("/store/start");
     },
     onError: (err) => {
       onFailure({

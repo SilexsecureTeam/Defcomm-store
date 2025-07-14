@@ -5,15 +5,20 @@ import HeaderBar from "../../Components/store/HeaderBar";
 import useApp from "../../hooks/useApp";
 import AppGrid from "../../Components/store/apps/AppGrid";
 import AppGridSkeleton from "../../Components/store/apps/AppGridSkeleton";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function MyApps() {
+  const { authDetails } = useContext(AuthContext);
   const { getAppListQuery } = useApp();
   const { data: apps, isLoading, isError, error } = getAppListQuery;
 
   return (
     <div className="p-4 md:p-10 space-y-10">
-      <HeaderBar />
-      <HeaderBarTwo title="App Submission" link="/store/app/new" />
+      <HeaderBarTwo
+        title={authDetails?.user?.isDevMode ? "App Submission" : "Apps"}
+        link={authDetails?.user?.isDevMode && "/store/app/new"}
+      />
 
       <div className="md:flex rounded-[20px] overflow-hidden mt-2">
         {/* Sidebar Icon */}

@@ -29,6 +29,9 @@ const ComingSoon = lazy(() => import("../Pages/ComingSoon"));
 const AppSubmissionForm = lazy(() =>
   import("../Pages/DefcommStoreApp/AppSubmissionForm")
 );
+const DeveloperApplicationForm = lazy(() =>
+  import("../Pages/DeveloperApplicationForm")
+);
 
 const AppRoutes = (
   <Route element={<AppGuard />}>
@@ -39,12 +42,14 @@ const AppRoutes = (
 
       {/* App */}
       <Route path="apps" element={<MyApps />} />
-      <Route path="/store/app/:id" element={<AppViewPage />} />
+      <Route path="app/:id" element={<AppViewPage />} />
 
       <Route path="app/new" element={<AppSubmissionForm />} />
       <Route path="appSub" element={<AppSubmission />} />
       <Route path="dataCol" element={<DataCollection />} />
       <Route path="appCert" element={<AppCertification />} />
+
+      <Route path="apply" element={<DeveloperApplicationForm />} />
 
       {/* Fallback route */}
       <Route path="*" element={<ComingSoon />} />

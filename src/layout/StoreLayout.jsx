@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import NavTwo from "../Components/Header/NavTwo";
+import HeaderBar from "../Components/store/HeaderBar";
 
 function StoreLayout() {
   return (
@@ -13,6 +14,7 @@ function StoreLayout() {
       }}
     >
       <NavTwo />
+      <HeaderBar />
       <main className="flex-grow ">
         <Outlet />
       </main>

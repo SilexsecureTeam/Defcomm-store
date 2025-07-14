@@ -2,20 +2,36 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import OtpInput from "react-otp-input";
+import { getNames, getCode } from "country-list";
 import useAuth from "../../hooks/useAuth";
 import { FaSpinner } from "react-icons/fa6";
 import { FiCheckCircle, FiXCircle, FiEye, FiEyeOff } from "react-icons/fi";
 
+const countries = getNames();
+
 const RegisterForm = ({ userType = "individual" }) => {
   const role = userType === "organization" ? "company" : "user";
 
-  const { registerMutation, verifyEmailMutation } = useAuth();
+  const {
+    registerMutation,
+    verifyEmailMutation,
+    requestOtpMutation,
+    verifyOtpMutation,
+  } = useAuth();
+
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
   const [verify, setVerify] = useState("text");
   const [emailVerified, setEmailVerified] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [registrationComplete, setRegistrationComplete] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpError, setOtpError] = useState("");
+  const [otpSuccess, setOtpSuccess] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("Nigeria");
+  const [phoneCountry, setPhoneCountry] = useState("ng");
 
   const {
     register,
@@ -24,12 +40,11 @@ const RegisterForm = ({ userType = "individual" }) => {
     setError,
     clearErrors,
     formState: { errors },
-  } = useForm({
-    mode: "onChange", // or "onBlur"
-  });
+  } = useForm({ mode: "onChange" });
 
   const email = watch("email");
   const password = watch("password");
+  const isStrongPassword = password && password.length >= 6;
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -51,7 +66,6 @@ const RegisterForm = ({ userType = "individual" }) => {
         });
       }
     }, 800);
-
     return () => clearTimeout(timeout);
   }, [email]);
 
@@ -63,67 +77,152 @@ const RegisterForm = ({ userType = "individual" }) => {
       });
       return;
     }
+    if (!phone || phone.length <= getCode(selectedCountry).length + 1) {
+      setError("phone", {
+        type: "manual",
+        message: "Please enter a valid phone number.",
+      });
+      return;
+    }
 
     const payload = {
       name: `${data.firstName} ${data.lastName}`,
       email: data.email,
-      phone,
+      phone: phone && phone.replace(/\s/g, ""),
       password: data.password,
-      country: data.country,
+      country: selectedCountry,
       dob: data.birthday,
       gender,
       role,
     };
 
-    registerMutation.mutate(payload);
+    registerMutation.mutate(payload, {
+      onSuccess: () => {
+        //const identifier = verify === "text" ? payload.phone : data.email;
+        setRegistrationComplete(true);
+      },
+    });
+  };
+
+  const handleVerifyOtp = () => {
+    if (otp.length !== 4) {
+      setOtpError("Enter a valid 4-digit OTP.");
+      return;
+    }
+
+    const identifier =
+      verify === "text" ? (phone.startsWith("+") ? phone : `+${phone}`) : email;
+
+    verifyOtpMutation.mutate(
+      verify === "text"
+        ? { phone: identifier, otp }
+        : { email: identifier, otp },
+      {
+        onSuccess: () => {
+          setOtpSuccess(true);
+          setOtpError("");
+        },
+        onError: () => {
+          setOtpError("Invalid OTP. Please try again.");
+        },
+      }
+    );
   };
 
   const errorClass = "text-sm text-red-500 mt-1";
-  const isStrongPassword = password && password.length >= 6;
+
+  if (registrationComplete && !otpSuccess) {
+    return (
+      <div className="max-w-md mx-auto mt-6">
+        <p className="mb-3 text-gray-700">
+          An OTP has been sent to{" "}
+          <strong>{verify === "text" ? `+${phone}` : email}</strong>. Enter it
+          below to complete registration.
+        </p>
+
+        <OtpInput
+          value={otp}
+          onChange={(val) => /^\d*$/.test(val) && setOtp(val)}
+          numInputs={4}
+          isInputNum
+          shouldAutoFocus
+          containerStyle="flex gap-2 mb-4"
+          inputStyle={{
+            background: "#36460A",
+            borderRadius: "10px",
+            color: "white",
+            width: "50px",
+            fontSize: "24px",
+            height: "50px",
+          }}
+          renderInput={(props) => (
+            <input {...props} inputMode="numeric" aria-label="OTP Digit" />
+          )}
+        />
+
+        {otpError && <p className="text-red-500 text-sm mb-3">{otpError}</p>}
+        {otpSuccess && (
+          <p className="text-green-600 text-sm mb-3">
+            ✅ Verified successfully!
+          </p>
+        )}
+
+        <button
+          type="button"
+          onClick={handleVerifyOtp}
+          className="w-full bg-[#36460A] text-white py-2 rounded hover:bg-[#2e360c]"
+          disabled={verifyOtpMutation.isPending || otp.length !== 4}
+        >
+          {verifyOtpMutation.isPending ? "Verifying..." : "Verify OTP"}
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl">
-      {/* First Name & Last Name */}
-      <div className="flex flex-col justify-between md:flex-row max-w-4xl">
-        <div className="mb-4 w-full md:mr-2">
-          <input
-            {...register("firstName", { required: "First name is required" })}
-            className="w-full py-2 px-4 border border-gray-300 rounded-xl"
-            placeholder="First Name"
-          />
-          {errors.firstName && (
-            <p className={errorClass}>{errors.firstName.message}</p>
-          )}
-        </div>
-
-        <div className="mb-4 w-full md:ml-2">
-          <input
-            {...register("lastName", { required: "Last name is required" })}
-            className="w-full py-2 px-4 border border-gray-300 rounded-xl"
-            placeholder="Last Name"
-          />
-          {errors.lastName && (
-            <p className={errorClass}>{errors.lastName.message}</p>
-          )}
-        </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl space-y-4">
+      <div className="flex flex-col md:flex-row gap-4">
+        <input
+          {...register("firstName", { required: "First name is required" })}
+          className="w-full py-2 px-4 border border-gray-300 rounded-xl"
+          placeholder="First Name"
+        />
+        <input
+          {...register("lastName", { required: "Last name is required" })}
+          className="w-full py-2 px-4 border border-gray-300 rounded-xl"
+          placeholder="Last Name"
+        />
       </div>
 
-      {/* Country */}
-      <div className="mb-4">
-        <input
+      <div>
+        <select
           {...register("country", { required: "Country is required" })}
-          className="w-full py-2 px-4 border border-gray-300 rounded-xl"
-          placeholder="Country/Region"
-        />
+          className="w-full py-2 px-4 border border-gray-300 rounded-xl bg-white"
+          value={selectedCountry}
+          onChange={(e) => {
+            const name = e.target.value;
+            const code = getCode(name)?.toLowerCase();
+            setSelectedCountry(name);
+            setPhoneCountry(code || "ng");
+          }}
+        >
+          <option value="" disabled>
+            Select your country
+          </option>
+          {countries.map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
+          ))}
+        </select>
         {errors.country && (
           <p className={errorClass}>{errors.country.message}</p>
         )}
       </div>
 
-      {/* Gender */}
-      <div className="mb-4">
+      <div>
         <span className="block font-medium mb-1">Gender:</span>
-        <div className="flex items-center gap-4">
+        <div className="flex gap-4">
           {["male", "female"].map((g) => (
             <label key={g} className="flex items-center gap-2">
               <input
@@ -139,79 +238,86 @@ const RegisterForm = ({ userType = "individual" }) => {
         </div>
       </div>
 
-      {/* Birthday */}
       <div className="mb-4">
         <input
           type="date"
-          {...register("birthday", { required: "Birthday is required" })}
+          {...register("birthday", {
+            required: "Birthday is required",
+            validate: (value) => {
+              const dob = new Date(value);
+              const today = new Date();
+              const minAgeDate = new Date(
+                today.getFullYear() - 5,
+                today.getMonth(),
+                today.getDate()
+              );
+
+              if (dob > today) {
+                return "Birthday cannot be in the future.";
+              }
+
+              if (dob > minAgeDate) {
+                return "Please enter a valid birth date. You must be at least 5 years old.";
+              }
+
+              return true;
+            },
+          })}
+          max={new Date().toISOString().split("T")[0]} // ensures the date picker restricts future dates
           className="w-full py-2 px-4 border border-gray-300 rounded-xl"
-          placeholder="Birthday"
         />
         <p className="text-xs text-gray-500 mt-1">
-          Let us know about your birthday so as not to miss a gift
+          Let us know your birthday so we don’t miss sending you a gift!
         </p>
         {errors.birthday && (
-          <p className={errorClass}>{errors.birthday.message}</p>
+          <p className="text-sm text-red-500 mt-1">{errors.birthday.message}</p>
         )}
       </div>
 
-      {/* Email */}
-      <div className="mb-4">
+      {/* EMAIL INPUT WITH ICON */}
+      <div>
         <div className="relative">
           <input
             type="email"
             {...register("email", { required: "Email is required" })}
-            className={`w-full py-2 px-4 pr-12 border ${
+            className={`lowercase w-full py-2 px-4 pr-12 border ${
               errors.email
                 ? "border-red-500"
                 : emailVerified
                 ? "border-green-500"
                 : "border-gray-300"
             } rounded-xl`}
-            placeholder="Email adress"
+            placeholder="Email address"
           />
-          {email && (
-            <div className="absolute inset-y-0 right-3 flex items-center">
-              {verifyEmailMutation.isPending ? (
-                <FaSpinner className="animate-spin text-gray-400 text-lg" />
-              ) : emailVerified ? (
-                <FiCheckCircle className="text-green-500 text-xl" />
-              ) : errors.email ? (
-                <FiXCircle className="text-red-500 text-xl" />
-              ) : null}
-            </div>
-          )}
+          <div className="absolute inset-y-0 right-3 flex items-center">
+            {verifyEmailMutation.isPending ? (
+              <FaSpinner className="animate-spin text-gray-400 text-lg" />
+            ) : emailVerified ? (
+              <FiCheckCircle className="text-green-500 text-xl" />
+            ) : errors.email ? (
+              <FiXCircle className="text-red-500 text-xl" />
+            ) : null}
+          </div>
         </div>
         {errors.email && <p className={errorClass}>{errors.email.message}</p>}
       </div>
 
-      {/* Password */}
-      {/* Password */}
-      <div className="mb-4">
+      {/* Password Field */}
+      <div>
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
             {...register("password", { required: "Password is required" })}
-            className={`w-full py-2 px-4 pr-20 border ${
-              errors.password
-                ? "border-red-500"
-                : isStrongPassword
-                ? "border-green-500"
-                : "border-gray-300"
-            } rounded-xl`}
+            className="w-full py-2 px-4 pr-12 border rounded-xl"
             placeholder="Password"
           />
-
-          {/* Eye Toggle */}
           <span
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            onClick={() => setShowPassword((v) => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
           >
             {showPassword ? <FiEyeOff /> : <FiEye />}
           </span>
-
-          {/* Valid or Error Icon */}
-          <span className="absolute right-10 top-1/2 transform -translate-y-1/2">
+          <span className="absolute right-10 top-1/2 -translate-y-1/2">
             {errors.password ? (
               <FiXCircle className="text-red-500" />
             ) : isStrongPassword ? (
@@ -224,8 +330,8 @@ const RegisterForm = ({ userType = "individual" }) => {
         )}
       </div>
 
-      {/* Confirm Password */}
-      <div className="mb-4">
+      {/* CONFIRM PASSWORD WITH ICON */}
+      <div>
         <div className="relative">
           <input
             type={showConfirmPassword ? "text" : "password"}
@@ -244,16 +350,12 @@ const RegisterForm = ({ userType = "individual" }) => {
             } rounded-xl`}
             placeholder="Confirmed password"
           />
-
-          {/* Eye Toggle */}
           <span
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            onClick={() => setShowConfirmPassword((prev) => !prev)}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
           >
             {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
           </span>
-
-          {/* Valid or Error Icon */}
           <span className="absolute right-10 top-1/2 transform -translate-y-1/2">
             {errors.confirmPassword ? (
               <FiXCircle className="text-red-500" />
@@ -264,19 +366,20 @@ const RegisterForm = ({ userType = "individual" }) => {
           </span>
         </div>
         {errors.confirmPassword && (
-          <p className={errorClass}>{errors.confirmPassword.message}</p>
+          <p className="text-sm text-red-500 mt-1">
+            {errors.confirmPassword.message}
+          </p>
         )}
       </div>
 
-      {/* Phone */}
-      <div className="mb-4">
+      {/* PHONE INPUT */}
+      <div>
         <PhoneInput
-          country={"ng"}
+          country={phoneCountry}
           value={phone}
           onChange={setPhone}
           enableSearch
           inputProps={{ required: true }}
-          placeholder="Country Options"
           inputStyle={{
             width: "100%",
             padding: "14px",
@@ -285,12 +388,14 @@ const RegisterForm = ({ userType = "individual" }) => {
             border: "1px solid #D1D5DB",
           }}
         />
+        {errors.phone && (
+          <p className="text-sm text-red-500 mt-1">{errors.phone.message}</p>
+        )}
       </div>
 
-      {/* Verify With */}
-      <div className="mb-4">
+      <div>
         <span className="block font-medium mb-1">Verify with:</span>
-        <div className="flex items-center gap-4">
+        <div className="flex gap-4">
           {["text", "email"].map((option) => (
             <label key={option} className="flex items-center gap-2">
               <input
@@ -308,7 +413,7 @@ const RegisterForm = ({ userType = "individual" }) => {
 
       <button
         type="submit"
-        className="w-full bg-[#36460A] text-white py-2 rounded hover:bg-[#2e360c]"
+        className="cursor-pointer w-full bg-[#36460A] text-white py-2 rounded hover:bg-[#2e360c]"
         disabled={registerMutation.isPending}
       >
         {registerMutation.isPending ? "Submitting..." : "Continue"}

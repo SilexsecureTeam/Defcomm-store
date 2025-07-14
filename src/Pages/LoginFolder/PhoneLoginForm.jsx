@@ -4,6 +4,7 @@ import "react-phone-input-2/lib/style.css";
 import OtpInput from "react-otp-input";
 import useAuth from "../../hooks/useAuth";
 import { FaSpinner } from "react-icons/fa";
+import { isValidPhoneNumber } from "libphonenumber-js";
 
 const PhoneLoginForm = () => {
   const { requestOtpMutation, verifyOtpMutation } = useAuth();
@@ -12,13 +13,20 @@ const PhoneLoginForm = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
-  const [timer, setTimer] = useState(60); // ⏱ 60 seconds countdown
+  const [timer, setTimer] = useState(60);
+  const [success, setSuccess] = useState(false);
 
+  // Countdown timer effect
   useEffect(() => {
-    let countdown;
-    if (showOtp && timer > 0) {
-      countdown = setInterval(() => setTimer((prev) => prev - 1), 1000);
-    }
+    if (!showOtp || timer === 0) return;
+
+    const countdown = setInterval(() => {
+      setTimer((prev) => {
+        if (prev <= 1) clearInterval(countdown);
+        return prev - 1;
+      });
+    }, 1000);
+
     return () => clearInterval(countdown);
   }, [showOtp, timer]);
 
@@ -28,7 +36,7 @@ const PhoneLoginForm = () => {
   };
 
   const handleRequestOtp = () => {
-    if (!phone || phone.length < 8) {
+    if (!isValidPhoneNumber(`+${phone}`)) {
       setError("Please enter a valid phone number.");
       return;
     }
@@ -38,7 +46,7 @@ const PhoneLoginForm = () => {
       {
         onSuccess: () => {
           setShowOtp(true);
-          setTimer(60); // restart timer on successful send
+          setTimer(60);
           setError("");
         },
         onError: () => {
@@ -59,6 +67,8 @@ const PhoneLoginForm = () => {
       {
         onSuccess: () => {
           setError("");
+          setSuccess(true);
+          // Optional: navigate("/dashboard");
         },
         onError: () => {
           setError("Invalid OTP. Please try again.");
@@ -72,12 +82,15 @@ const PhoneLoginForm = () => {
       {!showOtp ? (
         <>
           <div className="mb-4">
+            <label htmlFor="phone" className="sr-only">
+              Phone Number
+            </label>
             <PhoneInput
               country="ng"
               value={phone}
               onChange={handlePhoneChange}
               enableSearch
-              inputProps={{ required: true }}
+              inputProps={{ required: true, id: "phone" }}
               inputStyle={{
                 width: "100%",
                 height: "42px",
@@ -131,7 +144,9 @@ const PhoneLoginForm = () => {
               fontSize: "25px",
               height: "50px",
             }}
-            renderInput={(props) => <input {...props} inputMode="numeric" />}
+            renderInput={(props) => (
+              <input {...props} inputMode="numeric" aria-label="OTP Digit" />
+            )}
           />
 
           {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
@@ -149,6 +164,12 @@ const PhoneLoginForm = () => {
             )}
           </button>
 
+          {success && (
+            <p className="mt-3 text-green-600 text-sm text-center">
+              ✅ OTP Verified Successfully!
+            </p>
+          )}
+
           {timer === 0 ? (
             <button
               type="button"
@@ -162,7 +183,7 @@ const PhoneLoginForm = () => {
                   Resending...
                 </>
               ) : (
-                "Resend code to device"
+                "Resend OTP"
               )}
             </button>
           ) : (
