@@ -13,7 +13,7 @@ function StoreLayout() {
       }}
     >
       <NavTwo />
-      <main className="flex-grow ">
+      <main className="flex-grow w-[95%] max-w-[1400px]">
         <Outlet />
       </main>
     </div>
