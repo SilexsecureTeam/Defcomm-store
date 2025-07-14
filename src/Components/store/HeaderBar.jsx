@@ -11,7 +11,7 @@ export default function HeaderBar({ showpage }) {
     navigate("/appSub");
   };
   return (
-    <div className="flex gap-6 md:flex-row justify-between w-[95%] max-w-[1400px] mx-auto">
+    <div className="flex gap-6 md:flex-row justify-between">
       <div className="flex items-center justify-center px-4 py-2 w-max h-fit bg-stone-800 border-l-8 border-[#759719] text-white font-semibold text-lg rounded-xl">
         Home
       </div>
