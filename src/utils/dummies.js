@@ -46,7 +46,7 @@ export const navItems = [
   { src: divThree, path: "/profile" },
   { src: divFour, path: "/PPT" },
   { src: divFive, path: "/medical" },
-  { src: divSix, path: "/appCert" },
+  { src: divSix, path: "/apps" },
   { src: divSeven, path: "/dataCol" },
   { src: divEight, path: "/appSub" },
 ];

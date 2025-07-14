@@ -1,34 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import defflogo from "../../assets/defcommlogo.png";
 import { FaRegBell } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { HiBars2 } from "react-icons/hi2";
 import { CgClose } from "react-icons/cg";
+import defflogo from "../../assets/defcommlogo.png";
 import ProfileDropdown from "../ProfileDropdown";
 
 function NavTwo() {
   const [dropDown, setDropDown] = useState(false);
-
   const navigate = useNavigate();
-  return (
-    <div className="sticky top-0 left-0 w-full flex justify-between items-center py-4 z-50 h-16  bg-transparent backdrop-blur-lg">
-      {/* Desktop Navigation */}
 
-      <div className="hidden md:flex px-6 text-white gap-2 justify-between items-center w-[95%] max-w-[1200px] mx-auto">
+  return (
+    <div className="sticky top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex px-6 text-white gap-4 justify-between items-center w-[95%] max-w-[1200px] mx-auto h-16">
         <NavLink to="/store/start">
           <img src={defflogo} alt="Deffcom Logo" className="w-16 md:w-20" />
         </NavLink>
 
-        <p className="">Discover</p>
+        <p className="text-lg font-medium">Discover</p>
 
-        <div className="flex-1 max-w-96 flex gap-1 bg-lime-900/40 items-center px-4">
-          <CiSearch className="text-white" />
+        <div className="flex-1 max-w-96 flex items-center gap-2 bg-lime-900/40 px-4 rounded-md">
+          <CiSearch className="text-white text-xl" />
           <input
             type="text"
-            className="text-sm font-medium px-2 w-full h-10 bg-transparent text-white focus:outline-none"
+            className="w-full h-10 bg-transparent text-white focus:outline-none text-sm"
             placeholder="Search Podcast or Anything..."
             aria-label="Search"
           />
@@ -38,17 +36,17 @@ function NavTwo() {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="relative w-full flex md:justify-between gap-2 items-center px-4 py-4 md:hidden bg-transparent backdrop-blur-lg h-16">
+      <div className="relative w-full flex items-center justify-between px-4 h-16 md:hidden">
         <NavLink to="/store/start">
-          <img src={defflogo} alt="Deffcom Logo" className="w-16 md:w-20" />
+          <img src={defflogo} alt="Deffcom Logo" className="w-14" />
         </NavLink>
 
-        <div className="ml-auto">
+        <div className="ml-auto mr-4">
           <ProfileDropdown />
         </div>
 
         <button
-          className="text-[30px]focus:outline-none md:hidden block text-3xl bg-lime-600 text-white p-2 rounded-full cursor-pointer"
+          className="text-2xl bg-lime-600 text-white p-2 rounded-full cursor-pointer md:hidden"
           onClick={() => setDropDown(!dropDown)}
           aria-label="Toggle Menu"
         >
@@ -58,46 +56,31 @@ function NavTwo() {
 
       {/* Mobile Dropdown Menu */}
       <ul
-        className={`absolute top-16 md:hidden text-white w-full bg-[#36460A] backdrop-blur-lg shadow-lg z-30 
-        transition-transform duration-300 ease-out 
-        ${
-          dropDown
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-10 opacity-0 pointer-events-none"
-        }`}
+        className={`absolute left-0 top-16 w-full md:hidden bg-[#36460A] text-white z-30 backdrop-blur-lg 
+          transition-all duration-300 ease-in-out transform origin-top
+          ${
+            dropDown
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-4 pointer-events-none"
+          }`}
       >
-        <li
-          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
-          onClick={() => {
-            navigate("/store/app");
-          }}
-        >
-          Apps
-        </li>
-        <li
-          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
-          onClick={() => {
-            navigate("/store/dataCol");
-          }}
-        >
-          Data Collection
-        </li>
-        <li
-          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
-          onClick={() => {
-            navigate("/store/PPT");
-          }}
-        >
-          PPT
-        </li>
-        <li
-          className="active hover:scale-105 px-10 duration-200 h-12 hover:bg-[#89AF20] cursor-pointer flex gap-1 items-center"
-          onClick={() => {
-            navigate("/store/appSub");
-          }}
-        >
-          Publish App
-        </li>
+        {[
+          { label: "Apps", path: "/store/app" },
+          { label: "Data Collection", path: "/store/dataCol" },
+          { label: "PPT", path: "/store/PPT" },
+          { label: "Publish App", path: "/store/appSub" },
+        ].map(({ label, path }) => (
+          <li
+            key={label}
+            className="px-6 py-3 hover:bg-[#89AF20] active:bg-[#6e9121] transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setDropDown(false);
+              navigate(path);
+            }}
+          >
+            {label}
+          </li>
+        ))}
       </ul>
     </div>
   );

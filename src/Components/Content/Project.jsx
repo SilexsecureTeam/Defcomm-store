@@ -9,6 +9,7 @@ function Project() {
   const { getAppListQuery } = useApp();
   const { data, isLoading, isError, error } = getAppListQuery;
 
+  console.log(data, isLoading);
   // Loading UI
   if (isLoading) {
     return (

@@ -12,12 +12,8 @@ export default function HeaderBar({ showpage }) {
   };
   return (
     <div className="flex gap-6 md:flex-row justify-between w-[95%] max-w-[1200px] mx-auto">
-      <div className="flex items-center justify-center p-2 w-max h-fit bg-stone-600 border-l-8 border-[#759719]">
-        <img
-          src={divOne}
-          alt=""
-          className="p-2 w-12 rounded-xl bg-deffcom-lima"
-        />
+      <div className="flex items-center justify-center px-4 py-2 w-max h-fit bg-stone-800 border-l-8 border-[#759719] text-white font-semibold text-lg rounded-xl">
+        Home
       </div>
 
       <div className={`flex gap-4 ${showpage ? "block" : "hidden"}`}></div>

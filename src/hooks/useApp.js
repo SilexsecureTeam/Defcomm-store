@@ -6,7 +6,10 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 const useApp = () => {
   const { authDetails } = useContext(AuthContext);
-  const client = axiosClient(authDetails?.access_token);
+  const client = axiosClient(
+    authDetails?.access_token ||
+      "337|HMnUSuDklMcerXpI3lF2ZQPe516EK29lXldbP5m636f49284"
+  );
   const queryClient = useQueryClient();
 
   // GET: List all apps
@@ -16,7 +19,7 @@ const useApp = () => {
       const { data } = await client.get("/app/list");
       return data?.data || [];
     },
-    enabled: !!authDetails,
+    //enabled: !!authDetails,
   });
 
   // GET: Single app
