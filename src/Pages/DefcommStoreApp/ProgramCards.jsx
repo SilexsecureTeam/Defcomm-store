@@ -14,7 +14,7 @@ export default function ProgramCards() {
         Programs Resources
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
         {/* Card 1 */}
         <div className="lg:col-span-3 flex flex-col md:flex-row bg-gray-200 rounded-[20px] overflow-hidden shadow">
           <div className="bg-[#DDF2AB] flex flex-col justify-between items-center p-6 md:w-[160px]">
@@ -50,7 +50,7 @@ export default function ProgramCards() {
           </div>
         </div>
 
-        {/* Card 2 */}
+        {/* 
         <div className="lg:col-span-2 bg-deffcom-lima text-white rounded-[20px] p-6 flex flex-col justify-between shadow">
           <div>
             <h2 className="text-[28px] font-semibold mb-4">
@@ -85,7 +85,7 @@ export default function ProgramCards() {
             </div>
             <p className="underline text-[18px]">Get Started</p>
           </div>
-        </div>
+        </div>*/}
 
         {/* Card 3 */}
         <div className="md:col-span-4 lg:col-span-2 flex flex-col md:flex-row lg:flex-col gap-6">
