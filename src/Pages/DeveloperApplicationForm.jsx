@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FiCheckCircle, FiXCircle, FiUploadCloud } from "react-icons/fi";
+import {
+  FiCheckCircle,
+  FiXCircle,
+  FiUploadCloud,
+  FiLoader,
+  FiClock,
+} from "react-icons/fi";
 import useApp from "../hooks/useApp";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import DevModeWaitingScreen from "../Components/store/apps/DevModeWaitingScreen";
 
 const DeveloperApplicationForm = () => {
+  const { authDetails } = useContext(AuthContext);
   const { developerApplicationMutation } = useApp();
   const [submitStatus, setSubmitStatus] = useState("");
   const {
@@ -35,6 +45,11 @@ const DeveloperApplicationForm = () => {
       },
     });
   };
+
+  // ✅ Show waiting message if developer status is pending or under_review
+  if (authDetails?.user?.statusApp === "pending") {
+    return <DevModeWaitingScreen />;
+  }
 
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-[#1b1f10] text-white rounded-2xl shadow-xl p-8 space-y-8">
@@ -162,10 +177,22 @@ const DeveloperApplicationForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-lime-600 hover:bg-lime-700 transition duration-200 text-white font-semibold py-3 rounded-lg"
-          disabled={isSubmitting}
+          disabled={developerApplicationMutation.isPending}
+          className={`w-full flex items-center justify-center gap-2 transition duration-200 font-semibold py-3 rounded-lg
+    ${
+      developerApplicationMutation.isPending
+        ? "bg-lime-500 cursor-not-allowed opacity-60"
+        : "bg-lime-600 hover:bg-lime-700 cursor-pointer text-white"
+    }`}
         >
-          {isSubmitting ? "Submitting..." : "Submit Application"}
+          {developerApplicationMutation.isPending ? (
+            <>
+              <FiLoader className="animate-spin text-white text-xl" />
+              Submitting...
+            </>
+          ) : (
+            "Submit Application"
+          )}
         </button>
 
         {/* Status Message */}

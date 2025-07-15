@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   // Helper to inject isDevMode
   const enhanceUser = (user) => {
     if (!user) return null;
-    const status = user?.statusApp === "approved";
+    const status = user?.user?.statusApp === "approved";
     return {
       ...user,
       user: {
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   const [authDetails, setAuthDetails] = useState(() => {
     const storedUser = sessionStorage.getItem("authUser");
     const parsed = storedUser ? JSON.parse(storedUser) : null;
-    return enhanceUser(parsed?.user);
+    return enhanceUser(parsed);
   });
 
   // Query for getting auth details (React Query cache)

@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { CiSearch } from "react-icons/ci";
 import { MdAppRegistration } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
 import { HiBars2 } from "react-icons/hi2";
 import { CgClose } from "react-icons/cg";
+import { FiClock } from "react-icons/fi";
 import defflogo from "../../assets/defcommlogo.png";
 import ProfileDropdown from "../ProfileDropdown";
+import { AuthContext } from "../../context/AuthContext";
 
 function NavTwo() {
   const [dropDown, setDropDown] = useState(false);
   const navigate = useNavigate();
+  const { authDetails } = useContext(AuthContext);
+  const developerStatus = authDetails?.user?.statusApp;
 
   return (
     <div className="sticky top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
@@ -36,22 +40,43 @@ function NavTwo() {
 
         {/* Right section */}
         <div className="flex items-center gap-4">
-          {/* Full button on medium+ screens, hidden on small screens */}
-          <button
-            onClick={() => navigate("/store/apply")}
-            className="cursor-pointer hidden lg:block bg-[#A4FF00] text-black text-sm font-semibold px-4 py-1.5 rounded-xl hover:bg-[#90e600] transition-all"
-          >
-            Become a Developer
-          </button>
+          {/* Developer Button Logic */}
+          {developerStatus === "pending" ? (
+            <button
+              onClick={() => navigate("/store/apply")}
+              className="hidden lg:flex items-center gap-2 bg-yellow-200 text-yellow-900 text-sm font-semibold px-4 py-1.5 rounded-xl cursor-default"
+              title="Your application is under review"
+            >
+              <FiClock className="text-lg" />
+              Awaiting Approval
+            </button>
+          ) : developerStatus === "approved" ? null : (
+            <button
+              onClick={() => navigate("/store/apply")}
+              className="cursor-pointer hidden lg:block bg-[#A4FF00] text-black text-sm font-semibold px-4 py-1.5 rounded-xl hover:bg-[#90e600] transition-all"
+            >
+              Become a Developer
+            </button>
+          )}
 
           {/* Icon button on smaller screens */}
-          <button
-            onClick={() => navigate("/store/apply")}
-            className="block lg:hidden text-[#A4FF00] text-2xl hover:text-lime-300 transition"
-            title="Apply as Developer"
-          >
-            <MdAppRegistration />
-          </button>
+          {developerStatus === "pending" ? (
+            <button
+              onClick={() => navigate("/store/apply")}
+              className="block lg:hidden text-yellow-300 text-xl"
+              title="Developer application pending"
+            >
+              <FiClock />
+            </button>
+          ) : developerStatus === "approved" ? null : (
+            <button
+              onClick={() => navigate("/store/apply")}
+              className="block lg:hidden text-[#A4FF00] text-2xl hover:text-lime-300 transition"
+              title="Apply as Developer"
+            >
+              <MdAppRegistration />
+            </button>
+          )}
 
           <ProfileDropdown />
         </div>
@@ -91,7 +116,6 @@ function NavTwo() {
           { label: "Data Collection", path: "/store/dataCol" },
           { label: "PPT", path: "/store/PPT" },
           { label: "Publish App", path: "/store/appSub" },
-          { label: "Become a Developer", path: "/store/apply" },
         ].map(({ label, path }) => (
           <li
             key={label}
@@ -104,6 +128,23 @@ function NavTwo() {
             {label}
           </li>
         ))}
+
+        {/* Conditional "Become a Developer" Menu */}
+        {developerStatus !== "approved" && (
+          <li
+            className="px-6 py-3 hover:bg-[#89AF20] active:bg-[#6e9121] transition-all duration-200 cursor-pointer"
+            onClick={() => {
+              setDropDown(false);
+              navigate(
+                developerStatus === "pending" ? "/store/apply" : "/store/apply"
+              );
+            }}
+          >
+            {developerStatus === "pending"
+              ? "Awaiting Approval"
+              : "Become a Developer"}
+          </li>
+        )}
       </ul>
     </div>
   );

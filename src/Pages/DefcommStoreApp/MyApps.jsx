@@ -10,8 +10,8 @@ import { AuthContext } from "../../context/AuthContext";
 
 export default function MyApps() {
   const { authDetails } = useContext(AuthContext);
-  const { getAppListQuery } = useApp();
-  const { data: apps, isLoading, isError, error } = getAppListQuery;
+  const { getMyAppListQuery } = useApp();
+  const { data: apps, isLoading, isError, error } = getMyAppListQuery;
 
   return (
     <div className="space-y-10">

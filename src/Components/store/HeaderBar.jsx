@@ -11,7 +11,7 @@ export default function HeaderBar({ showpage }) {
     navigate("/appSub");
   };
   return (
-    <div className="flex gap-6 md:flex-row justify-between w-[95%] max-w-[1200px] mx-auto my-10">
+    <div className="flex gap-6 md:flex-row items-center justify-between w-[95%] max-w-[1200px] mx-auto my-10">
       <div
         onClick={() => navigate("/store/start")}
         className="cursor-pointer flex items-center justify-center px-4 py-2 w-max h-fit bg-stone-800 border-l-8 border-[#759719] text-white font-semibold text-lg rounded-xl"
@@ -31,11 +31,13 @@ export default function HeaderBar({ showpage }) {
             to={`/store${path}`}
             title={path.replaceAll("/", "")}
             key={index}
-            className={`flex-shrink-0 flex items-center justify-center h-fit p-4 rounded-xl ${
-              index === 0 ? "bg-white" : "bg-lime-900/20"
-            } transition-all duration-300 ease-in-out cursor-pointer hover:scale-105`}
+            className={`group flex-shrink-0 flex items-center justify-center h-fit p-4 rounded-xl bg-lime-900/20 [.active]:bg-white transition-all duration-300 ease-in-out cursor-pointer hover:scale-105`}
           >
-            <img src={src} alt="" className="flex-shrink-0 w-6" />
+            <img
+              src={src}
+              alt=""
+              className="flex-shrink-0 w-6 filter brightness-0 invert transition duration-300 ease-in-out group-[.active]:brightness-100"
+            />
           </NavLink>
         ))}
       </div>

@@ -7,10 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const useApp = () => {
   const { authDetails, updateAuth } = useContext(AuthContext);
-  const client = axiosClient(
-    authDetails?.access_token ||
-      "337|HMnUSuDklMcerXpI3lF2ZQPe516EK29lXldbP5m636f49284"
-  );
+  const client = axiosClient(authDetails?.access_token);
   const queryClient = useQueryClient();
 
   // GET: List all apps
@@ -20,7 +17,15 @@ const useApp = () => {
       const { data } = await client.get("/app/list");
       return data?.data || [];
     },
-    //enabled: !!authDetails,
+  });
+
+  const getMyAppListQuery = useQuery({
+    queryKey: ["myApps"],
+    queryFn: async () => {
+      const { data } = await client.get("/app/ownlist");
+      return data?.data || [];
+    },
+    enabled: !!authDetails?.access_token,
   });
 
   // GET: Single app
@@ -28,8 +33,8 @@ const useApp = () => {
     useQuery({
       queryKey: ["app", id],
       queryFn: async () => {
-        const { data } = await client.get(`/app/${id}`);
-        return data?.data || null;
+        const { data } = await client.get(`/app/listId/${id}`);
+        return data?.data[0] || null;
       },
       enabled: !!id,
     });
@@ -43,7 +48,7 @@ const useApp = () => {
         },
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries(["appList"]);
+      queryClient.invalidateQueries(["myApps"]);
       onSuccess({ message: "App created successfully" });
     },
     onError: (err) =>
@@ -57,7 +62,7 @@ const useApp = () => {
   const updateAppMutation = useMutation({
     mutationFn: (payload) => client.post("/app/update", payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(["appList"]);
+      queryClient.invalidateQueries(["myApps"]);
       onSuccess({ message: "App updated successfully" });
     },
     onError: (err) =>
@@ -77,7 +82,10 @@ const useApp = () => {
       }),
     onSuccess: (userData) => {
       onSuccess({ message: "Developer application submitted successfully" });
-      updateAuth(userData);
+      updateAuth({
+        ...authDetails,
+        user: { ...authDetails?.user, ...userData?.data },
+      });
     },
     onError: (err) =>
       onFailure({
@@ -88,6 +96,7 @@ const useApp = () => {
 
   return {
     getAppListQuery,
+    getMyAppListQuery,
     getAppByIdQuery,
     createAppMutation,
     updateAppMutation,

@@ -1,50 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { TbDownload } from "react-icons/tb";
+import { TbDownload, TbShieldLock, TbMail, TbPhoneCall } from "react-icons/tb";
 import { motion } from "framer-motion";
 import useApp from "../../hooks/useApp";
-import icon from "../../assets/logo-icon.png";
-import img from "../../assets/2137.png";
+import { FaSpinner, FaMobileAlt } from "react-icons/fa";
 
 export default function AppViewPage() {
   const { id } = useParams();
-  const { getAppListQuery } = useApp();
-  const [app, setApp] = useState(null);
+  const { getAppByIdQuery } = useApp();
+  const { data: app, isLoading } = getAppByIdQuery(id);
 
-  // Normalize data from backend
-  const normalizeAppData = (data) => ({
-    ...data,
-    app_icon: icon,
-    feature_image: img,
-    rating: data.rating || (Math.random() * 1 + 4).toFixed(1), // Fake 4.0-5.0
-    downloads: data.downloads || "1K+",
-    collectsData: data.collect_data === "yes",
-    privacy: [
-      data.contact_name === "true" && "Name",
-      data.contact_email === "true" && "Email",
-      data.contact_phone === "true" && "Phone Number",
-      data.contact_address === "true" && "Address",
-      data.contact_other === "true" && "Other Info",
-    ].filter(Boolean),
-  });
+  const [iconError, setIconError] = useState(false);
+  const [featureError, setFeatureError] = useState(false);
 
-  useEffect(() => {
-    if (getAppListQuery.data && id) {
-      const foundApp = getAppListQuery.data.find(
-        (a) => String(a.id) === String(id)
-      );
-      if (foundApp) {
-        setApp(normalizeAppData(foundApp));
-      }
-    }
-  }, [getAppListQuery.data, id]);
-
-  if (getAppListQuery.isLoading) {
-    return <div className="p-10 text-center text-gray-400">Loading app...</div>;
+  if (isLoading) {
+    return (
+      <div className="min-h-80 flex items-center justify-center bg-black text-white">
+        <FaSpinner className="animate-spin text-4xl text-lime-400" />
+        <p className="ml-3 text-lg">Loading app...</p>
+      </div>
+    );
   }
 
   if (!app) {
-    return <div className="p-10 text-center text-red-500">App not found.</div>;
+    return (
+      <div className="min-h-80 flex items-center justify-center text-red-500">
+        App not found.
+      </div>
+    );
   }
 
   return (
@@ -62,23 +45,33 @@ export default function AppViewPage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <img
-            src={app.app_icon}
-            alt="App Icon"
-            className="w-20 h-20 rounded-2xl object-cover border border-white/20 shadow-md"
-          />
+          <div className="w-20 h-20 rounded-2xl border border-white/20 shadow-md bg-lime-900/20 flex items-center justify-center text-lime-400 text-3xl">
+            {app.app_icon && !iconError ? (
+              <img
+                src={`${import.meta.env.VITE_BASE_URL}${app.app_icon}`}
+                alt="App Icon"
+                className="w-full h-full rounded-2xl object-cover"
+                onError={() => setIconError(true)}
+              />
+            ) : (
+              <FaMobileAlt />
+            )}
+          </div>
+
           <div className="flex-1 w-full">
-            <h1 className="text-3xl font-bold text-white">{app.name}</h1>
+            <h1 className="text-3xl font-bold text-white">
+              {app.app_name || "Unnamed App"}
+            </h1>
             <p className="text-sm text-gray-300 mt-1">
-              {app.category} • by{" "}
+              {app.category || "Uncategorized"} • by{" "}
               <span className="font-semibold">
-                {app.contact_name || "Anonymous"}
+                {app.developer || "Unknown Developer"}
               </span>
             </p>
             <div className="flex gap-4 items-center text-sm text-gray-400 mt-2">
-              <span>⭐ {app.rating}</span>
+              <span>⭐ {app.rating || "4.5"}</span>
               <span className="text-gray-500">•</span>
-              <span>{app.downloads} downloads</span>
+              <span>{app.downloads || "1K+"} downloads</span>
             </div>
           </div>
 
@@ -93,16 +86,21 @@ export default function AppViewPage() {
 
         {/* Feature Image */}
         <motion.div
-          className="rounded-3xl overflow-hidden shadow-xl border border-white/10 bg-black"
+          className="rounded-3xl overflow-hidden shadow-xl border border-white/10 bg-black h-[420px] flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <img
-            src={app.feature_image}
-            alt="Feature"
-            className="w-full h-[420px] object-cover"
-          />
+          {app.feature_image && !featureError ? (
+            <img
+              src={`${import.meta.env.VITE_BASE_URL}${app.feature_image}`}
+              alt="Feature"
+              className="w-full h-full object-cover"
+              onError={() => setFeatureError(true)}
+            />
+          ) : (
+            <FaMobileAlt className="text-5xl text-gray-600" />
+          )}
         </motion.div>
 
         {/* About */}
@@ -116,7 +114,7 @@ export default function AppViewPage() {
             About this app
           </h2>
           <p className="text-gray-300 text-[15px] leading-relaxed">
-            {app.description}
+            {app.description || "No description provided."}
           </p>
         </motion.div>
 
@@ -129,16 +127,26 @@ export default function AppViewPage() {
         >
           {/* Privacy */}
           <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 shadow-lg">
-            <h3 className="text-xl font-semibold text-white mb-3">Privacy</h3>
-            {app.collectsData ? (
+            <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+              <TbShieldLock /> Privacy
+            </h3>
+            {app.collect_data === "yes" ? (
               <ul className="list-disc pl-6 text-sm text-gray-300 space-y-1">
-                {app.privacy.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
+                {[
+                  app.contact_name,
+                  app.contact_email,
+                  app.contact_phone,
+                  app.contact_address,
+                  app.contact_other,
+                ]
+                  .filter((item) => item && item !== "false")
+                  .map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
               </ul>
             ) : (
               <p className="text-sm text-gray-400">
-                This app does not collect data.
+                This app does not collect personal data.
               </p>
             )}
             {app.policy && (
@@ -157,26 +165,22 @@ export default function AppViewPage() {
           <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 shadow-lg">
             <h3 className="text-xl font-semibold text-white mb-3">Support</h3>
             <div className="text-sm text-gray-300 space-y-2">
-              {app.contact_email && (
-                <p>
-                  <span className="font-semibold">Email:</span>{" "}
-                  <a
-                    href={`mailto:${app.contact_email}`}
-                    className="text-lime-400 underline"
-                  >
-                    {app.contact_email}
-                  </a>
+              {app.email && (
+                <p className="flex items-center gap-2">
+                  <TbMail className="text-lime-400" /> {app.email}
                 </p>
               )}
-              {app.contact_phone && (
-                <p>
-                  <span className="font-semibold">Phone:</span>{" "}
-                  {app.contact_phone}
+              {app.phone && (
+                <p className="flex items-center gap-2">
+                  <TbPhoneCall className="text-lime-400" /> {app.phone}
                 </p>
               )}
               <p>
                 <span className="font-semibold">Version:</span>{" "}
                 {app.version || "1.0"}
+              </p>
+              <p>
+                <span className="font-semibold">OS:</span> {app.os || "N/A"}
               </p>
             </div>
           </div>
