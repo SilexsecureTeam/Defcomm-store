@@ -184,12 +184,12 @@ const RegisterForm = ({ userType = "individual" }) => {
       <div className="flex flex-col md:flex-row gap-4">
         <input
           {...register("firstName", { required: "First name is required" })}
-          className="w-full py-2 px-4 border border-gray-300 rounded-xl"
+          className="w-full py-2 px-4 border border-gray-300 rounded"
           placeholder="First Name"
         />
         <input
           {...register("lastName", { required: "Last name is required" })}
-          className="w-full py-2 px-4 border border-gray-300 rounded-xl"
+          className="w-full py-2 px-4 border border-gray-300 rounded"
           placeholder="Last Name"
         />
       </div>
@@ -197,7 +197,7 @@ const RegisterForm = ({ userType = "individual" }) => {
       <div>
         <select
           {...register("country", { required: "Country is required" })}
-          className="w-full py-2 px-4 border border-gray-300 rounded-xl bg-white"
+          className="w-full py-2 px-4 border border-gray-300 rounded bg-white"
           value={selectedCountry}
           onChange={(e) => {
             const name = e.target.value;
@@ -264,7 +264,7 @@ const RegisterForm = ({ userType = "individual" }) => {
             },
           })}
           max={new Date().toISOString().split("T")[0]} // ensures the date picker restricts future dates
-          className="w-full py-2 px-4 border border-gray-300 rounded-xl"
+          className="w-full py-2 px-4 border border-gray-300 rounded"
         />
         <p className="text-xs text-gray-500 mt-1">
           Let us know your birthday so we don’t miss sending you a gift!
@@ -308,7 +308,7 @@ const RegisterForm = ({ userType = "individual" }) => {
           <input
             type={showPassword ? "text" : "password"}
             {...register("password", { required: "Password is required" })}
-            className="w-full py-2 px-4 pr-12 border rounded-xl"
+            className="w-full py-2 px-4 pr-12 border rounded"
             placeholder="Password"
           />
           <span
@@ -347,7 +347,7 @@ const RegisterForm = ({ userType = "individual" }) => {
                   watch("password") === watch("confirmPassword")
                 ? "border-green-500"
                 : "border-gray-300"
-            } rounded-xl`}
+            } rounded`}
             placeholder="Confirmed password"
           />
           <span
