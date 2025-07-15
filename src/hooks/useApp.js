@@ -4,8 +4,9 @@ import { onSuccess, onFailure } from "../utils/notifications/Notification";
 import { extractErrorMessage } from "../utils/formmaters";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+
 const useApp = () => {
-  const { authDetails } = useContext(AuthContext);
+  const { authDetails, updateAuth } = useContext(AuthContext);
   const client = axiosClient(
     authDetails?.access_token ||
       "337|HMnUSuDklMcerXpI3lF2ZQPe516EK29lXldbP5m636f49284"
@@ -66,11 +67,31 @@ const useApp = () => {
       }),
   });
 
+  // POST: Developer Application
+  const developerApplicationMutation = useMutation({
+    mutationFn: (formData) =>
+      client.post("/app/developermode", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }),
+    onSuccess: (userData) => {
+      onSuccess({ message: "Developer application submitted successfully" });
+      updateAuth(userData);
+    },
+    onError: (err) =>
+      onFailure({
+        message: "Failed to submit developer application",
+        error: extractErrorMessage(err),
+      }),
+  });
+
   return {
     getAppListQuery,
     getAppByIdQuery,
     createAppMutation,
     updateAppMutation,
+    developerApplicationMutation,
   };
 };
 

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FiUpload, FiCheckCircle, FiXCircle } from "react-icons/fi";
+import { FiCheckCircle, FiXCircle, FiUploadCloud } from "react-icons/fi";
+import useApp from "../hooks/useApp";
 
 const DeveloperApplicationForm = () => {
+  const { developerApplicationMutation } = useApp();
   const [submitStatus, setSubmitStatus] = useState("");
   const {
     register,
@@ -11,7 +13,7 @@ const DeveloperApplicationForm = () => {
     reset,
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     setSubmitStatus("");
 
     const formData = new FormData();
@@ -23,113 +25,108 @@ const DeveloperApplicationForm = () => {
     formData.append("website", data.website);
     formData.append("selfie", data.selfie[0]);
 
-    try {
-      const res = await fetch(
-        "https://backend.defcomm.ng/api/app/developermode",
-        {
-          method: "POST",
-          headers: {
-            Authorization:
-              "Bearer 197|9eEA5oFflmztNNPliamVvX2cWigeAKAqUvQdhFhZc1e82259",
-          },
-          body: formData,
-        }
-      );
-
-      const result = await res.json();
-
-      if (res.ok) {
+    developerApplicationMutation.mutate(formData, {
+      onSuccess: () => {
         setSubmitStatus("success");
         reset();
-      } else {
+      },
+      onError: () => {
         setSubmitStatus("error");
-        console.error("Error:", result);
-      }
-    } catch (error) {
-      setSubmitStatus("error");
-      console.error("Fetch error:", error);
-    }
+      },
+    });
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-        Apply to Become a Developer
-      </h2>
+    <div className="max-w-3xl mx-auto mt-10 bg-[#1b1f10] text-white rounded-2xl shadow-xl p-8 space-y-8">
+      <h1 className="text-3xl font-bold flex items-center gap-2 text-lime-400">
+        <FiUploadCloud className="text-3xl" /> Developer Application
+      </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* RC Number */}
         <div>
-          <label className="block mb-1 font-medium">RC Number</label>
+          <label className="block mb-1 text-sm font-medium">RC Number</label>
           <input
             {...register("rc_number", { required: "RC Number is required" })}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2"
             placeholder="Enter your RC number"
+            className="bg-[#2a3119] w-full px-4 py-3 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-lime-500"
           />
           {errors.rc_number && (
-            <p className="text-red-500 text-sm">{errors.rc_number.message}</p>
+            <p className="text-red-400 text-sm mt-1">
+              {errors.rc_number.message}
+            </p>
           )}
         </div>
 
+        {/* RC Document */}
         <div>
-          <label className="block mb-1 font-medium">
+          <label className="block mb-1 text-sm font-medium">
             RC Document (PDF/Image)
           </label>
           <input
             type="file"
             accept="application/pdf,image/*"
             {...register("rc_doc", { required: "RC document is required" })}
-            className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-lime-600 file:text-white hover:file:bg-lime-700"
+            className="bg-[#2a3119] w-full px-4 py-2 rounded-lg text-white file:bg-lime-600 file:text-white file:border-none file:rounded file:px-4 file:py-2 hover:file:bg-lime-700"
           />
           {errors.rc_doc && (
-            <p className="text-red-500 text-sm">{errors.rc_doc.message}</p>
+            <p className="text-red-400 text-sm mt-1">{errors.rc_doc.message}</p>
           )}
         </div>
 
+        {/* TIN */}
         <div>
-          <label className="block mb-1 font-medium">TIN</label>
+          <label className="block mb-1 text-sm font-medium">TIN</label>
           <input
             {...register("tin", { required: "TIN is required" })}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2"
             placeholder="Enter your TIN"
+            className="bg-[#2a3119] w-full px-4 py-3 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-lime-500"
           />
           {errors.tin && (
-            <p className="text-red-500 text-sm">{errors.tin.message}</p>
+            <p className="text-red-400 text-sm mt-1">{errors.tin.message}</p>
           )}
         </div>
 
+        {/* TIN Document */}
         <div>
-          <label className="block mb-1 font-medium">TIN Document</label>
+          <label className="block mb-1 text-sm font-medium">
+            TIN Document (PDF/Image)
+          </label>
           <input
             type="file"
             accept="application/pdf,image/*"
             {...register("tin_doc", { required: "TIN document is required" })}
-            className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-lime-600 file:text-white hover:file:bg-lime-700"
+            className="bg-[#2a3119] w-full px-4 py-2 rounded-lg text-white file:bg-lime-600 file:text-white file:border-none file:rounded file:px-4 file:py-2 hover:file:bg-lime-700"
           />
           {errors.tin_doc && (
-            <p className="text-red-500 text-sm">{errors.tin_doc.message}</p>
+            <p className="text-red-400 text-sm mt-1">
+              {errors.tin_doc.message}
+            </p>
           )}
         </div>
 
+        {/* Developer Display Name */}
         <div>
-          <label className="block mb-1 font-medium">
+          <label className="block mb-1 text-sm font-medium">
             Developer Display Name
           </label>
           <input
             {...register("developer_display_name", {
               required: "Display name is required",
             })}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2"
             placeholder="Your company or display name"
+            className="bg-[#2a3119] w-full px-4 py-3 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-lime-500"
           />
           {errors.developer_display_name && (
-            <p className="text-red-500 text-sm">
+            <p className="text-red-400 text-sm mt-1">
               {errors.developer_display_name.message}
             </p>
           )}
         </div>
 
+        {/* Website */}
         <div>
-          <label className="block mb-1 font-medium">Website</label>
+          <label className="block mb-1 text-sm font-medium">Website</label>
           <input
             {...register("website", {
               required: "Website is required",
@@ -138,42 +135,47 @@ const DeveloperApplicationForm = () => {
                 message: "Enter a valid URL",
               },
             })}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2"
             placeholder="https://yourwebsite.com"
+            className="bg-[#2a3119] w-full px-4 py-3 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-lime-500"
           />
           {errors.website && (
-            <p className="text-red-500 text-sm">{errors.website.message}</p>
+            <p className="text-red-400 text-sm mt-1">
+              {errors.website.message}
+            </p>
           )}
         </div>
 
+        {/* Selfie */}
         <div>
-          <label className="block mb-1 font-medium">Selfie</label>
+          <label className="block mb-1 text-sm font-medium">Selfie</label>
           <input
             type="file"
             accept="image/*"
             {...register("selfie", { required: "A selfie is required" })}
-            className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-lime-600 file:text-white hover:file:bg-lime-700"
+            className="bg-[#2a3119] w-full px-4 py-2 rounded-lg text-white file:bg-lime-600 file:text-white file:border-none file:rounded file:px-4 file:py-2 hover:file:bg-lime-700"
           />
           {errors.selfie && (
-            <p className="text-red-500 text-sm">{errors.selfie.message}</p>
+            <p className="text-red-400 text-sm mt-1">{errors.selfie.message}</p>
           )}
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-[#36460A] text-white py-2 rounded-lg hover:bg-[#2c390a] transition-all duration-200"
+          className="w-full bg-lime-600 hover:bg-lime-700 transition duration-200 text-white font-semibold py-3 rounded-lg"
           disabled={isSubmitting}
         >
           {isSubmitting ? "Submitting..." : "Submit Application"}
         </button>
 
+        {/* Status Message */}
         {submitStatus === "success" && (
-          <p className="flex items-center gap-2 text-green-600 text-sm mt-2">
+          <p className="flex items-center gap-2 text-green-500 text-sm mt-3">
             <FiCheckCircle /> Application submitted successfully!
           </p>
         )}
         {submitStatus === "error" && (
-          <p className="flex items-center gap-2 text-red-600 text-sm mt-2">
+          <p className="flex items-center gap-2 text-red-500 text-sm mt-3">
             <FiXCircle /> There was a problem submitting your application.
           </p>
         )}

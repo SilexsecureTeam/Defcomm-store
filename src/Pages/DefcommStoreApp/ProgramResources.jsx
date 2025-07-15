@@ -10,7 +10,7 @@ export default function ProgramResources() {
 
   return (
     <>
-      <div className="py-10 md:py-20">
+      <div>
         <ProgramCards
           setPlayDisplay={setPlayDisplay}
           playDisplay={playDisplay}

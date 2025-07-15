@@ -21,10 +21,6 @@ const AppSubmission = lazy(() =>
 );
 const MyApps = lazy(() => import("../Pages/DefcommStoreApp/MyApps"));
 const AppViewPage = lazy(() => import("../Pages/DefcommStoreApp/AppViewPage"));
-const DataCollection = lazy(() => import("../Pages/DefcommStoreApp/DataCol"));
-const AppCertification = lazy(() =>
-  import("../Pages/DefcommStoreApp/AppCertification")
-);
 const ComingSoon = lazy(() => import("../Pages/ComingSoon"));
 const AppSubmissionForm = lazy(() =>
   import("../Pages/DefcommStoreApp/AppSubmissionForm")
@@ -46,8 +42,6 @@ const AppRoutes = (
 
       <Route path="app/new" element={<AppSubmissionForm />} />
       <Route path="appSub" element={<AppSubmission />} />
-      <Route path="dataCol" element={<DataCollection />} />
-      <Route path="appCert" element={<AppCertification />} />
 
       <Route path="apply" element={<DeveloperApplicationForm />} />
 

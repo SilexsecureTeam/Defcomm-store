@@ -14,7 +14,7 @@ function NavTwo() {
   return (
     <div className="sticky top-0 left-0 w-full z-50 bg-transparent backdrop-blur-lg">
       {/* Desktop Navigation */}
-      <div className="hidden md:flex px-6 text-white justify-between items-center w-[95%] max-w-[1200px] mx-auto h-16">
+      <div className="hidden md:flex px-6 text-white justify-between items-center w-[95%] max-w-[1400px] mx-auto h-16">
         {/* Left section */}
         <div className="flex items-center gap-6">
           <NavLink to="/store/start">

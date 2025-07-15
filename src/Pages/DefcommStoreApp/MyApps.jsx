@@ -14,7 +14,7 @@ export default function MyApps() {
   const { data: apps, isLoading, isError, error } = getAppListQuery;
 
   return (
-    <div className="p-4 md:p-10 space-y-10">
+    <div className="space-y-10">
       <HeaderBarTwo
         title={authDetails?.user?.isDevMode ? "App Submission" : "Apps"}
         link={authDetails?.user?.isDevMode && "/store/app/new"}
