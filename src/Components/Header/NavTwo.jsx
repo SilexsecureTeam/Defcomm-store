@@ -39,7 +39,7 @@ function NavTwo() {
           {/* Full button on medium+ screens, hidden on small screens */}
           <button
             onClick={() => navigate("/store/apply")}
-            className="hidden lg:block bg-[#A4FF00] text-black text-sm font-semibold px-4 py-1.5 rounded-xl hover:bg-[#90e600] transition-all"
+            className="cursor-pointer hidden lg:block bg-[#A4FF00] text-black text-sm font-semibold px-4 py-1.5 rounded-xl hover:bg-[#90e600] transition-all"
           >
             Become a Developer
           </button>
