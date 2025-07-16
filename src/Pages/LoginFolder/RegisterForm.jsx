@@ -70,40 +70,31 @@ const RegisterForm = ({ userType = "individual" }) => {
   }, [email]);
 
   const onSubmit = (data) => {
-    if (!emailVerified) {
-      setError("email", {
-        type: "manual",
-        message: "Please use a verified email",
-      });
-      return;
-    }
-    if (!phone || phone.length <= getCode(selectedCountry).length + 1) {
-      setError("phone", {
-        type: "manual",
-        message: "Please enter a valid phone number.",
-      });
-      return;
-    }
-
-    const payload = {
-      name: `${data.firstName} ${data.lastName}`,
-      email: data.email,
-      phone: phone && phone.replace(/\s/g, ""),
-      password: data.password,
-      country: selectedCountry,
-      dob: data.birthday,
-      gender,
-      role,
-    };
-
-    registerMutation.mutate(payload, {
-      onSuccess: () => {
-        //const identifier = verify === "text" ? payload.phone : data.email;
-        setRegistrationComplete(true);
-      },
-    });
+  if (!emailVerified) {
+    setError("email", { type: "manual", message: "Please use a verified email" });
+    return;
+  }
+  if (!phone || phone.length <= getCode(selectedCountry).length + 1) {
+    setError("phone", { type: "manual", message: "Please enter a valid phone number." });
+    return;
+  }
+  const payload = {
+    name: `${data.firstName} ${data.lastName}`,
+    email: data.email,
+    phone: phone && phone.replace(/\s/g, "").replace(/^/, "+"),
+    password: data.password,
+    country: selectedCountry,
+    dob: data.birthday,
+    gender,
+    role,
   };
-
+  registerMutation.mutate(payload, {
+    onSuccess: () => {
+      setRegistrationComplete(true);
+    },
+  });
+};
+  
   const handleVerifyOtp = () => {
     if (otp.length !== 4) {
       setOtpError("Enter a valid 4-digit OTP.");
