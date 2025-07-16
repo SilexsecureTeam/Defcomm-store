@@ -81,7 +81,7 @@ const RegisterForm = ({ userType = "individual" }) => {
   const payload = {
     name: `${data.firstName} ${data.lastName}`,
     email: data.email,
-    phone: phone && phone.replace(/\s/g, "").replace(/^/, "+"),
+      phone: `+${phone.replace(/\s/g, "")}`,
     password: data.password,
     country: selectedCountry,
     dob: data.birthday,
