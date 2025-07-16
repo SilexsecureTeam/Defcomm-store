@@ -80,11 +80,11 @@ const useApp = () => {
           "Content-Type": "multipart/form-data",
         },
       }),
-    onSuccess: (userData) => {
+    onSuccess: ({ data }) => {
       onSuccess({ message: "Developer application submitted successfully" });
       updateAuth({
         ...authDetails,
-        user: { ...authDetails?.user, ...userData?.data },
+        user: { ...data?.data },
       });
     },
     onError: (err) =>

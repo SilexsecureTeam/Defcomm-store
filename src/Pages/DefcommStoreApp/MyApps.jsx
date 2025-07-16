@@ -17,7 +17,7 @@ export default function MyApps() {
     <div className="space-y-10">
       <HeaderBarTwo
         title={authDetails?.user?.isDevMode ? "App Submission" : "Apps"}
-        link={authDetails?.user?.isDevMode && "/store/app/new"}
+        link={authDetails?.user?.isDevMode && "/store/app/publish"}
       />
 
       <div className="md:flex rounded-[20px] overflow-hidden mt-2">

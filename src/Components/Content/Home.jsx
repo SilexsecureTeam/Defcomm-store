@@ -12,8 +12,9 @@ import "swiper/css/pagination";
 
 import img1 from "../../assets/slide1.jpg";
 import img2 from "../../assets/slide2.jpg";
-import img3 from "../../assets/hero_img3.jpg";
-import img4 from "../../assets/hero_img2.jpg";
+import img3 from "../../assets/slide3.jpg";
+import img4 from "../../assets/slide4.jpg";
+import img5 from "../../assets/slide5.jpg";
 
 import { useNavigate } from "react-router-dom";
 
@@ -22,6 +23,7 @@ const slideImages = [
   { src: img2, alt: "User-friendly dashboard design" },
   { src: img3, alt: "Hero showcase product 1" },
   { src: img4, alt: "Hero showcase product 2" },
+  { src: img5, alt: "Hero showcase product 3" },
 ];
 
 const swiperOptions = {
@@ -107,14 +109,14 @@ function Home({ slideShow = true }) {
           <h1 className="text-3xl md:text-5xl tracking-tight lg:text-8xl">
             Transforming ideas into beautifully crafted products.
           </h1>
-          <div className="flex py-4 md:py-8 gap-4 text-black">
-            <button
-              className="py-2 px-5 bg-white rounded-md"
-              onClick={() => navigate("/membership/individual")}
-            >
+          <div
+            onClick={() => navigate("/membership/individual")}
+            className="cursor-pointer flex py-4 md:py-8 gap-4 text-black"
+          >
+            <button className="cursor-pointer py-2 px-5 bg-white rounded-md">
               GET STARTED
             </button>
-            <button className="bg-lime-600 py-2 px-3 rounded-full">
+            <button className="cursor-pointer bg-lime-600 py-2 px-3 rounded-full">
               <CgArrowTopRight />
             </button>
           </div>

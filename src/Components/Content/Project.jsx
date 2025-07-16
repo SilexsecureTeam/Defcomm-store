@@ -9,7 +9,6 @@ function Project() {
   const { getAppListQuery } = useApp();
   const { data, isLoading, isError, error } = getAppListQuery;
 
-  console.log(data, isLoading);
   // Loading UI
   if (isLoading) {
     return (
@@ -50,6 +49,26 @@ function Project() {
     );
   }
 
+  // No Data UI
+  if (!data || data.length === 0) {
+    return (
+      <div className="w-full px-4 py-10 md:px-20 md:py-20">
+        <div>
+          <p className="flex items-center text-[13px] mb-1">
+            <span className="text-lime-700 text-xl mr-1">
+              <GoDotFill />
+            </span>
+            LATEST PROJECTS
+          </p>
+          <h1 className="text-[30px] font-semibold">App Categories</h1>
+        </div>
+        <p className="w-full px-4 py-20 md:px-20 bg-neutral-100 text-gray-500 min-h-32 flex items-center justify-center">
+          No apps available at the moment.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full px-4 py-10 md:px-20 md:py-20">
       <div className="grid md:grid-cols-2 gap-10">
@@ -66,7 +85,7 @@ function Project() {
           </div>
 
           {data
-            ?.filter((_, i) => i % 2 === 0)
+            .filter((_, i) => i % 2 === 0)
             .map((app) => (
               <div key={app.id}>
                 <div className="h-72 bg-stone-200 overflow-hidden mb-3">
@@ -101,7 +120,7 @@ function Project() {
         {/* Right Column */}
         <div className="flex flex-col gap-10">
           {data
-            ?.filter((_, i) => i % 2 !== 0)
+            .filter((_, i) => i % 2 !== 0)
             .map((app) => (
               <div key={app.id}>
                 <div className="h-72 bg-stone-200 overflow-hidden mb-3">
@@ -123,7 +142,7 @@ function Project() {
                     </p>
                   </article>
                   <button
-                    onClick={() => navigate("/medical")}
+                    onClick={() => navigate(app.route || "/medical")}
                     className="cursor-pointer bg-lime-700 text-white p-3 rounded-full"
                   >
                     <CgArrowTopRight />

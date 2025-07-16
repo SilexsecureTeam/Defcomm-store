@@ -26,7 +26,7 @@ const useAuth = () => {
     onSuccess: (userData) => {
       onSuccess({
         message: "Account Created",
-        success: "Account created successfully! You need to verify.",
+        success: `Account created successfully! You need to verify, using this - ${userData?.data?.otp}`,
       });
     },
     onError: (err) => {
@@ -113,11 +113,53 @@ const useAuth = () => {
     },
   });
 
+  const profileQuery = useQuery({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const { data } = await client.get("/user/profile");
+      updateAuth({ ...authDetails, user: data?.data }); // You might want to update with new profile data too
+      return data;
+    },
+    enabled: !!authDetails?.access_token, // only run if user is logged in
+    onError: (err) => {
+      onFailure({
+        message: "Failed to fetch profile",
+        error: extractErrorMessage(err),
+      });
+    },
+  });
+
+  const profileMutation = useMutation({
+    mutationFn: async (userData) => {
+      const { data } = await client.post("/user/profile/upload", userData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // This header ensures the form data is processed correctly
+        },
+      });
+      return data;
+    },
+    onSuccess: (user) => {
+      queryClient.invalidateQueries(["profile"]); // Refresh profile
+      onSuccess({
+        message: "Profile Update",
+        success: "Profile updated successfully!",
+      });
+    },
+    onError: (err) => {
+      console.log("Profile Update error:", err);
+      onFailure({
+        message: "Profile Update Failed",
+        error: extractErrorMessage(err),
+      });
+    },
+  });
+
   return {
     registerMutation,
     verifyEmailMutation,
     verifyOtpMutation,
     requestOtpMutation,
+    profileMutation,
     logout: logoutMutation.mutate,
   };
 };

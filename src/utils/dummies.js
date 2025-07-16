@@ -1,10 +1,8 @@
-import divTwo from "../assets/grommet-icons_resources.png";
-import divThree from "../assets/gg_profile.png";
-import divFour from "../assets/Group 5338.png";
-import divFive from "../assets/Vector.png";
-import divSix from "../assets/Vector (1).png";
-import divSeven from "../assets/secure 2.png";
-import divEight from "../assets/icons8-contacts 1.png";
+import { FiUploadCloud, FiUser, FiFileText } from "react-icons/fi";
+import { MdApps, MdContactPhone } from "react-icons/md";
+import { FaNotesMedical } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { HiOutlineDocumentText } from "react-icons/hi";
 
 export const listofregistration = {
   individual: [
@@ -42,11 +40,9 @@ export const listofregistration = {
 };
 
 export const navItems = [
-  { src: divTwo, path: "/resources" },
-  { src: divThree, path: "/profile" },
-  { src: divFour, path: "/PPT" },
-  { src: divFive, path: "/medical" },
-  { src: divSix, path: "/apps" },
-  { src: divSeven, path: "/dataCol" },
-  { src: divEight, path: "/appSub" },
+  { icon: FiUploadCloud, path: "/app/publish" },
+  { icon: MdApps, path: "/apps" },
+  { icon: FaNotesMedical, path: "/medical" },
+  { icon: CgProfile, path: "/profile" },
+  { icon: MdContactPhone, path: "/contact" },
 ];

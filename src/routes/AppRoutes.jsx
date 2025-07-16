@@ -16,9 +16,7 @@ const PPT = lazy(() => import("../Pages/DownloadMedicalApps/PPT"));
 const ProgramResources = lazy(() =>
   import("../Pages/DefcommStoreApp/ProgramResources")
 );
-const AppSubmission = lazy(() =>
-  import("../Pages/DefcommStoreApp/AppSubmission")
-);
+
 const MyApps = lazy(() => import("../Pages/DefcommStoreApp/MyApps"));
 const AppViewPage = lazy(() => import("../Pages/DefcommStoreApp/AppViewPage"));
 const ComingSoon = lazy(() => import("../Pages/ComingSoon"));
@@ -28,22 +26,24 @@ const AppSubmissionForm = lazy(() =>
 const DeveloperApplicationForm = lazy(() =>
   import("../Pages/DeveloperApplicationForm")
 );
+const Profile = lazy(() => import("../Pages/Profile"));
 
 const AppRoutes = (
   <Route element={<AppGuard />}>
     <Route path="/store" element={<StoreLayout />}>
       <Route path="medical" element={<MedicalApp />} />
-      <Route path="PPT" element={<PPT />} />
       <Route path="start" element={<ProgramResources />} />
+      <Route index element={<Navigate to="/store/start" replace />} />
 
       {/* App */}
       <Route path="apps" element={<MyApps />} />
       <Route path="app/:id" element={<AppViewPage />} />
 
-      <Route path="app/new" element={<AppSubmissionForm />} />
-      <Route path="appSub" element={<AppSubmission />} />
+      <Route path="app/publish" element={<AppSubmissionForm />} />
 
       <Route path="apply" element={<DeveloperApplicationForm />} />
+
+      <Route path="profile" element={<Profile />} />
 
       {/* Fallback route */}
       <Route path="*" element={<ComingSoon />} />

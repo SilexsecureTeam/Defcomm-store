@@ -30,7 +30,6 @@ import FAQ from "../../Components/Content/FAQ";
 function PPT() {
   return (
     <>
-      <Nav />
       <div className="bg-black px-4 md:px-10 py-20 md:py-30 text-white w-full">
         <div className="flex flex-col gap-4 md:gap-0 md:flex-row justify-between py-14 px-4 md:px-10">
           <div className=" leading-9">

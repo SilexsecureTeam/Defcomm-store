@@ -7,6 +7,7 @@ import { getNames, getCode } from "country-list";
 import useAuth from "../../hooks/useAuth";
 import { FaSpinner } from "react-icons/fa6";
 import { FiCheckCircle, FiXCircle, FiEye, FiEyeOff } from "react-icons/fi";
+import OtpScreen from "./OtpScreen";
 
 const countries = getNames();
 
@@ -70,31 +71,37 @@ const RegisterForm = ({ userType = "individual" }) => {
   }, [email]);
 
   const onSubmit = (data) => {
-  if (!emailVerified) {
-    setError("email", { type: "manual", message: "Please use a verified email" });
-    return;
-  }
-  if (!phone || phone.length <= getCode(selectedCountry).length + 1) {
-    setError("phone", { type: "manual", message: "Please enter a valid phone number." });
-    return;
-  }
-  const payload = {
-    name: `${data.firstName} ${data.lastName}`,
-    email: data.email,
-      phone: `+${phone.replace(/\s/g, "")}`,
-    password: data.password,
-    country: selectedCountry,
-    dob: data.birthday,
-    gender,
-    role,
+    if (!emailVerified) {
+      setError("email", {
+        type: "manual",
+        message: "Please use a verified email",
+      });
+      return;
+    }
+    if (!phone || phone.length <= getCode(selectedCountry).length + 1) {
+      setError("phone", {
+        type: "manual",
+        message: "Please enter a valid phone number.",
+      });
+      return;
+    }
+    const payload = {
+      name: `${data.firstName} ${data.lastName}`,
+      email: data.email,
+      phone: phone.startsWith("+") ? phone : `+${phone}`,
+      password: data.password,
+      country: selectedCountry,
+      dob: data.birthday,
+      gender,
+      role,
+    };
+    registerMutation.mutate(payload, {
+      onSuccess: () => {
+        setRegistrationComplete(true);
+      },
+    });
   };
-  registerMutation.mutate(payload, {
-    onSuccess: () => {
-      setRegistrationComplete(true);
-    },
-  });
-};
-  
+
   const handleVerifyOtp = () => {
     if (otp.length !== 4) {
       setOtpError("Enter a valid 4-digit OTP.");
@@ -124,49 +131,11 @@ const RegisterForm = ({ userType = "individual" }) => {
 
   if (registrationComplete && !otpSuccess) {
     return (
-      <div className="max-w-md mx-auto mt-6">
-        <p className="mb-3 text-gray-700">
-          An OTP has been sent to{" "}
-          <strong>{verify === "text" ? `+${phone}` : email}</strong>. Enter it
-          below to complete registration.
-        </p>
-
-        <OtpInput
-          value={otp}
-          onChange={(val) => /^\d*$/.test(val) && setOtp(val)}
-          numInputs={4}
-          isInputNum
-          shouldAutoFocus
-          containerStyle="flex gap-2 mb-4"
-          inputStyle={{
-            background: "#36460A",
-            borderRadius: "10px",
-            color: "white",
-            width: "50px",
-            fontSize: "24px",
-            height: "50px",
-          }}
-          renderInput={(props) => (
-            <input {...props} inputMode="numeric" aria-label="OTP Digit" />
-          )}
-        />
-
-        {otpError && <p className="text-red-500 text-sm mb-3">{otpError}</p>}
-        {otpSuccess && (
-          <p className="text-green-600 text-sm mb-3">
-            ✅ Verified successfully!
-          </p>
-        )}
-
-        <button
-          type="button"
-          onClick={handleVerifyOtp}
-          className="w-full bg-[#36460A] text-white py-2 rounded hover:bg-[#2e360c]"
-          disabled={verifyOtpMutation.isPending || otp.length !== 4}
-        >
-          {verifyOtpMutation.isPending ? "Verifying..." : "Verify OTP"}
-        </button>
-      </div>
+      <OtpScreen
+        identifier={verify === "text" ? `+${phone}` : email}
+        type={verify} // "text" or "email"
+        onVerified={() => setOtpSuccess(true)}
+      />
     );
   }
 

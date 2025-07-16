@@ -15,6 +15,7 @@ import FormStepper from "../../Components/store/apps/FormStepper";
 import FormFieldRenderer from "../../Components/store/apps/FormFieldRenderer";
 import SubmissionNavigators from "../../Components/store/apps/SubmissionNavigators";
 import useApp from "../../hooks/useApp";
+import DevModeWaitingScreen from "../../Components/store/apps/DevModeWaitingScreen";
 
 export default function AppSubmissionForm() {
   const { authDetails } = useContext(AuthContext);
@@ -44,6 +45,10 @@ export default function AppSubmissionForm() {
     formState: { errors },
     trigger,
   } = methods;
+
+  if (!authDetails?.user?.isDevMode) {
+    return <DevModeWaitingScreen />;
+  }
 
   const currentStepData = appSubmissionSteps.find((s) => s.step === step);
   const collectsDataValue = watch("collect_data");

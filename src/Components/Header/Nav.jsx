@@ -8,6 +8,13 @@ import { MdLaptopChromebook, MdOutlineWatch } from "react-icons/md";
 import Logo from "../../assets/Defcomm-03 4.png";
 import defcomm from "../../assets/Defcomm-02 3 2 8.png";
 
+const navItems = [
+  { label: "GAMES", path: "/games" },
+  { label: "APP", path: "/app" },
+  { label: "BOOKS", path: "/books" },
+  { label: "TV", path: "/tv" },
+];
+
 function Nav() {
   const [dropDown, setDropDown] = useState(false);
   const navigate = useNavigate();
@@ -39,13 +46,13 @@ function Nav() {
         {/* Nav Links */}
         <div className="flex gap-4 items-center">
           <ul className="hidden md:flex gap-6 text-sm font-medium">
-            {["GAMES", "APP", "BOOKS", "TV"].map((item) => (
+            {navItems?.map(({ label, path }) => (
               <li
-                key={item}
+                key={label}
                 className="cursor-pointer hover:text-lime-700 transition"
-                onClick={() => handleNavigate("/app")}
+                onClick={() => handleNavigate(path)}
               >
-                {item}
+                {label}
               </li>
             ))}
             <li

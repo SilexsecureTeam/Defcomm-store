@@ -35,3 +35,11 @@ export const formatDate = (dateString) => {
     day: "numeric",
   });
 };
+
+export const maskEmail = (email) => {
+  if (!email) return "";
+  const [name, domain] = email.split("@");
+  return `${name.slice(0, 3)}****@${domain}`;
+};
+
+export const maskPhone = (phone) => `${phone.substring(0, 5)}******`;

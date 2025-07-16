@@ -5,6 +5,7 @@ import OtpInput from "react-otp-input";
 import useAuth from "../../hooks/useAuth";
 import { FaSpinner } from "react-icons/fa";
 import { isValidPhoneNumber } from "libphonenumber-js";
+import OtpScreen from "./OtpScreen";
 
 const PhoneLoginForm = () => {
   const { requestOtpMutation, verifyOtpMutation } = useAuth();
@@ -119,79 +120,11 @@ const PhoneLoginForm = () => {
           </button>
         </>
       ) : (
-        <>
-          <p className="text-sm text-gray-600 mb-3">
-            Enter the 4-digit OTP sent to <strong>+{phone}</strong>
-          </p>
-
-          <OtpInput
-            value={otp}
-            onChange={(value) => {
-              if (/^\d*$/.test(value)) {
-                setOtp(value);
-                setError("");
-              }
-            }}
-            numInputs={4}
-            isInputNum
-            shouldAutoFocus
-            containerStyle="flex gap-2 mb-4"
-            inputStyle={{
-              background: "#36460A",
-              borderRadius: "10px",
-              color: "white",
-              width: "50px",
-              fontSize: "25px",
-              height: "50px",
-            }}
-            renderInput={(props) => (
-              <input {...props} inputMode="numeric" aria-label="OTP Digit" />
-            )}
-          />
-
-          {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-
-          <button
-            type="button"
-            onClick={handleVerifyOtp}
-            className="cursor-pointer w-full bg-[#36460A] text-white py-3 rounded-xl hover:bg-[#2e360c]"
-            disabled={verifyOtpMutation.isPending || otp.length !== 4}
-          >
-            {verifyOtpMutation.isPending ? (
-              <FaSpinner className="animate-spin mx-auto" />
-            ) : (
-              "Verify OTP"
-            )}
-          </button>
-
-          {success && (
-            <p className="mt-3 text-green-600 text-sm text-center">
-              ✅ OTP Verified Successfully!
-            </p>
-          )}
-
-          {timer === 0 ? (
-            <button
-              type="button"
-              onClick={handleRequestOtp}
-              className="cursor-pointer w-full mt-3 bg-black hover:bg-gray-800 text-white py-3 rounded-xl"
-              disabled={requestOtpMutation.isPending}
-            >
-              {requestOtpMutation.isPending ? (
-                <>
-                  <FaSpinner className="animate-spin mr-2" />
-                  Resending...
-                </>
-              ) : (
-                "Resend OTP"
-              )}
-            </button>
-          ) : (
-            <p className="mt-4 text-center text-gray-600 text-sm">
-              Resend OTP in {timer}s
-            </p>
-          )}
-        </>
+        <OtpScreen
+          identifier={`+${phone}`}
+          type="text"
+          onVerified={() => setSuccess(true)}
+        />
       )}
     </div>
   );
