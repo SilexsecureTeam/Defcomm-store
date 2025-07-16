@@ -4,11 +4,19 @@ import { lazy } from "react";
 import { Route, Navigate, Outlet } from "react-router-dom";
 import Layout from "../Pages/Layout";
 import { AuthContext } from "../context/AuthContext";
+import Nav from "../Components/Header/Nav";
 
 // Inline guard (no separate component)
 const PublicGuard = () => {
   const { isAuthenticated } = useContext(AuthContext);
-  return isAuthenticated ? <Navigate to="/store/start" /> : <Outlet />;
+  return isAuthenticated ? (
+    <Navigate to="/store/start" />
+  ) : (
+    <>
+      <Nav />
+      <Outlet />
+    </>
+  );
 };
 
 // Lazy-loaded pages

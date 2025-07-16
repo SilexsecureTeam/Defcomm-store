@@ -6,8 +6,8 @@ import headphone from "../assets/Image.png";
 import useApp from "../hooks/useApp";
 
 export default function MedicalApp() {
-  const { getAppListQuery } = useApp();
-  const { data, isLoading, isError } = getAppListQuery;
+  const { getMyAppListQuery } = useApp();
+  const { data, isLoading, isError } = getMyAppListQuery;
 
   const fallbackImage = headphone;
 
@@ -27,11 +27,11 @@ export default function MedicalApp() {
             </p>
           )}
 
-          {data?.data?.map((app, index) => (
+          {data?.map((app, index) => (
             <AppCard
               key={app.id || index}
-              image={app.icon || fallbackImage}
-              title={app.name}
+              image={app.app_icon || fallbackImage}
+              title={app.app_name}
               description={app.description}
               updated={app.updated_at || "Unknown"}
             />

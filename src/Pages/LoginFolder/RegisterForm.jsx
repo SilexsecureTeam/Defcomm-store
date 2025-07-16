@@ -246,7 +246,7 @@ const RegisterForm = ({ userType = "individual" }) => {
                 : emailVerified
                 ? "border-green-500"
                 : "border-gray-300"
-            } rounded-xl`}
+            } rounded`}
             placeholder="Email address"
           />
           <div className="absolute inset-y-0 right-3 flex items-center">
@@ -268,7 +268,7 @@ const RegisterForm = ({ userType = "individual" }) => {
           <input
             type={showPassword ? "text" : "password"}
             {...register("password", { required: "Password is required" })}
-            className="w-full py-2 px-4 pr-12 border rounded"
+            className="w-full py-2 px-4 pr-12 border rounded border-gray-300"
             placeholder="Password"
           />
           <span

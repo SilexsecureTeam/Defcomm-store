@@ -90,30 +90,22 @@ function Nav() {
         `}
       >
         <ul className="flex flex-col gap-3 py-4 text-sm font-medium">
-          <li
-            onClick={() => handleNavigate("/app")}
-            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
-          >
-            <CiMobile1 className="text-xl" /> MOBILE PHONE
-          </li>
-          <li
-            onClick={() => handleNavigate("/app")}
-            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
-          >
-            <SlScreenTablet className="text-xl" /> TABLET
-          </li>
-          <li
-            onClick={() => handleNavigate("/app")}
-            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
-          >
-            <MdLaptopChromebook className="text-xl" /> DEFCOM-PC
-          </li>
-          <li
-            onClick={() => handleNavigate("/app")}
-            className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
-          >
-            <MdOutlineWatch className="text-xl" /> WATCH
-          </li>
+          {navItems.map(({ label, path }) => (
+            <li
+              key={label}
+              onClick={() => handleNavigate(path)}
+              className="flex items-center gap-2 px-6 py-3 hover:bg-gray-100 transition cursor-pointer"
+            >
+              {/* Optional icons — you can map based on label or add to navItems */}
+              <span className="text-xl">
+                {label === "APP" && <CiMobile1 />}
+                {label === "GAMES" && <SlScreenTablet />}
+                {label === "BOOKS" && <MdLaptopChromebook />}
+                {label === "TV" && <MdOutlineWatch />}
+              </span>
+              {label}
+            </li>
+          ))}
           <li
             onClick={() => handleNavigate("/membership/individual")}
             className="flex items-center gap-2 px-6 py-3 font-semibold hover:bg-gray-100 transition cursor-pointer"
