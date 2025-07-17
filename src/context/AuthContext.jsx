@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   // Helper to inject isDevMode
   const enhanceUser = (user) => {
     if (!user) return null;
-    const status = user?.user?.statusApp === "approved";
+    const status = user?.user?.statusApp === "verified";
     return {
       ...user,
       user: {

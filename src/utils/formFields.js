@@ -46,7 +46,7 @@ export const appSubmissionSteps = [
       },
       {
         name: "supportWebsite",
-        label: "Customer support phone (Optional)",
+        label: "Customer support website (Optional)",
         placeholder: "www.defcomm.ng",
         type: "url",
         required: false,

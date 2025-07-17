@@ -122,7 +122,7 @@ const PhoneLoginForm = () => {
       ) : (
         <OtpScreen
           identifier={`+${phone}`}
-          type="text"
+          type="sms"
           onVerified={() => setSuccess(true)}
         />
       )}

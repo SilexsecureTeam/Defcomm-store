@@ -32,11 +32,7 @@ export default function HeaderBar({ showpage }) {
         {navItems
           .filter(({ path }) => {
             // Exclude "/app/publish" if statusApp is NOT "pending" or "approved"
-            if (
-              path === "/app/publish" &&
-              authDetails?.user?.statusApp !== "pending" &&
-              authDetails?.user?.statusApp !== "approved"
-            ) {
+            if (path === "/app/publish" && !authDetails?.user?.statusApp) {
               return false;
             }
             return true;

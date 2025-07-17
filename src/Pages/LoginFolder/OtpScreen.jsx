@@ -3,7 +3,7 @@ import OtpInput from "react-otp-input";
 import { FaSpinner } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 
-const OtpScreen = ({ identifier, type = "text", onVerified }) => {
+const OtpScreen = ({ identifier, type = "sms", onVerified }) => {
   const { requestOtpMutation, verifyOtpMutation } = useAuth();
 
   const [otp, setOtp] = useState("");
@@ -33,7 +33,7 @@ const OtpScreen = ({ identifier, type = "text", onVerified }) => {
 
   const handleSendOtp = () => {
     const payload =
-      type === "text" ? { phone: identifier } : { email: identifier };
+      type === "sms" ? { phone: identifier } : { phone: identifier };
     requestOtpMutation.mutate(payload, {
       onSuccess: () => {
         setTimer(60);
@@ -53,7 +53,7 @@ const OtpScreen = ({ identifier, type = "text", onVerified }) => {
     }
 
     const payload =
-      type === "text" ? { phone: identifier, otp } : { email: identifier, otp };
+      type === "sms" ? { phone: identifier, otp } : { email: identifier, otp };
 
     verifyOtpMutation.mutate(payload, {
       onSuccess: () => {

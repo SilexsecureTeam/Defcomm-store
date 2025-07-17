@@ -50,7 +50,7 @@ function NavTwo() {
               <FiClock className="text-lg" />
               Awaiting Approval
             </button>
-          ) : developerStatus === "approved" ? null : (
+          ) : developerStatus === "verified" ? null : (
             <button
               onClick={() => navigate("/store/apply")}
               className="cursor-pointer hidden lg:block bg-[#A4FF00] text-black text-sm font-semibold px-4 py-1.5 rounded-xl hover:bg-[#90e600] transition-all"
@@ -68,7 +68,7 @@ function NavTwo() {
             >
               <FiClock />
             </button>
-          ) : developerStatus === "approved" ? null : (
+          ) : developerStatus === "verified" ? null : (
             <button
               onClick={() => navigate("/store/apply")}
               className="block lg:hidden text-[#A4FF00] text-2xl hover:text-lime-300 transition"
@@ -130,17 +130,17 @@ function NavTwo() {
         ))}
 
         {/* Conditional "Become a Developer" Menu */}
-        {developerStatus !== "approved" && (
+        {developerStatus !== "verified" && (
           <li
             className="px-6 py-3 hover:bg-[#89AF20] active:bg-[#6e9121] transition-all duration-200 cursor-pointer"
             onClick={() => {
               setDropDown(false);
               navigate(
-                developerStatus === "pending" ? "/store/apply" : "/store/apply"
+                developerStatus === "verified" ? "/store/apply" : "/store/apply"
               );
             }}
           >
-            {developerStatus === "pending"
+            {developerStatus === "verified"
               ? "Awaiting Approval"
               : "Become a Developer"}
           </li>

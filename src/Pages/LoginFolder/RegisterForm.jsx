@@ -92,6 +92,7 @@ const RegisterForm = ({ userType = "individual" }) => {
       password: data.password,
       country: selectedCountry,
       dob: data.birthday,
+      verify_option: verify,
       gender,
       role,
     };
@@ -102,38 +103,13 @@ const RegisterForm = ({ userType = "individual" }) => {
     });
   };
 
-  const handleVerifyOtp = () => {
-    if (otp.length !== 4) {
-      setOtpError("Enter a valid 4-digit OTP.");
-      return;
-    }
-
-    const identifier =
-      verify === "text" ? (phone.startsWith("+") ? phone : `+${phone}`) : email;
-
-    verifyOtpMutation.mutate(
-      verify === "text"
-        ? { phone: identifier, otp }
-        : { email: identifier, otp },
-      {
-        onSuccess: () => {
-          setOtpSuccess(true);
-          setOtpError("");
-        },
-        onError: () => {
-          setOtpError("Invalid OTP. Please try again.");
-        },
-      }
-    );
-  };
-
   const errorClass = "text-sm text-red-500 mt-1";
 
   if (registrationComplete && !otpSuccess) {
     return (
       <OtpScreen
-        identifier={verify === "text" ? `+${phone}` : email}
-        type={verify} // "text" or "email"
+        identifier={verify === "sms" ? `+${phone}` : email}
+        type={verify} // "sms" or "email"
         onVerified={() => setOtpSuccess(true)}
       />
     );
@@ -356,7 +332,7 @@ const RegisterForm = ({ userType = "individual" }) => {
       <div>
         <span className="block font-medium mb-1">Verify with:</span>
         <div className="flex gap-4">
-          {["text", "email"].map((option) => (
+          {["sms", "email"].map((option) => (
             <label key={option} className="flex items-center gap-2">
               <input
                 type="radio"
@@ -365,7 +341,7 @@ const RegisterForm = ({ userType = "individual" }) => {
                 checked={verify === option}
                 onChange={(e) => setVerify(e.target.value)}
               />
-              {option === "text" ? "Text Message" : "Email"}
+              {option === "sms" ? "Text Message" : "Email"}
             </label>
           ))}
         </div>
