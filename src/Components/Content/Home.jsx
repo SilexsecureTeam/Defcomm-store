@@ -60,7 +60,7 @@ function Home({ slideShow = true }) {
             transition: all 0.3s ease;
           }
           .custom-swiper-pagination .swiper-pagination-bullet-active {
-            background-color: white;
+            background-color: #000;
             opacity: 1;
             transform: scale(1.2);
           }
@@ -98,7 +98,7 @@ function Home({ slideShow = true }) {
       </div>
 
       {/* Hero Section */}
-      <div className="pt-20 md:px-10">
+      <div className="py-20 md:px-10">
         <div>
           <p className="flex items-center text-[13px] md:py-8">
             <span className="text-lime-700 text-xl">
