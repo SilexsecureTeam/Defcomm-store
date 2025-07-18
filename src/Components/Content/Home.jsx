@@ -98,7 +98,7 @@ function Home({ slideShow = true }) {
       </div>
 
       {/* Hero Section */}
-      <div className="py-20 md:px-10">
+      <div className="pt-20 md:px-10">
         <div>
           <p className="flex items-center text-[13px] md:py-8">
             <span className="text-lime-700 text-xl">
@@ -111,7 +111,7 @@ function Home({ slideShow = true }) {
           </h1>
           <div
             onClick={() => navigate("/membership/individual")}
-            className="cursor-pointer flex py-4 md:py-8 gap-4 text-black"
+            className="cursor-pointer flex my-4 md:my-8 gap-4 text-black w-max h-max"
           >
             <button className="cursor-pointer py-2 px-5 bg-white rounded-md">
               GET STARTED
@@ -124,7 +124,7 @@ function Home({ slideShow = true }) {
 
         {/* Swiper Section */}
         {slideShow && (
-          <div className="relative md:pt-20 w-full">
+          <div className="relative py-5 md:pt-20 w-full">
             <Swiper {...swiperOptions} className="h-96 md:h-[450px] relative">
               {slideImages.map(({ src, alt }, index) => (
                 <SwiperSlide key={index}>
