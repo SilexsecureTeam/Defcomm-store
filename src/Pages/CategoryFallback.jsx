@@ -7,7 +7,7 @@ export default function CategoryFallback() {
   const formattedCategory = category.toLowerCase();
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-4 text-center bg-white rounded-3xl shadow-inner">
+    <section className="flex flex-col items-center justify-center min-h-[70vh] px-4 text-center bg-white rounded-3xl shadow-inner">
       <div className="bg-gray-200 p-6 rounded-full shadow-md mb-6">
         <FaRegSadTear className="text-5xl text-gray-500" />
       </div>
