@@ -46,3 +46,36 @@ export const navItems = [
   { icon: CgProfile, path: "/profile" },
   { icon: MdContactPhone, path: "/contact" },
 ];
+
+export const appAnalytics = [
+  {
+    name: "MyTravel",
+    downloads: 1200,
+    activeUsers: 800,
+    revenue: 2500,
+    rating: 4.5,
+  },
+  {
+    name: "ShopMate",
+    downloads: 850,
+    activeUsers: 650,
+    revenue: 1800,
+    rating: 4.2,
+  },
+  {
+    name: "EduLink",
+    downloads: 900,
+    activeUsers: 700,
+    revenue: 2100,
+    rating: 4.6,
+  },
+];
+
+export const growthData = [
+  { month: "Jan", downloads: 500 },
+  { month: "Feb", downloads: 700 },
+  { month: "Mar", downloads: 1100 },
+  { month: "Apr", downloads: 1300 },
+  { month: "May", downloads: 1500 },
+  { month: "Jun", downloads: 1700 },
+];

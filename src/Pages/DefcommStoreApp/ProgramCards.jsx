@@ -53,7 +53,11 @@ const ProgramCards = () => {
                 label="Apps"
                 onClick={() => navigate("/store/apps")}
               />
-              <LinkRow icon={appAnalytic} label="App Analytics" />
+              <LinkRow
+                onClick={() => navigate("/store/app/analytics")}
+                icon={appAnalytic}
+                label="App Analytics"
+              />
               <LinkRow icon={mynaui} label="Users and Access" />
             </div>
             <p className="underline text-[18px] mt-6">Get Started</p>

@@ -27,6 +27,7 @@ const DeveloperApplicationForm = lazy(() =>
   import("../Pages/DeveloperApplicationForm")
 );
 const Profile = lazy(() => import("../Pages/Profile"));
+const AppAnalytics = lazy(() => import("../Pages/AppAnalytics"));
 
 const AppRoutes = (
   <Route element={<AppGuard />}>
@@ -40,6 +41,7 @@ const AppRoutes = (
       <Route path="app/:id" element={<AppViewPage />} />
 
       <Route path="app/publish" element={<AppSubmissionForm />} />
+      <Route path="app/analytics" element={<AppAnalytics />} />
 
       <Route path="apply" element={<DeveloperApplicationForm />} />
 
