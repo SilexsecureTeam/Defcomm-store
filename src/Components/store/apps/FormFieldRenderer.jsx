@@ -1,5 +1,4 @@
-// Path: src/Components/store/FormFieldRenderer.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
@@ -27,14 +26,69 @@ const FormFieldRenderer = ({ field }) => {
     formState: { errors },
   } = useFormContext();
 
-  // Handle display type fields (h3, p, custom HTML)
+  const [uploadProgress, setUploadProgress] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const fieldValue = watch(name);
+  const isFileSelected = fieldValue instanceof File;
+  const previewUrl = isFileSelected ? URL.createObjectURL(fieldValue) : null;
+
+  const handleClearFile = (e) => {
+    e.preventDefault();
+    setUploadProgress(null);
+    setValue(name, null);
+  };
+
+  const handleFileChange = (file) => {
+    const maxSizeMB =
+      name === "app_icon" ? 1 : name === "feature_image" ? 15 : 200;
+
+    if (file && file.size > maxSizeMB * 1024 * 1024) {
+      alert(`File size must not exceed ${maxSizeMB}MB`);
+      return;
+    }
+
+    setValue(name, file);
+    simulateUpload();
+  };
+
+  const simulateUpload = () => {
+    let progress = 0;
+    setUploadProgress(progress);
+    const interval = setInterval(() => {
+      progress += 10;
+      if (progress >= 100) {
+        clearInterval(interval);
+        setUploadProgress(null);
+      } else {
+        setUploadProgress(progress);
+      }
+    }, 150);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      handleFileChange(file);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
   if (type === "display") {
     const DisplayComponent = component || "div";
-    const paddingClass = component === "p" ? "" : "";
     return (
       <DisplayComponent
         key={name}
-        className={`${extraClassName || ""} ${paddingClass} ${
+        className={`${extraClassName || ""} ${
           component === "h3"
             ? "text-xl font-semibold mt-4 text-gray-800 mb-4"
             : "text-gray-700 text-sm mb-3 whitespace-pre-line"
@@ -43,15 +97,6 @@ const FormFieldRenderer = ({ field }) => {
       />
     );
   }
-
-  const fieldValue = watch(name);
-  const isFileSelected = fieldValue instanceof File;
-  const previewUrl = isFileSelected ? URL.createObjectURL(fieldValue) : null;
-
-  const handleClearFile = (e) => {
-    e.preventDefault();
-    setValue(name, null);
-  };
 
   return (
     <div
@@ -63,7 +108,7 @@ const FormFieldRenderer = ({ field }) => {
       {label && type !== "checkbox" && (
         <label htmlFor={name} className="mb-1 font-medium">
           {label}
-          {label && required && <span className="text-red-500">*</span>}
+          {required && <span className="text-red-500">*</span>}
         </label>
       )}
 
@@ -101,27 +146,30 @@ const FormFieldRenderer = ({ field }) => {
           ))}
         </div>
       ) : type === "file" || type === "image" ? (
-        <div className="relative group">
+        <div
+          className={`relative group border border-dashed rounded-md ${
+            isDragging
+              ? "border-lime-500 bg-lime-50"
+              : "border-gray-400 bg-gray-50"
+          }`}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+        >
           <label
             htmlFor={name}
-            className={`min-h-40 text-gray-600 border border-dashed border-gray-400 bg-gray-50 flex flex-col items-center justify-center text-center p-6 rounded-md
-              ${
-                isFileSelected
-                  ? "cursor-default"
-                  : "hover:bg-gray-100 transition cursor-pointer"
-              }`}
+            className="w-full h-full flex flex-col items-center justify-center text-center p-6 cursor-pointer"
           >
             <input
               id={name}
               type="file"
               className="hidden"
-              onChange={(e) => {
-                setValue(name, e.target.files[0]);
-              }}
+              onChange={(e) => handleFileChange(e.target.files[0])}
             />
+
             {isFileSelected ? (
               <div className="relative w-full h-full max-h-60 flex flex-col items-center justify-center space-y-2">
-                {fieldValue.type.startsWith("image/") ? (
+                {fieldValue.type?.startsWith("image/") ? (
                   <img
                     src={previewUrl}
                     alt="Preview"
@@ -143,6 +191,20 @@ const FormFieldRenderer = ({ field }) => {
                 >
                   <MdCancel size={20} />
                 </button>
+
+                {uploadProgress !== null && (
+                  <div className="w-full mt-4">
+                    <div className="relative h-3 bg-gray-200 rounded-full overflow-hidden">
+                      <div
+                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-lime-400 to-lime-600 transition-all duration-300 ease-in-out"
+                        style={{ width: `${uploadProgress}%` }}
+                      />
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1 text-center">
+                      Uploading... {uploadProgress}%
+                    </p>
+                  </div>
+                )}
               </div>
             ) : (
               <>
@@ -150,7 +212,7 @@ const FormFieldRenderer = ({ field }) => {
                   <FaUpload size="24" className="text-gray-600" />
                 </div>
                 <p className="text-sm font-semibold text-gray-700">
-                  {desc || label}
+                  {desc || "Click or drag to upload"}
                 </p>
               </>
             )}
@@ -164,7 +226,6 @@ const FormFieldRenderer = ({ field }) => {
             {...register(name)}
             className="h-4 w-4 text-lime-600 border-gray-300 rounded focus:ring-lime-500"
           />
-
           <div>
             <label
               htmlFor={name}
@@ -190,6 +251,7 @@ const FormFieldRenderer = ({ field }) => {
           {desc && <p className="text-gray-600 text-xs mt-1 italic">{desc}</p>}
         </div>
       )}
+
       {errors[name] && (
         <p className="text-red-500 text-xs mt-1">{errors[name].message}</p>
       )}
