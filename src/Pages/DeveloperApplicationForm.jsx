@@ -47,7 +47,7 @@ const DeveloperApplicationForm = () => {
   };
 
   // ✅ Show waiting message if developer status is pending or under_review
-  if (!authDetails?.user?.statusApp) {
+  if (authDetails?.user?.statusApp) {
     return <DevModeWaitingScreen />;
   }
 
