@@ -25,7 +25,7 @@ export default function EmergencyRoom({ app, onToggle, isLoading }) {
         style: "bg-red-600 hover:bg-red-700 text-white",
       },
     },
-    disabl: {
+    disable: {
       icon: <FaPowerOff className="text-yellow-400 text-3xl" />,
       title: "App is Disabled",
       message:
@@ -58,9 +58,20 @@ export default function EmergencyRoom({ app, onToggle, isLoading }) {
         style: "bg-gray-800 text-gray-500 cursor-not-allowed",
       },
     },
+    pending: {
+      icon: <FaExclamationTriangle className="text-yellow-300 text-3xl" />,
+      title: "App Pending Approval",
+      message:
+        "This app is currently under review. You’ll be notified once the review is complete.",
+      button: {
+        label: "Pending Review",
+        disabled: true,
+        style: "bg-yellow-900 text-yellow-400 cursor-not-allowed",
+      },
+    },
   };
 
-  const current = statusConfig[status];
+  const current = statusConfig[status?.toLowerCase()];
   if (!current) return null;
 
   return (
