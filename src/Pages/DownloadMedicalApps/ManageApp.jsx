@@ -18,11 +18,11 @@ export default function ManageApp() {
 
     let newStatus = "";
 
-    if (app.status === "approved") {
+    if (app.status?.toLowerCase() === "approved") {
       newStatus = "active"; // First-time publish
-    } else if (app.status === "active") {
+    } else if (app.status?.toLowerCase() === "active") {
       newStatus = "disable"; // Disable published app
-    } else if (app.status === "disable") {
+    } else if (app.status?.toLowerCase() === "disable") {
       newStatus = "active"; // Re-enable app
     } else {
       return;
@@ -74,7 +74,8 @@ export default function ManageApp() {
 
       <AppDetails app={app} />
 
-      {(app?.status === "approved" || app?.status === "disable") && (
+      {(app?.status?.toLowerCase() === "approved" ||
+        app?.status?.toLowerCase() === "disable") && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,7 +96,7 @@ export default function ManageApp() {
           >
             {isPending
               ? "Publishing..."
-              : app.status === "disable"
+              : app.status?.toLowerCase() === "disable"
               ? "Re-enable App"
               : "Publish App"}
           </button>

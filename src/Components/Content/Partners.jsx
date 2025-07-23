@@ -26,7 +26,7 @@ function Partners() {
           <span className="text-stone-800 text-lg">
             <GoDotFill />
           </span>
-          OUR PARTNER
+          PROPOSED PARTNER
         </p>
 
         <div className="relative py-4 whitespace-nowrap overflow-x-hidden">

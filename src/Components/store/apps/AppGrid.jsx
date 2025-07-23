@@ -14,7 +14,7 @@ const AppGrid = ({ apps }) => {
   const navigate = useNavigate();
 
   const getStatusIcon = (status) => {
-    switch (status) {
+    switch (status?.toLowerCase()) {
       case "approved":
         return (
           <div className="flex items-center gap-1 text-green-500">
