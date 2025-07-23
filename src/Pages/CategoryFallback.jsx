@@ -13,13 +13,14 @@ export default function CategoryFallback() {
       </div>
 
       <div className="max-w-xl space-y-3">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 capitalize">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 capitalize truncate">
           No {category} Available
         </h2>
 
         <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-          Sorry, we couldn’t find any {formattedCategory} at the moment. You can
-          try again later or explore other categories in the meantime.
+          Sorry, we couldn’t find any{" "}
+          <span className="break-all">{formattedCategory}</span> at the moment.
+          You can try again later or explore other categories in the meantime.
         </p>
       </div>
     </section>

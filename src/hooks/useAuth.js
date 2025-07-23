@@ -26,7 +26,8 @@ const useAuth = () => {
     onSuccess: (userData) => {
       onSuccess({
         message: "Account Created",
-        success: `Account created successfully! You need to verify, using this - ${userData?.data?.otp}`,
+        success:
+          "Account created successfully! You need to verify your phone or email.",
       });
     },
     onError: (err) => {
@@ -57,7 +58,7 @@ const useAuth = () => {
     onSuccess: (data) => {
       onSuccess({
         message: "OTP Requested!",
-        success: `Here is the otp- ${data?.otp}`,
+        success: "Check your phone for the OTP code.",
       });
     },
     onError: (err) => {

@@ -92,14 +92,14 @@ function Project() {
                   {app.image && (
                     <img
                       src={app.image}
-                      alt={app.name}
+                      alt={app.app_name}
                       className="w-full h-full object-cover"
                     />
                   )}
                 </div>
                 <div className="flex items-center justify-between">
                   <article>
-                    <h1 className="text-2xl">{app.name}</h1>
+                    <h1 className="text-2xl">{app.app_name}</h1>
                     <p className="text-sm text-stone-500 flex items-center">
                       {new Date(app.created_at).getFullYear()}
                       <GoDotFill className="mx-1 text-[7px]" />
@@ -107,7 +107,10 @@ function Project() {
                     </p>
                   </article>
                   <button
-                    onClick={() => navigate(app.route)}
+                    onClick={() => {
+                      scrollTo(0, 0);
+                      navigate(`/apps/${app.id}`);
+                    }}
                     className="cursor-pointer bg-lime-700 text-white p-3 rounded-full"
                   >
                     <CgArrowTopRight />
@@ -127,14 +130,14 @@ function Project() {
                   {app.image && (
                     <img
                       src={app.image}
-                      alt={app.name}
+                      alt={app.app_name}
                       className="w-full h-full object-cover"
                     />
                   )}
                 </div>
                 <div className="flex items-center justify-between">
                   <article>
-                    <h1 className="text-2xl">{app.name}</h1>
+                    <h1 className="text-2xl">{app.app_name}</h1>
                     <p className="text-sm text-stone-500 flex items-center">
                       {new Date(app.created_at).getFullYear()}
                       <GoDotFill className="mx-1 text-[7px]" />
@@ -142,7 +145,10 @@ function Project() {
                     </p>
                   </article>
                   <button
-                    onClick={() => navigate(app.route || "/medical")}
+                    onClick={() => {
+                      scrollTo(0, 0);
+                      navigate(`/apps/${app.id}`);
+                    }}
                     className="cursor-pointer bg-lime-700 text-white p-3 rounded-full"
                   >
                     <CgArrowTopRight />

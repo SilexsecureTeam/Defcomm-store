@@ -27,14 +27,14 @@ const Privacy = lazy(() => import("../Components/Footer/Privacy"));
 const TermofUse = lazy(() => import("../Components/Footer/TermofUse"));
 const DevAgreement = lazy(() => import("../Components/Footer/DevAgreement"));
 const ComingSoon = lazy(() => import("../Pages/ComingSoon"));
-const CategoryFallback = lazy(() => import("../Pages/CategoryFallback"));
+const AppViewPage = lazy(() => import("../Pages/DefcommStoreApp/AppViewPage"));
 
 const PublicRoutes = (
   <Route element={<PublicGuard />}>
     <Route path="/" element={<Layout />}>
       <Route index element={<HomePages />} />
-      <Route path="app" element={<AppPages />} />
-      <Route path="/app/:category" element={<CategoryFallback />} />
+      <Route path="apps" element={<AppPages />} />
+      <Route path="/apps/:category" element={<AppViewPage />} />
     </Route>
 
     <Route path="/membership/:userType" element={<Membership />} />

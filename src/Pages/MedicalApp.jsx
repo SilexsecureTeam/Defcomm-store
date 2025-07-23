@@ -6,8 +6,8 @@ import headphone from "../assets/Image.png";
 import useApp from "../hooks/useApp";
 
 export default function MedicalApp() {
-  const { getMyAppListQuery } = useApp();
-  const { data, isLoading, isError } = getMyAppListQuery;
+  const { getAppListQuery } = useApp();
+  const { data, isLoading, isError } = getAppListQuery;
 
   const fallbackImage = headphone;
 

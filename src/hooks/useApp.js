@@ -17,6 +17,7 @@ const useApp = () => {
       const { data } = await client.get("/app/list");
       return data?.data || [];
     },
+    refetchOnWindowFocus: false,
   });
 
   const getMyAppListQuery = useQuery({
@@ -59,11 +60,11 @@ const useApp = () => {
   });
 
   // PUT/POST: Update app
-  const updateAppMutation = useMutation({
-    mutationFn: (payload) => client.post("/app/update", payload),
+  const updateAppStatusMutation = useMutation({
+    mutationFn: (payload) => client.post("/app/status", payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["myApps"]);
-      onSuccess({ message: "App updated successfully" });
+      onSuccess({ message: "App status updated successfully" });
     },
     onError: (err) =>
       onFailure({
@@ -99,7 +100,7 @@ const useApp = () => {
     getMyAppListQuery,
     getAppByIdQuery,
     createAppMutation,
-    updateAppMutation,
+    updateAppStatusMutation,
     developerApplicationMutation,
   };
 };

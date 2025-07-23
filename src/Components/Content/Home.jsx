@@ -20,7 +20,6 @@ import { useNavigate } from "react-router-dom";
 
 const slideImages = [
   { src: img1, alt: "Privacy-first mobile interface" },
-  { src: img2, alt: "User-friendly dashboard design" },
   { src: img3, alt: "Hero showcase product 1" },
   { src: img4, alt: "Hero showcase product 2" },
   { src: img5, alt: "Hero showcase product 3" },
@@ -39,7 +38,7 @@ function Home({ slideShow = true }) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-w-[300px] bg-deffcom-lime text-white px-4 pt-5 md:px-10 md:pt-10 md:mx-10">
+    <div className="relative min-w-[300px] bg-deffcom-lime text-white px-4 md:px-10 md:mx-10">
       {/* Scoped Swiper Dot Styling */}
       <style>
         {`
@@ -68,7 +67,7 @@ function Home({ slideShow = true }) {
       </style>
 
       {/* Device Navigation (Only visible on desktop) */}
-      <div className="hidden md:block absolute right-10 top-[120px]">
+      <div className="hidden md:block absolute right-10 top-4">
         <ul className="flex gap-3 text-xs">
           <li className="flex gap-1 cursor-pointer items-center">
             <p className="text-xl">
@@ -98,7 +97,7 @@ function Home({ slideShow = true }) {
       </div>
 
       {/* Hero Section */}
-      <div className="pt-20 md:px-10">
+      <div className="pt-8 md:px-10">
         <div>
           <p className="flex items-center text-[13px] md:py-8">
             <span className="text-lime-700 text-xl">
@@ -111,7 +110,7 @@ function Home({ slideShow = true }) {
           </h1>
           <div
             onClick={() => navigate("/membership/individual")}
-            className="cursor-pointer flex my-4 md:my-8 gap-4 text-black w-max h-max"
+            className="cursor-pointer flex py-4 md:py-8 gap-4 text-black w-max h-max"
           >
             <button className="cursor-pointer py-2 px-5 bg-white rounded-md">
               GET STARTED
@@ -124,8 +123,8 @@ function Home({ slideShow = true }) {
 
         {/* Swiper Section */}
         {slideShow && (
-          <div className="relative py-5 md:pt-20 w-full">
-            <Swiper {...swiperOptions} className="h-96 md:h-[450px] relative">
+          <div className="relative py-5 w-full">
+            <Swiper {...swiperOptions} className="h-80 md:h-96 relative">
               {slideImages.map(({ src, alt }, index) => (
                 <SwiperSlide key={index}>
                   <img

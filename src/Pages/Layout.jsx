@@ -8,7 +8,8 @@ import WhyUs from "../Components/Content/WhyUs.jsx";
 function Layout() {
   return (
     <div className="flex flex-col min-h-screen">
-      <main className="flex-grow ">
+      <Nav />
+      <main className="flex-grow mt-16">
         <Outlet />
       </main>
       <WhyUs />

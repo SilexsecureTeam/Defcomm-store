@@ -12,7 +12,10 @@ const HeaderBarTwo = ({ title = "", link = "" }) => {
       {link && (
         <button
           className="cursor-pointer bg-deffcom-lima border-2 border-lime-400 w-12 h-12 flex justify-center items-center rounded-full text-white"
-          onClick={() => navigate(link)}
+          onClick={() => {
+            scrollTo(0, 0);
+            navigate(link);
+          }}
         >
           <FaPlus />
         </button>

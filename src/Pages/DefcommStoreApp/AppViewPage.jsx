@@ -4,11 +4,12 @@ import { TbDownload, TbShieldLock, TbMail, TbPhoneCall } from "react-icons/tb";
 import { motion } from "framer-motion";
 import useApp from "../../hooks/useApp";
 import { FaSpinner, FaMobileAlt } from "react-icons/fa";
-
+import CategoryFallback from "../CategoryFallback";
 export default function AppViewPage() {
-  const { id } = useParams();
+  const { category } = useParams();
   const { getAppByIdQuery } = useApp();
-  const { data: app, isLoading } = getAppByIdQuery(id);
+  const { data: app, isLoading } = getAppByIdQuery(category);
+  console.log(app);
 
   const [iconError, setIconError] = useState(false);
   const [featureError, setFeatureError] = useState(false);
@@ -23,11 +24,7 @@ export default function AppViewPage() {
   }
 
   if (!app) {
-    return (
-      <div className="min-h-80 flex items-center justify-center text-red-500">
-        App not found.
-      </div>
-    );
+    return <CategoryFallback />;
   }
 
   return (

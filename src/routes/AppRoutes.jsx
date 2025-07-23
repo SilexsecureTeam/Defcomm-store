@@ -12,13 +12,12 @@ const AppGuard = () => {
 
 // Lazy-loaded store pages
 const MedicalApp = lazy(() => import("../Pages/MedicalApp"));
-const PPT = lazy(() => import("../Pages/DownloadMedicalApps/PPT"));
+const ManageApp = lazy(() => import("../Pages/DownloadMedicalApps/ManageApp"));
 const ProgramResources = lazy(() =>
   import("../Pages/DefcommStoreApp/ProgramResources")
 );
 
 const MyApps = lazy(() => import("../Pages/DefcommStoreApp/MyApps"));
-const AppViewPage = lazy(() => import("../Pages/DefcommStoreApp/AppViewPage"));
 const ComingSoon = lazy(() => import("../Pages/ComingSoon"));
 const AppSubmissionForm = lazy(() =>
   import("../Pages/DefcommStoreApp/AppSubmissionForm")
@@ -38,7 +37,7 @@ const AppRoutes = (
 
       {/* App */}
       <Route path="apps" element={<MyApps />} />
-      <Route path="app/:id" element={<AppViewPage />} />
+      <Route path="app/:id" element={<ManageApp />} />
 
       <Route path="app/publish" element={<AppSubmissionForm />} />
       <Route path="app/analytics" element={<AppAnalytics />} />

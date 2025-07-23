@@ -9,10 +9,10 @@ import Logo from "../../assets/Defcomm-03 4.png";
 import defcomm from "../../assets/Defcomm-02 3 2 8.png";
 
 const navItems = [
-  { label: "GAMES", path: "/app/games" },
-  { label: "APP", path: "/app" },
-  { label: "BOOKS", path: "/app/books" },
-  { label: "TV", path: "/app/tv" },
+  { label: "GAMES", path: "/apps/games" },
+  { label: "APP", path: "/apps" },
+  { label: "BOOKS", path: "/apps/books" },
+  { label: "TV", path: "/apps/tv" },
 ];
 
 function Nav() {
