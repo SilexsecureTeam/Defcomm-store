@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { FaUpload } from "react-icons/fa";
+import { FaSpinner, FaUpload } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
-
+import { useEffect } from "react";
+import useApp from "../../../hooks/useApp";
+import AppVerificationStatusCard from "./AppVerificationStatusCard";
 const FormFieldRenderer = ({ field }) => {
   const {
     name,
@@ -16,6 +18,7 @@ const FormFieldRenderer = ({ field }) => {
     layout,
     component,
     text,
+    maxSizeMB,
     className: extraClassName,
   } = field;
 
@@ -26,8 +29,12 @@ const FormFieldRenderer = ({ field }) => {
     formState: { errors },
   } = useFormContext();
 
+  const { verifyApk } = useApp();
+
   const [uploadProgress, setUploadProgress] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [apkSignatureInfo, setApkSignatureInfo] = useState(null);
+  const [apkSignatureError, setApkSignatureError] = useState(null);
   const fieldValue = watch(name);
   const isFileSelected = fieldValue instanceof File;
   const previewUrl = isFileSelected ? URL.createObjectURL(fieldValue) : null;
@@ -36,33 +43,72 @@ const FormFieldRenderer = ({ field }) => {
     e.preventDefault();
     setUploadProgress(null);
     setValue(name, null);
+    setApkSignatureError(null);
+    setApkSignatureInfo(null);
   };
 
-  const handleFileChange = (file) => {
-    const maxSizeMB =
-      name === "app_icon" ? 1 : name === "feature_image" ? 15 : 200;
-
+  const handleFileChange = async (file) => {
     if (file && file.size > maxSizeMB * 1024 * 1024) {
       alert(`File size must not exceed ${maxSizeMB}MB`);
       return;
     }
 
-    setValue(name, file);
-    simulateUpload();
+    setApkSignatureInfo(null);
+    setApkSignatureError(null);
+    setUploadProgress(0); // show progress bar
+
+    const isApk = name === "app_bundle" && file.name.endsWith(".apk");
+
+    if (isApk) {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress >= 98) progress = 98;
+        setUploadProgress(progress);
+      }, 300);
+
+      try {
+        const data = await verifyApk.mutateAsync({ file });
+        clearInterval(interval);
+        setUploadProgress(100);
+
+        setTimeout(() => {
+          setUploadProgress(null); // ✅ hide progress
+          setApkSignatureInfo(data || null);
+          setValue(name, file); // ✅ only if valid
+        }, 500);
+      } catch (err) {
+        clearInterval(interval);
+        setUploadProgress(100);
+
+        setTimeout(() => {
+          setUploadProgress(null); // ✅ hide progress
+          setApkSignatureError(
+            "Invalid APK signature. Please upload a valid signed APK."
+          );
+        }, 500);
+      }
+    } else {
+      simulateUpload(() => {
+        setUploadProgress(null); // ✅ hide progress
+        setValue(name, file); // ✅ set only after upload
+      });
+    }
   };
 
-  const simulateUpload = () => {
+  const simulateUpload = (onComplete) => {
     let progress = 0;
     setUploadProgress(progress);
     const interval = setInterval(() => {
-      progress += 10;
+      progress += 20;
+      setUploadProgress(progress);
       if (progress >= 100) {
         clearInterval(interval);
-        setUploadProgress(null);
-      } else {
-        setUploadProgress(progress);
+        setTimeout(() => {
+          if (onComplete) onComplete();
+        }, 300); // simulate delay before hiding
       }
-    }, 150);
+    }, 200);
   };
 
   const handleDrop = (e) => {
@@ -191,20 +237,6 @@ const FormFieldRenderer = ({ field }) => {
                 >
                   <MdCancel size={20} />
                 </button>
-
-                {uploadProgress !== null && (
-                  <div className="w-full mt-4">
-                    <div className="relative h-3 bg-gray-200 rounded-full overflow-hidden">
-                      <div
-                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-lime-400 to-lime-600 transition-all duration-300 ease-in-out"
-                        style={{ width: `${uploadProgress}%` }}
-                      />
-                    </div>
-                    <p className="text-xs text-gray-600 mt-1 text-center">
-                      Uploading... {uploadProgress}%
-                    </p>
-                  </div>
-                )}
               </div>
             ) : (
               <>
@@ -215,6 +247,37 @@ const FormFieldRenderer = ({ field }) => {
                   {desc || "Click or drag to upload"}
                 </p>
               </>
+            )}
+
+            {uploadProgress !== null && (
+              <div className="w-full mt-4">
+                <div className="relative h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div
+                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-lime-400 to-lime-600 transition-all duration-300 ease-in-out"
+                    style={{ width: `${uploadProgress}%` }}
+                  />
+                </div>
+                <div className="flex items-center justify-between mt-1 text-xs text-gray-600">
+                  <span>{verifyApk.isPending ? "Verifying APK..." : null}</span>
+                  {verifyApk.isPending && (
+                    <FaSpinner className="animate-spin ml-2 text-gray-500" />
+                  )}
+                </div>
+              </div>
+            )}
+
+            {apkSignatureInfo && (
+              <AppVerificationStatusCard
+                type="success"
+                data={apkSignatureInfo}
+              />
+            )}
+
+            {apkSignatureError && (
+              <AppVerificationStatusCard
+                type="error"
+                error={apkSignatureError}
+              />
             )}
           </label>
         </div>

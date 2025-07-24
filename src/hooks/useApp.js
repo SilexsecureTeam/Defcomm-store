@@ -4,6 +4,7 @@ import { onSuccess, onFailure } from "../utils/notifications/Notification";
 import { extractErrorMessage } from "../utils/formmaters";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const useApp = () => {
   const { authDetails, updateAuth } = useContext(AuthContext);
@@ -95,6 +96,25 @@ const useApp = () => {
       }),
   });
 
+  const verifyAppMutation = useMutation({
+    mutationFn: async ({ file, onProgress }) => {
+      const formData = new FormData();
+      formData.append("apk", file);
+
+      const { data } = await axios.post(
+        import.meta.env.VITE_APP_VERIFIER_URL, // must be local API
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      return data?.app;
+    },
+  });
+
   return {
     getAppListQuery,
     getMyAppListQuery,
@@ -102,6 +122,7 @@ const useApp = () => {
     createAppMutation,
     updateAppStatusMutation,
     developerApplicationMutation,
+    verifyApk: verifyAppMutation,
   };
 };
 
