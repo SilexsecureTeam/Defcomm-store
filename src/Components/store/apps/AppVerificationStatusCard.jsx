@@ -12,7 +12,7 @@ const AppVerificationStatusCard = ({ type, data, error }) => {
           : "bg-red-50 border-red-300 text-red-700"
       }`}
     >
-      <div className="flex items-center gap-2 mb-2 font-medium">
+      <div className="flex items-center gap-2 mb-4 font-medium">
         {isSuccess ? (
           <FaCheckCircle className="text-green-500" />
         ) : (
@@ -27,26 +27,49 @@ const AppVerificationStatusCard = ({ type, data, error }) => {
 
       {isSuccess ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          {data.icon && (
+            <div className="col-span-1 sm:col-span-2 flex items-center gap-3">
+              <img
+                src={data.icon}
+                alt="App Icon"
+                className="w-12 h-12 rounded-md border border-gray-300"
+              />
+              <span className="text-gray-700 font-semibold">{data.name}</span>
+            </div>
+          )}
+
           <div className="flex flex-col">
             <span className="text-gray-500 text-xs">Name</span>
             <span className="font-medium text-gray-800">{data.name}</span>
           </div>
+
           <div className="flex flex-col">
             <span className="text-gray-500 text-xs">Package</span>
             <span className="font-medium text-gray-800 break-all">
               {data.package}
             </span>
           </div>
+
           <div className="flex flex-col">
             <span className="text-gray-500 text-xs">Version Code</span>
             <span className="font-medium text-gray-800">
               {data.versionCode}
             </span>
           </div>
+
           <div className="flex flex-col">
             <span className="text-gray-500 text-xs">Version Name</span>
             <span className="font-medium text-gray-800">
               {data.versionName}
+            </span>
+          </div>
+
+          <div className="flex flex-col sm:col-span-2">
+            <span className="text-gray-500 text-xs">
+              Certificate Fingerprint
+            </span>
+            <span className="font-medium text-gray-800 break-all">
+              {data.certificateFingerprint}
             </span>
           </div>
         </div>

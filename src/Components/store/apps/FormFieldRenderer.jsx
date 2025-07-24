@@ -5,6 +5,7 @@ import { MdCancel } from "react-icons/md";
 import { useEffect } from "react";
 import useApp from "../../../hooks/useApp";
 import AppVerificationStatusCard from "./AppVerificationStatusCard";
+import { extractErrorMessage } from "../../../utils/formmaters";
 const FormFieldRenderer = ({ field }) => {
   const {
     name,
@@ -68,14 +69,17 @@ const FormFieldRenderer = ({ field }) => {
       }, 300);
 
       try {
-        const data = await verifyApk.mutateAsync({ file });
+        const app = await verifyApk.mutateAsync({ file });
         clearInterval(interval);
         setUploadProgress(100);
 
         setTimeout(() => {
           setUploadProgress(null); // ✅ hide progress
-          setApkSignatureInfo(data || null);
+          setApkSignatureInfo(app || null);
           setValue(name, file); // ✅ only if valid
+          setValue("name_release", app.name);
+          setValue("version", app.versionName);
+          // setValue("certificate_fingerprint", app.certificateFingerprint); // hidden field
         }, 500);
       } catch (err) {
         clearInterval(interval);
@@ -84,7 +88,8 @@ const FormFieldRenderer = ({ field }) => {
         setTimeout(() => {
           setUploadProgress(null); // ✅ hide progress
           setApkSignatureError(
-            "Invalid APK signature. Please upload a valid signed APK."
+            extractErrorMessage(err) ||
+              "Invalid APK signature. Please upload a valid signed APK."
           );
         }, 500);
       }
