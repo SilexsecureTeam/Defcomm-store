@@ -64,14 +64,14 @@ const AppVerificationStatusCard = ({ type, data, error }) => {
             </span>
           </div>
 
-          <div className="flex flex-col sm:col-span-2">
+          {/* <div className="flex flex-col sm:col-span-2">
             <span className="text-gray-500 text-xs">
               Certificate Fingerprint
             </span>
             <span className="font-medium text-gray-800 break-all">
               {data.certificateFingerprint}
             </span>
-          </div>
+          </div> */}
         </div>
       ) : (
         <p className="text-xs">{error}</p>
