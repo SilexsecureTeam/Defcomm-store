@@ -56,9 +56,21 @@ const FormFieldRenderer = ({ field }) => {
 
     setApkSignatureInfo(null);
     setApkSignatureError(null);
-    setUploadProgress(0); // show progress bar
+    if (file) {
+      setUploadProgress(0); // show progress bar
+    }
 
-    const isApk = name === "app_bundle" && file.name.endsWith(".apk");
+    const isAppBundle = name === "app_bundle";
+    const isApk = isAppBundle && file.name.toLowerCase().endsWith(".apk");
+
+    // 🚫 Reject non-APK files if this is app_bundle
+    if (isAppBundle && !isApk) {
+      setUploadProgress(null);
+      setApkSignatureError(
+        "Invalid file format. Please upload a valid .apk file."
+      );
+      return;
+    }
 
     if (isApk) {
       let progress = 0;
@@ -79,7 +91,7 @@ const FormFieldRenderer = ({ field }) => {
           setValue(name, file); // ✅ only if valid
           setValue("name_release", app.name);
           setValue("version", app.versionName);
-          // setValue("certificate_fingerprint", app.certificateFingerprint); // hidden field
+          // setValue("certificate_fingerprint", app.certificateFingerprint);
         }, 500);
       } catch (err) {
         clearInterval(interval);
@@ -94,9 +106,10 @@ const FormFieldRenderer = ({ field }) => {
         }, 500);
       }
     } else {
+      // Non-app_bundle uploads
       simulateUpload(() => {
         setUploadProgress(null); // ✅ hide progress
-        setValue(name, file); // ✅ set only after upload
+        setValue(name, file);
       });
     }
   };

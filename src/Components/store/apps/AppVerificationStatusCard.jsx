@@ -74,7 +74,9 @@ const AppVerificationStatusCard = ({ type, data, error }) => {
           </div> */}
         </div>
       ) : (
-        <p className="text-xs">{error}</p>
+        <p className="text-xs break-all whitespace-pre-wrap overflow-hidden">
+          {error}
+        </p>
       )}
     </div>
   );
