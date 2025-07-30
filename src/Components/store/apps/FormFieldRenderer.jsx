@@ -317,6 +317,27 @@ const FormFieldRenderer = ({ field }) => {
             {desc && <p className="text-gray-700 text-sm">{desc}</p>}
           </div>
         </div>
+      ) : type === "select" ? (
+        <div>
+          <select
+            id={name}
+            {...register(name, {
+              required: required ? `${label} is required` : false,
+            })}
+            className="w-full bg-gray-100 px-4 py-3 text-sm rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-lime-400"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              {placeholder || "Select an option"}
+            </option>
+            {options?.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
+          {desc && <p className="text-gray-600 text-xs mt-1 italic">{desc}</p>}
+        </div>
       ) : (
         <div>
           <input
