@@ -77,7 +77,16 @@ const AppGrid = ({ apps }) => {
           className="cursor-pointer text-center space-y-2"
         >
           <div className="border border-lime-900 rounded-full h-20 w-20 mx-auto flex items-center justify-center">
-            <img src={Bullet} alt={app_name} className="w-12" />
+            <img
+              src={
+                app_icon
+                  ? `${import.meta.env.VITE_BASE_URL}/${app_icon}`
+                  : Bullet
+              }
+              alt="App Icon"
+              loading="lazy"
+              className="w-12"
+            />
           </div>
           <p className="font-semibold text-sm truncate">{app_name}</p>
           <div className="flex items-center justify-center gap-1 text-xs text-gray-600">

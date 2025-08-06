@@ -3,7 +3,7 @@ import { GoDotFill } from "react-icons/go";
 import { CgArrowTopRight } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import useApp from "../../hooks/useApp";
-
+import Bullet from "../../assets/Armour (1) 1.png";
 function Project() {
   const navigate = useNavigate();
   const { getAppListQuery } = useApp();
@@ -89,9 +89,13 @@ function Project() {
             .map((app) => (
               <div key={app.id}>
                 <div className="h-72 bg-stone-200 overflow-hidden mb-3">
-                  {app.image && (
+                  {app?.app_icon && (
                     <img
-                      src={app.image}
+                      src={
+                        app?.app_icon
+                          ? `${import.meta.env.VITE_BASE_URL}/${app?.app_icon}`
+                          : Bullet
+                      }
                       alt={app.app_name}
                       className="w-full h-full object-cover"
                     />
@@ -127,9 +131,13 @@ function Project() {
             .map((app) => (
               <div key={app.id}>
                 <div className="h-72 bg-stone-200 overflow-hidden mb-3">
-                  {app.image && (
+                  {app?.app_icon && (
                     <img
-                      src={app.image}
+                      src={
+                        app?.app_icon
+                          ? `${import.meta.env.VITE_BASE_URL}/${app?.app_icon}`
+                          : Bullet
+                      }
                       alt={app.app_name}
                       className="w-full h-full object-cover"
                     />
