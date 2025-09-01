@@ -2,7 +2,6 @@ import React from "react";
 import { GoDotFill } from "react-icons/go";
 import Mark from "../../assets/NDPC.png";
 import Mark1 from "../../assets/SILEX SECURE.png";
-import Mark2 from "../../assets/PRETECH.png";
 import Mark3 from "../../assets/NITDA.png";
 import Mark4 from "../../assets/drdb.png";
 // import Mark5 from "../../assets/Mark Five.png"
@@ -12,10 +11,8 @@ function Partners() {
   const client = [
     { logo: Mark },
     { logo: Mark1 },
-    { logo: Mark2 },
     { logo: Mark3 },
     { logo: Mark4 },
-    // { logo: Mark5, name: "Roommate" }
   ];
 
   return (
