@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { TbDownload, TbShieldLock, TbMail, TbPhoneCall } from "react-icons/tb";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import useApp from "../../hooks/useApp";
 import { FaSpinner, FaMobileAlt } from "react-icons/fa";

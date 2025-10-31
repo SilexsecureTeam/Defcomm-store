@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { TfiArrowRight } from "react-icons/tfi";
 
 // Assets
-import VectorA from "../../assets/VectorA.png";
+import appLogo from "../../assets/app-logo-green.png";
 import apps from "../../assets/clarity_vmw-app-outline-badged.png";
 import appAnalytic from "../../assets/clarity_analytics-line.png";
 import mynaui from "../../assets/mynaui_user-circle-solid.png";
@@ -37,7 +37,11 @@ const ProgramCards = () => {
         {/* Store Connect Card */}
         <div className="lg:col-span-2 flex flex-col md:flex-row bg-gray-200 rounded-[20px] overflow-hidden shadow">
           <div className="bg-[#DDF2AB] flex flex-col justify-between items-center p-6 md:w-[160px]">
-            <img src={VectorA} alt="icon" className="max-w-[50px] md:pt-10" />
+            <img
+              src={appLogo}
+              alt="app icon"
+              className="max-w-[50px] md:pt-10"
+            />
             <div className="mt-6">
               <ArrowButton />
             </div>

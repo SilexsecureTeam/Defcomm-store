@@ -1,5 +1,5 @@
 import React from "react";
-import VectorA from "../../assets/VectorA.png";
+import appLogo from "../../assets/app-logo-green.png";
 import HeaderBarTwo from "../../Components/store/HeaderBarTwo";
 import HeaderBar from "../../Components/store/HeaderBar";
 import useApp from "../../hooks/useApp";
@@ -23,7 +23,7 @@ export default function MyApps() {
       <div className="md:flex rounded-[20px] overflow-hidden mt-2">
         {/* Sidebar Icon */}
         <div className="bg-lime-400 p-6 flex-shrink-0 flex justify-center">
-          <img src={VectorA} alt="VectorA" className="w-20 md:w-24 h-fit" />
+          <img src={appLogo} alt="App Logo" className="w-20 md:w-24 h-fit" />
         </div>
 
         {/* Content Area */}
